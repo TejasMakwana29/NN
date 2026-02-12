@@ -1,165 +1,140 @@
-# Push Your Code to GitHub – Simple Steps
+## Push this project to GitHub (HTTPS only, clean steps)
 
-**Your repo:** https://github.com/vaishnavisomani28/manish-scale-ecommerce
+**Goal:** From this folder on your PC to your repo on GitHub using **HTTPS only**, no SSH changes.
 
----
-
-## What you need first
-
-1. **Git installed**  
-   - If you get "git is not recognized", install from: https://git-scm.com/download/win  
-   - After installing, **close and reopen** your terminal/Cursor.
-
-2. **Terminal open in this project folder**  
-   - In Cursor: **Terminal → New Terminal** (it usually opens in your project folder).  
-   - Or in PowerShell:  
-     ```powershell
-     cd "d:\Projects\Kimi_Agent_Industrial Scale E-Commerce Project"
-     ```
+- **Local folder:** `d:\Projects\Kimi_Agent_Industrial Scale E-Commerce Project`  
+- **GitHub repo (open in browser):** `https://github.com/vaishnavisomani28/manish-scale-ecommerce`  
+- **Remote URL (HTTPS):** `https://github.com/vaishnavisomani28/manish-scale-ecommerce.git`
 
 ---
 
-## Commands to run (copy-paste one block at a time)
+### 1. Open terminal in this folder
 
-### Step 1: Turn this folder into a Git repo
-
-```powershell
-git init
-```
-
-You should see: `Initialized empty Git repository in ...`
-
----
-
-### Step 2: Tell Git your name and email (only first time on this PC)
-
-Replace with your real name and the email you use on GitHub:
-
-```powershell
-git config --global user.name "Vaishnavi Somani"
-git config --global user.email "vaishnavisomani28@example.com"
-```
-
-Use your actual email (the one you use to log in to GitHub).
-
----
-
-### Step 3: Add all your code
-
-```powershell
-git add .
-```
-
-This stages everything. The `.gitignore` file makes sure `node_modules` and `dist` are **not** added.
-
----
-
-### Step 4: Save a snapshot (first commit)
-
-```powershell
-git commit -m "Add full project: React frontend + Express backend"
-```
-
-You should see something like: `X files changed, Y insertions(+)`.
-
----
-
-### Step 5: Name your branch "main"
-
-```powershell
-git branch -M main
-```
-
-GitHub’s default branch is `main`, so we use the same name.
-
----
-
-### Step 6: Connect to your GitHub repo
-
-```powershell
-git remote add origin https://github.com/vaishnavisomani28/manish-scale-ecommerce.git
-```
-
-If you see "remote origin already exists", run this first, then run the line above again:
-
-```powershell
-git remote remove origin
-```
-
----
-
-### Step 7: Push your code
-
-Your GitHub repo already has one file (README). So we have two options.
-
-**Option A – Keep GitHub’s README and add your code (recommended)**
-
-```powershell
-git pull origin main --allow-unrelated-histories --no-edit
-git push -u origin main
-```
-
-If Git asks for a merge message, just save and close the file (in Vim: press `Esc`, type `:wq`, press Enter).
-
-**Option B – Replace everything on GitHub with your project (ignore existing README)**
-
-```powershell
-git push -u origin main --force
-```
-
-⚠️ This overwrites whatever is on GitHub with your local project. Use only if you don’t care about the current README.
-
----
-
-### Step 8: Log in when asked
-
-- When you run `git push`, a browser or popup may open for **GitHub login**.  
-- Or Git may ask for **username** and **password**.  
-  - **Username:** your GitHub username (`vaishnavisomani28`).  
-  - **Password:** do **not** use your normal GitHub password. Use a **Personal Access Token**:  
-    1. GitHub → your profile (top right) → **Settings**.  
-    2. Left sidebar → **Developer settings** → **Personal access tokens** → **Tokens (classic)**.  
-    3. **Generate new token (classic)**.  
-    4. Give it a name, choose expiry, tick **repo**.  
-    5. Generate and **copy the token**.  
-    6. When Git asks for password, **paste this token**.
-
-After a successful push, refresh:  
-https://github.com/vaishnavisomani28/manish-scale-ecommerce  
-
-You should see your `app`, `backend`, `.gitignore`, etc.
-
----
-
-## Summary (quick copy-paste)
-
-Run in order in your project folder:
+In Cursor or PowerShell:
 
 ```powershell
 cd "d:\Projects\Kimi_Agent_Industrial Scale E-Commerce Project"
-git init
-git config --global user.name "Vaishnavi Somani"
-git config --global user.email "your-email@example.com"
-git add .
-git commit -m "Add full project: React frontend + Express backend"
-git branch -M main
-git remote add origin https://github.com/vaishnavisomani28/manish-scale-ecommerce.git
-git pull origin main --allow-unrelated-histories --no-edit
-git push -u origin main
 ```
 
-(Use your real email and, when asked, your GitHub username and a Personal Access Token as password.)
+Make sure `git` works:
+
+```powershell
+git --version
+```
+
+If it says “git is not recognized”, install Git from `https://git-scm.com/download/win`, then reopen the terminal.
 
 ---
 
-## Next time you make changes
+### 2. (First time on this PC) Set your Git identity
 
-After you change code and want to update GitHub:
+Do this once per computer (skip if already set earlier):
+
+```powershell
+git config --global user.name "Vaishnavi Somani"
+git config --global user.email "YOUR_GITHUB_EMAIL@example.com"
+```
+
+Use the same email you use on GitHub.
+
+---
+
+### 3. Initialize Git repo (only once for this project)
+
+If this project is **not** already a Git repo:
+
+```powershell
+git init
+```
+
+If it is already a repo, Git will say something like “Reinitialized existing Git repository” – that’s fine.
+
+---
+
+### 4. Stage all files and commit
 
 ```powershell
 git add .
-git commit -m "What you changed in one line"
+git commit -m "Initial commit: full project"
+```
+
+If Git says “nothing to commit”, it means you already committed once; that’s fine, continue.
+
+---
+
+### 5. Ensure branch name is `main`
+
+```powershell
+git branch -M main
+```
+
+---
+
+### 6. Point this repo to your GitHub remote (HTTPS only)
+
+Remove any old/incorrect remote (safe to run even if it doesn’t exist):
+
+```powershell
+git remote remove origin 2>$null
+```
+
+Now add the **correct HTTPS remote**:
+
+```powershell
+git remote add origin https://github.com/vaishnavisomani28/manish-scale-ecommerce.git
+```
+
+This uses **only HTTPS**. Your **SSH configuration is untouched**.
+
+---
+
+### 7. Push your code to GitHub
+
+```powershell
+git push -u origin main
+```
+
+Git will ask you to log in:
+
+- **If a browser window opens:** log in to GitHub and approve; Git will finish the push.  
+- **If terminal asks for username/password:**
+  - **Username:** `vaishnavisomani28`
+  - **Password:** a **Personal Access Token** (PAT), *not* your GitHub password.
+
+To create a PAT:
+
+1. Go to GitHub in browser → your profile → **Settings**.  
+2. Left side: **Developer settings** → **Personal access tokens** → **Tokens (classic)**.  
+3. Click **Generate new token (classic)**.  
+4. Give it a name, choose expiry, tick **repo**.  
+5. Generate and **copy** the token.  
+6. When Git asks for password in the terminal, **paste this token**.
+
+After this first time, future `git push` will normally not ask again for credentials (Git will remember).
+
+---
+
+### 8. Confirm on GitHub
+
+Open:
+
+```text
+https://github.com/vaishnavisomani28/manish-scale-ecommerce
+```
+
+You should now see your project files (frontend, backend, etc.).
+
+---
+
+### 9. Next time you change code
+
+From the same folder:
+
+```powershell
+cd "d:\Projects\Kimi_Agent_Industrial Scale E-Commerce Project"
+git add .
+git commit -m "Describe what you changed"
 git push
 ```
 
-That’s it.
+No SSH keys involved, HTTPS only.
