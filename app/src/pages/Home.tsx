@@ -1,0 +1,276 @@
+import { Hero } from '@/sections/Hero';
+import { FindYourScaleWizard } from '@/sections/FindYourScaleWizard';
+import { ProductGrid } from '@/sections/ProductGrid';
+import { ProductHierarchy } from '@/sections/ProductHierarchy';
+import { CategoryShowcase } from '@/sections/CategoryShowcase';
+import { UnitConverter } from '@/sections/UnitConverter';
+import { motion } from 'framer-motion';
+import { Award, Truck, Headphones, Shield, Star, Quote, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const features = [
+  {
+    icon: Award,
+    title: 'ISO 9001:2015 Certified',
+    description: 'All our scales meet international quality standards and certifications'
+  },
+  {
+    icon: Truck,
+    title: 'Free Pan-India Delivery',
+    description: 'Free shipping on orders above ₹5000 across all states'
+  },
+  {
+    icon: Headphones,
+    title: 'Dedicated Support',
+    description: 'Expert customer service and technical support team'
+  },
+  {
+    icon: Shield,
+    title: '1 Year Warranty',
+    description: 'Comprehensive warranty with free repairs and replacements'
+  }
+];
+
+// Placeholder avatars (data URI) to avoid external requests that can hang the page
+const avatarPlaceholder = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="%23e2e8f0"/><circle cx="28" cy="22" r="10" fill="%2394a3b8"/><path fill="%2394a3b8" d="M8 56c0-11 8.95-20 20-20s20 9 20 20H8z"/></svg>');
+
+const testimonials = [
+  {
+    name: 'Rajesh Patel',
+    company: 'Patel Traders, Ahmedabad',
+    text: 'Manish Scale has been our trusted supplier for over 10 years. Their counter scales are incredibly accurate and have never let us down.',
+    rating: 5,
+    image: avatarPlaceholder
+  },
+  {
+    name: 'Priya Sharma',
+    company: 'Golden Jewellers, Mumbai',
+    text: 'The jewelry scales we purchased have exceptional 0.001g precision. Perfect for our diamond and gold grading work.',
+    rating: 5,
+    image: avatarPlaceholder
+  },
+  {
+    name: 'Mohammed Khan',
+    company: 'Khan Poultry, Delhi',
+    text: 'Their electronic poultry scales are water-resistant and easy to clean. Exactly what we needed for our processing unit.',
+    rating: 5,
+    image: avatarPlaceholder
+  }
+];
+
+export function Home() {
+  return (
+    <main id="main-content">
+      <Hero />
+      
+      {/* Trust Features Section */}
+      <section className="py-16 bg-slate-50/50 relative overflow-hidden" aria-labelledby="features-title">
+        <div className="container mx-auto px-4 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-full text-sm font-medium mb-4 shadow-sm">
+              <CheckCircle2 className="w-4 h-4 text-slate-500" />
+              Why Choose Manish Scale
+            </span>
+            <h2 id="features-title" className="text-3xl md:text-4xl font-bold text-slate-900">
+              Trusted by <span className="text-slate-700 font-semibold">10,000+ Businesses</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="group relative bg-white p-8 rounded-xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all duration-300"
+              >
+                <div className="relative">
+                  <div className="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center mb-5 border border-slate-200 group-hover:bg-slate-200/50 transition-colors duration-300">
+                    <feature.icon className="w-7 h-7 text-slate-600" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">{feature.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Product Hierarchy */}
+      <ProductHierarchy />
+
+      {/* Category Showcase */}
+      <CategoryShowcase />
+
+      <FindYourScaleWizard />
+      
+      <ProductGrid 
+        title="Featured Products"
+        subtitle="Explore our best-selling weighing scales trusted by businesses nationwide"
+        limit={8}
+      />
+
+      {/* Testimonials Section */}
+      <section className="py-24 bg-white" aria-labelledby="testimonials-title">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-slate-600 rounded-full text-sm font-medium mb-4 border border-slate-200">
+              <Star className="w-4 h-4 fill-slate-500 text-slate-500" />
+              Customer Reviews
+            </span>
+            <h2 id="testimonials-title" className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+              What Our <span className="text-slate-700 font-semibold">Customers Say</span>
+            </h2>
+            <p className="text-xl text-slate-600">
+              Trusted by thousands of businesses across India
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -4, boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)' }}
+                className="group relative bg-slate-50/80 rounded-xl p-8 border border-slate-200 hover:border-slate-300 transition-all duration-300"
+              >
+                <Quote className="absolute top-6 right-6 w-10 h-10 text-slate-200" aria-hidden="true" />
+                
+                <div className="flex gap-1 mb-4" role="img" aria-label={`${testimonial.rating} out of 5 stars`}>
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 text-slate-400 fill-slate-400" />
+                  ))}
+                </div>
+                
+                <p className="text-slate-700 text-lg mb-6 leading-relaxed">"{testimonial.text}"</p>
+                
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={testimonial.image} 
+                    alt={testimonial.name}
+                    className="w-14 h-14 rounded-full object-cover border-2 border-slate-200"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div>
+                    <p className="font-bold text-slate-900">{testimonial.name}</p>
+                    <p className="text-sm text-slate-500">{testimonial.company}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 flex flex-wrap justify-center items-center gap-8 text-slate-400"
+          >
+            <span className="text-sm uppercase tracking-wider">Trusted by leading brands</span>
+            <div className="h-px w-16 bg-slate-200" />
+            <span className="text-2xl font-bold text-slate-300">Brand 1</span>
+            <span className="text-2xl font-bold text-slate-300">Brand 2</span>
+            <span className="text-2xl font-bold text-slate-300">Brand 3</span>
+            <span className="text-2xl font-bold text-slate-300">Brand 4</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 relative overflow-hidden bg-slate-800" aria-labelledby="cta-title">
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)`,
+          backgroundSize: '32px 32px'
+        }} />
+
+        <div className="container mx-auto px-4 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="w-20 h-20 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-8 border border-white/10"
+            >
+              <Award className="w-10 h-10 text-white" />
+            </motion.div>
+
+            <h2 id="cta-title" className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              Ready to Get Your <span className="text-slate-200 font-semibold">Perfect Scale?</span>
+            </h2>
+            <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+              Contact us today for a free consultation and quote. Our experts will help you 
+              find the ideal weighing solution for your business needs.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-4">
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/quote"
+                  className="group inline-flex items-center gap-3 px-10 py-5 bg-white text-slate-800 rounded-xl font-bold text-lg shadow-lg hover:bg-slate-100 hover:shadow-xl transition-all duration-300"
+                >
+                  <span>Request Free Quote</span>
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
+              <motion.a
+                href="tel:+919925494022"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-3 px-10 py-5 bg-white/10 text-white border-2 border-white/20 rounded-xl font-bold text-lg hover:bg-white/20 hover:border-white/30 transition-all duration-300"
+              >
+                <span>Call Now: +91 99254 94022</span>
+              </motion.a>
+            </div>
+
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { label: 'Years Experience', value: '30+' },
+                { label: 'Products Sold', value: '50K+' },
+                { label: 'Happy Customers', value: '10K+' },
+                { label: 'Service Centers', value: '25+' }
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * i }}
+                  className="text-center"
+                >
+                  <div className="text-4xl font-bold text-white mb-1">{stat.value}</div>
+                  <div className="text-sm text-slate-400">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <UnitConverter />
+    </main>
+  );
+}

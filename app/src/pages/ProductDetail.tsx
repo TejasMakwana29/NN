@@ -1,0 +1,412 @@
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { 
+  ChevronRight, 
+  Scale, 
+  Check, 
+  Shield, 
+  Truck, 
+  Headphones,
+  Star,
+  Share2,
+  Heart
+} from 'lucide-react';
+import { getProductById, getProductsByCategory, type Product } from '@/data/products';
+import { getProductImageUrl, getPlaceholderImageUrl } from '@/lib/productImages';
+// Button component not used
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+export function ProductDetail() {
+  const { id } = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1);
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const t = setTimeout(() => {
+      const foundProduct = getProductById(id || '');
+      if (cancelled) return;
+      if (foundProduct) {
+        setProduct(foundProduct);
+        const related = getProductsByCategory(foundProduct.categorySlug || '')
+          .filter(p => p.id !== id)
+          .slice(0, 4);
+        setRelatedProducts(related);
+      }
+      setIsLoading(false);
+    }, 600);
+    return () => {
+      cancelled = true;
+      clearTimeout(t);
+    };
+  }, [id]);
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(price);
+  };
+
+  if (isLoading) {
+    return (
+      <motion.main
+        className="min-h-screen bg-gray-50 pt-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
+      >
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="aspect-square skeleton-shimmer rounded-xl" />
+            <div className="space-y-4">
+              <div className="h-8 w-3/4 skeleton-shimmer rounded" />
+              <div className="h-6 w-1/2 skeleton-shimmer rounded" />
+              <div className="h-12 w-1/3 skeleton-shimmer rounded" />
+              <div className="h-24 w-full skeleton-shimmer rounded" />
+            </div>
+          </div>
+        </div>
+      </motion.main>
+    );
+  }
+
+  if (!product) {
+    return (
+      <motion.main
+        className="min-h-screen bg-gray-50 pt-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <div className="container mx-auto px-4 text-center">
+          <Scale className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">Product Not Found</h1>
+          <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
+          <Link to="/products" className="text-[#0056b3] hover:underline">
+            Browse All Products
+          </Link>
+        </div>
+      </motion.main>
+    );
+  }
+
+  return (
+    <motion.main
+      className="min-h-screen bg-gray-50"
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    >
+      {/* Breadcrumb */}
+      <div className="bg-white border-b">
+        <div className="container mx-auto px-4 py-4">
+          <nav className="flex items-center gap-2 text-sm text-gray-600">
+            <Link to="/" className="hover:text-[#0056b3]">Home</Link>
+            <ChevronRight className="w-4 h-4" />
+            <Link to="/products" className="hover:text-[#0056b3]">Products</Link>
+            <ChevronRight className="w-4 h-4" />
+            {product.category && (
+              <>
+                <Link to={`/products/${product.categorySlug}`} className="hover:text-[#0056b3]">
+                  {product.category}
+                </Link>
+                <ChevronRight className="w-4 h-4" />
+              </>
+            )}
+            <span className="text-[#0056b3] font-medium">{product.name}</span>
+          </nav>
+        </div>
+      </div>
+
+      {/* Product Details */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Image Gallery */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
+              <div className="aspect-square relative">
+                <img
+                  src={getProductImageUrl(product, 'large')}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = getPlaceholderImageUrl(product.name, 600);
+                  }}
+                />
+                <div className="absolute top-4 right-4 flex gap-2">
+                  <button
+                    onClick={() => setIsWishlisted(!isWishlisted)}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
+                      isWishlisted ? 'bg-red-500 text-white' : 'bg-white/90 text-gray-600 hover:bg-white'
+                    }`}
+                  >
+                    <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
+                  </button>
+                  <button className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-600 hover:bg-white transition-colors">
+                    <Share2 className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Product Info */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="mb-4">
+              <span className="px-3 py-1 bg-[#0056b3]/10 text-[#0056b3] rounded-full text-sm font-medium">
+                {product.category}
+              </span>
+              {product.type && (
+                <span className="ml-2 px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
+                  {product.type}
+                </span>
+              )}
+            </div>
+
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              {product.name}
+            </h1>
+
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                ))}
+              </div>
+              <span className="text-gray-500">(128 reviews)</span>
+            </div>
+
+            <div className="text-4xl font-bold text-[#0056b3] mb-6">
+              {formatPrice(product.price)}
+              <span className="text-lg text-gray-400 font-normal line-through ml-3">
+                {formatPrice(product.price * 1.2)}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+                <Scale className="w-6 h-6 text-[#0056b3]" />
+                <div>
+                  <p className="text-sm text-gray-500">Capacity</p>
+                  <p className="font-semibold">{product.capacity}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+                <Check className="w-6 h-6 text-[#0056b3]" />
+                <div>
+                  <p className="text-sm text-gray-500">Precision</p>
+                  <p className="font-semibold">±{product.precision}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quantity Selector */}
+            <div className="flex items-center gap-4 mb-8">
+              <span className="font-medium">Quantity:</span>
+              <div className="flex items-center border rounded-lg">
+                <button
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
+                >
+                  -
+                </button>
+                <span className="px-4 py-2 font-semibold">{quantity}</span>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Link
+                to="/quote"
+                className="flex-1 py-4 bg-[#28a745] text-white text-center rounded-xl font-semibold hover:bg-[#1e7e34] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+              >
+                Request Quote
+              </Link>
+              <a
+                href={`https://wa.me/919925494022?text=Hi, I'm interested in ${product.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-4 bg-[#25D366] text-white text-center rounded-xl font-semibold hover:bg-[#128C7E] transition-all duration-300 hover:scale-[1.02]"
+              >
+                Inquiry on WhatsApp
+              </a>
+            </div>
+
+            {/* Features */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
+                <Shield className="w-6 h-6 mx-auto mb-2 text-[#0056b3]" />
+                <p className="text-xs text-gray-600">1 Year Warranty</p>
+              </div>
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
+                <Truck className="w-6 h-6 mx-auto mb-2 text-[#0056b3]" />
+                <p className="text-xs text-gray-600">Free Delivery</p>
+              </div>
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
+                <Headphones className="w-6 h-6 mx-auto mb-2 text-[#0056b3]" />
+                <p className="text-xs text-gray-600">24/7 Support</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Product Tabs */}
+        <div className="mt-16">
+          <Tabs defaultValue="description" className="bg-white rounded-xl shadow-sm">
+            <TabsList className="w-full justify-start border-b rounded-none p-0 h-auto">
+              <TabsTrigger 
+                value="description" 
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-[#0056b3] data-[state=active]:text-[#0056b3]"
+              >
+                Description
+              </TabsTrigger>
+              <TabsTrigger 
+                value="specifications"
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-[#0056b3] data-[state=active]:text-[#0056b3]"
+              >
+                Specifications
+              </TabsTrigger>
+              <TabsTrigger 
+                value="reviews"
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-[#0056b3] data-[state=active]:text-[#0056b3]"
+              >
+                Reviews
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="description" className="p-8">
+              <h3 className="text-xl font-semibold mb-4">Product Description</h3>
+              <p className="text-gray-600 leading-relaxed">
+                The {product.name} is a high-precision weighing solution designed for 
+                {product.category?.toLowerCase() || 'various'} applications. With a capacity of {product.capacity} 
+                and precision of ±{product.precision}, it delivers accurate measurements every time.
+              </p>
+              <ul className="mt-6 space-y-3">
+                <li className="flex items-center gap-2 text-gray-600">
+                  <Check className="w-5 h-5 text-[#28a745]" />
+                  High-precision load cell technology
+                </li>
+                <li className="flex items-center gap-2 text-gray-600">
+                  <Check className="w-5 h-5 text-[#28a745]" />
+                  Easy-to-read digital display
+                </li>
+                <li className="flex items-center gap-2 text-gray-600">
+                  <Check className="w-5 h-5 text-[#28a745]" />
+                  Durable construction for long-lasting performance
+                </li>
+                <li className="flex items-center gap-2 text-gray-600">
+                  <Check className="w-5 h-5 text-[#28a745]" />
+                  ISO 9001:2015 certified quality
+                </li>
+              </ul>
+            </TabsContent>
+            
+            <TabsContent value="specifications" className="p-8">
+              <h3 className="text-xl font-semibold mb-4">Technical Specifications</h3>
+              <table className="w-full max-w-2xl">
+                <tbody className="divide-y">
+                  <tr>
+                    <td className="py-3 text-gray-500">Capacity</td>
+                    <td className="py-3 font-medium">{product.capacity}</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 text-gray-500">Precision</td>
+                    <td className="py-3 font-medium">±{product.precision}</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 text-gray-500">Display</td>
+                    <td className="py-3 font-medium">LCD with backlight</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 text-gray-500">Power</td>
+                    <td className="py-3 font-medium">AC Adapter / Rechargeable Battery</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 text-gray-500">Warranty</td>
+                    <td className="py-3 font-medium">1 Year</td>
+                  </tr>
+                </tbody>
+              </table>
+            </TabsContent>
+            
+            <TabsContent value="reviews" className="p-8">
+              <h3 className="text-xl font-semibold mb-4">Customer Reviews</h3>
+              <div className="space-y-6">
+                {[
+                  { name: 'Rajesh K.', rating: 5, text: 'Excellent product! Very accurate and easy to use.', date: '2 weeks ago' },
+                  { name: 'Priya M.', rating: 5, text: 'Great value for money. The precision is outstanding.', date: '1 month ago' },
+                  { name: 'Amit S.', rating: 4, text: 'Good build quality. Delivery was prompt.', date: '2 months ago' }
+                ].map((review, i) => (
+                  <div key={i} className="border-b pb-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="flex">
+                        {[...Array(review.rating)].map((_, j) => (
+                          <Star key={j} className="w-4 h-4 text-yellow-400 fill-current" />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-500">{review.date}</span>
+                    </div>
+                    <p className="font-medium">{review.name}</p>
+                    <p className="text-gray-600">{review.text}</p>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+
+        {/* Related Products */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Related Products</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {relatedProducts.map((relatedProduct) => (
+                <Link
+                  key={relatedProduct.id}
+                  to={`/product/${relatedProduct.id}`}
+                  className="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="aspect-square overflow-hidden bg-gray-100">
+                    <img
+                      src={getProductImageUrl(relatedProduct, 'medium')}
+                      alt={relatedProduct.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-800 group-hover:text-[#0056b3] transition-colors">
+                      {relatedProduct.name}
+                    </h3>
+                    <p className="text-[#0056b3] font-bold mt-2">
+                      {formatPrice(relatedProduct.price)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </motion.main>
+  );
+}

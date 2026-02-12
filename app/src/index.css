@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 210 100% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 100% 35%;
+    --radius: 0.5rem;
+    
+    /* Manish Scale Brand Colors - minimal professional */
+    --manish-primary: #334155;
+    --manish-primary-light: #475569;
+    --manish-primary-dark: #1e293b;
+    --manish-accent: #64748b;
+    --manish-accent-light: #94a3b8;
+    --manish-success: #0f766e;
+    --manish-success-dark: #0d9488;
+    --manish-gradient-start: #f8fafc;
+    --manish-gradient-end: #f1f5f9;
+    --light-gray: #f8fafc;
+    --dark-gray: #1e293b;
+  }
+
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Focus visible styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-slate-600 ring-offset-2;
+  }
+
+  /* Interactive buttons: subtle press feedback */
+  button:active:not(:disabled),
+  [role="button"]:active:not(:disabled) {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  a[href]:active {
+    opacity: 0.9;
+  }
+
+  /* Interactive link hover - primary-style links */
+  a[href].hover-lift:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Skip link for accessibility */
+  .skip-link {
+    @apply absolute -top-10 left-0 bg-slate-700 text-white px-4 py-2 z-[100] transition-all duration-300;
+  }
+  
+  .skip-link:focus {
+    @apply top-0;
+  }
+}
+
+@layer components {
+  /* Manish Scale Primary Button */
+  .btn-manish-primary {
+    @apply relative overflow-hidden bg-slate-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-slate-800;
+  }
+  
+  .btn-manish-primary:hover {
+    @apply shadow-lg shadow-slate-900/10;
+  }
+  
+  .btn-manish-primary span {
+    @apply relative z-10;
+  }
+  
+  /* Manish Scale Accent Button */
+  .btn-manish-accent {
+    @apply bg-slate-100 text-slate-800 px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-slate-200 border border-slate-200;
+  }
+  
+  .btn-manish-accent:hover {
+    @apply shadow-sm;
+  }
+  
+  /* Minimal gradient background (no animation) */
+  .animated-gradient {
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+  }
+  
+  /* Floating Animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  /* Pulse Glow Animation - subtle */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(51, 65, 85, 0.08); }
+    50% { box-shadow: 0 0 30px rgba(51, 65, 85, 0.12); }
+  }
+  
+  /* Scale Icon Spin Animation */
+  .scale-icon-spin {
+    animation: scaleIconSpin 20s linear infinite;
+  }
+  
+  @keyframes scaleIconSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Card 3D Hover Effect */
+  .card-3d {
+    @apply transition-all duration-500;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  
+  .card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg) translateZ(10px);
+  }
+  
+  /* Glass Morphism - minimal */
+  .glass-morph {
+    @apply bg-white/90 backdrop-blur-xl border border-slate-200/80 shadow-lg;
+  }
+  
+  /* Skeleton loading animation */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Category Tree Animation */
+  .tree-line {
+    @apply absolute bg-slate-300;
+    width: 2px;
+  }
+  
+  .tree-node {
+    @apply relative pl-8 py-3 cursor-pointer transition-all duration-300;
+  }
+  
+  .tree-node::before {
+    content: '';
+    @apply absolute left-0 top-1/2 w-6 h-0.5 bg-slate-400;
+  }
+  
+  .tree-node:hover {
+    @apply bg-slate-50 rounded-lg;
+  }
+  
+  /* Ripple Effect */
+  .ripple {
+    @apply relative overflow-hidden;
+  }
+  
+  .ripple::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+  
+  .ripple:active::after {
+    transform: scale(2);
+    opacity: 1;
+    transition: 0s;
+  }
+  
+  /* Mega menu animation */
+  .mega-menu-enter {
+    @apply opacity-0 -translate-y-2;
+  }
+  
+  .mega-menu-enter-active {
+    @apply opacity-100 translate-y-0 transition-all duration-300 ease-out;
+  }
+  
+  /* Product card styles */
+  .product-card {
+    @apply bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-500;
+  }
+  
+  .product-card:hover {
+    @apply shadow-xl -translate-y-1 border-slate-200;
+  }
+  
+  .product-card-image {
+    @apply relative aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100;
+  }
+  
+  .product-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-700;
+  }
+  
+  .product-card:hover .product-card-image img {
+    @apply scale-110;
+  }
+  
+  /* WhatsApp widget */
+  .whatsapp-widget {
+    @apply fixed bottom-6 right-6 z-50;
+  }
+  
+  .whatsapp-button {
+    @apply w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg transition-all duration-300;
+  }
+  
+  .whatsapp-button:hover {
+    @apply scale-110 shadow-xl shadow-green-500/30;
+  }
+  
+  /* Comparison table */
+  .comparison-table {
+    @apply w-full border-collapse rounded-xl overflow-hidden;
+  }
+  
+  .comparison-table th,
+  .comparison-table td {
+    @apply p-4 border border-gray-100 text-left;
+  }
+  
+  .comparison-table th {
+    @apply bg-slate-700 text-white font-semibold;
+  }
+  
+  .comparison-table tbody tr:hover {
+    @apply bg-slate-50;
+  }
+  
+  /* Wizard steps */
+  .wizard-step {
+    @apply opacity-0 translate-x-8;
+  }
+  
+  .wizard-step-active {
+    @apply opacity-100 translate-x-0 transition-all duration-500 ease-out;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+  
+  /* Animated Counter */
+  .counter-animate {
+    animation: counterPop 0.5s ease-out;
+  }
+  
+  @keyframes counterPop {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  /* Staggered Fade In */
+  .stagger-fade-in > * {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Accessibility - Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    .product-card {
+      @apply border-2 border-gray-800;
+    }
+    
+    .btn-manish-primary {
+      @apply bg-slate-900 border-2 border-white;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+  .animation-delay-700 { animation-delay: 700ms; }
+  .animation-delay-800 { animation-delay: 800ms; }
+  
+  /* Gradient Text - minimal */
+  .text-gradient {
+    @apply text-slate-700 font-semibold;
+  }
+  
+  .text-gradient-gold {
+    @apply text-slate-800 font-semibold;
+  }
+  
+  /* Shadow Utilities */
+  .shadow-manish {
+    box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.1);
+  }
+  
+  .shadow-manish-lg {
+    box-shadow: 0 20px 50px -15px rgba(15, 23, 42, 0.12);
+  }
+  
+  /* Border - minimal */
+  .border-gradient {
+    @apply border-2 border-slate-200;
+  }
+  
+  /* Visually Hidden (for screen readers) */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
