@@ -318,12 +318,6 @@ export function Products() {
                         )}
                       </div>
 
-                      <div className="flex items-center justify-between">
-                        <span className="text-xl font-bold text-[#0056b3]">
-                          {formatPrice(product.price)}
-                        </span>
-                      </div>
-
                       <div className="flex gap-2 mt-4">
                         <Link
                           to={`/product/${product.id}`}
@@ -391,14 +385,6 @@ export function Products() {
                     <td className="font-semibold">Precision</td>
                     {compareProducts.map(product => (
                       <td key={product.id} className="text-center">±{product.precision}</td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td className="font-semibold">Price</td>
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center font-bold text-[#0056b3]">
-                        {formatPrice(product.price)}
-                      </td>
                     ))}
                   </tr>
                 </tbody>

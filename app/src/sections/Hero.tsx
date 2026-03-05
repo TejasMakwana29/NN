@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Users, Globe, TrendingUp, Scale, Phone, ChevronDown } from 'lucide-react';
+import { ArrowRight, Award, Users, Globe, TrendingUp, Scale, Phone } from 'lucide-react';
 import { IMAGES } from '@/lib/productImages';
 
 // Lightweight counter - single RAF update to avoid 60 setState calls
