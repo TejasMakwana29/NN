@@ -1,5 +1,5 @@
 import { Hero } from '@/sections/Hero';
-import { FindYourScaleWizard } from '@/sections/FindYourScaleWizard';
+// import { FindYourScaleWizard } from '@/sections/FindYourScaleWizard';
 import { ProductGrid } from '@/sections/ProductGrid';
 import { ProductHierarchy } from '@/sections/ProductHierarchy';
 import { CategoryShowcase } from '@/sections/CategoryShowcase';

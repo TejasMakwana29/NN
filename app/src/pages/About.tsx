@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Award, Users, Globe, TrendingUp, Check, Target, Lightbulb, Shield } from 'lucide-react';
 
-const milestones = [
+/* const milestones = [
   { year: '1952', title: 'Company Founded', description: 'Started as a small weighing scale repair shop in Savarkundla' },
   { year: '2000', title: 'Manufacturing Begin', description: 'Launched our first line of mechanical counter scales' },
   { year: '2005', title: 'ISO Certification', description: 'Achieved ISO 9001:2000 certification for quality management' },
@@ -9,7 +9,7 @@ const milestones = [
   { year: '2015', title: 'Export Business', description: 'Started exporting to Middle East and African markets' },
   { year: '2020', title: 'Industry Leader', description: 'Became one of India\'s top 5 weighing scale manufacturers' },
   { year: '2024', title: 'Global Presence', description: 'Serving customers in 25+ countries worldwide' }
-];
+]; */
 
 const values = [
   {
@@ -34,12 +34,12 @@ const values = [
   }
 ];
 
-const team = [
+/* const team = [
   { name: 'Rajesh Patel', role: 'Founder & CEO', image: 'RP' },
   { name: 'Priya Sharma', role: 'Technical Director', image: 'PS' },
   { name: 'Amit Kumar', role: 'Head of Operations', image: 'AK' },
   { name: 'Sneha Gupta', role: 'Sales Director', image: 'SG' }
-];
+]; */
 
 export function About() {
   return (
