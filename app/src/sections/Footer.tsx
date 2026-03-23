@@ -82,7 +82,7 @@ const badges = [
               </div>
             </Link>
             <p className="text-gray-400 mb-6 leading-relaxed">
-  A legacy of trust beginning in 1950 as India's first beam scale manufacturer. 
+  A legacy of trust beginning in 1952 as India's first beam scale manufacturer. 
   Today, Manish Scale continues to set the standard for quality, precision, 
   and durability in weighing solutions across the nation.
 </p>
@@ -251,7 +251,7 @@ const badges = [
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-500 text-sm text-center md:text-left">
               © {new Date().getFullYear()} <span className="text-blue-400">Manish Scale</span>. All rights reserved. 
-              <span className="hidden md:inline"> | A Legacy of Trust Since 1950</span>
+              <span className="hidden md:inline"> | A Legacy of Trust Since 1952</span>
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm">
               <Link to="/privacy" className="text-gray-500 hover:text-white transition-colors">

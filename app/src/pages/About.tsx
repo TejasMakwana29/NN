@@ -104,7 +104,7 @@ export function About() {
               
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  <strong className="text-gray-800">Manish Scale carries forward a legacy that began in 1950 with Karshan Ramji and Sons</strong>, a pioneering company that became India's first manufacturer of beam scales and mechanical weighing scales. At a time when the weighing industry in India was still developing, Karshan Ramji and Sons set new standards with its commitment to precision, quality craftsmanship, and reliable performance. Over the decades, the company earned the trust of businesses across the country and became a respected name in the weighing scale industry.
+                  <strong className="text-gray-800">Manish Scale carries forward a legacy that began in 1952 with Karshan Ramji and Sons</strong>, a pioneering company that became India's first manufacturer of beam scales and mechanical weighing scales. At a time when the weighing industry in India was still developing, Karshan Ramji and Sons set new standards with its commitment to precision, quality craftsmanship, and reliable performance. Over the decades, the company earned the trust of businesses across the country and became a respected name in the weighing scale industry.
                 </p>
                 <p>
                   With changing times and advancements in technology, the business continued to evolve while preserving its strong foundation of accuracy and reliability. <strong className="text-gray-800">In 2012, the next chapter of this legacy began with the establishment of Manish Scale</strong>, focusing on the manufacturing of Hanging Spring Balances. By combining decades of traditional expertise with modern manufacturing techniques, the brand quickly gained recognition for producing high-quality and highly precise weighing instruments.
@@ -142,7 +142,7 @@ export function About() {
                 <div className="text-center text-white p-8">
                   <div className="text-6xl font-bold mb-2">70+</div>
                   <div className="text-xl">Years of Excellence</div>
-                  <div className="text-sm mt-2 text-blue-200">Since 1950</div>
+                  <div className="text-sm mt-2 text-blue-200">Since 1952</div>
                 </div>
               </div>
             </motion.div>
@@ -162,7 +162,7 @@ export function About() {
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Core Values</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              These principles have guided us since 1950, from product design to customer service.
+              These principles have guided us since 1952, from product design to customer service.
             </p>
           </motion.div>
 

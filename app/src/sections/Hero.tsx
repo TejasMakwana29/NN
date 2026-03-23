@@ -131,7 +131,7 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.45 }}
               className="text-lg text-slate-600 mb-8 max-w-xl"
             >
-              Carrying forward a legacy that began in 1950 with India's first manufacturer of beam scales. 
+              Carrying forward a legacy that began in 1952 with India's first manufacturer of beam scales. 
               Today, we deliver premium weighing solutions trusted by businesses across India with 
               over seven decades of traditional expertise and modern precision.
             </motion.p>
