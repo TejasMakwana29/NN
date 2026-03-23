@@ -260,20 +260,21 @@ export function ProductDetail() {
         {/* Product Tabs */}
         <div className="mt-16">
           <Tabs defaultValue="description" className="bg-white rounded-xl shadow-sm">
-            <TabsList className="w-full justify-start border-b rounded-none p-0 h-auto">
-              <TabsTrigger 
-                value="description" 
-                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
-              >
-                Description
-              </TabsTrigger>
-              <TabsTrigger 
-                value="specifications"
-                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
-              >
-                Specifications
-              </TabsTrigger>
-            </TabsList>
+            {/* Update this line in ProductDetail.tsx */}
+<TabsList className="w-full justify-start border-b rounded-none p-0 h-auto overflow-x-auto flex-nowrap whitespace-nowrap hide-scrollbar">
+  <TabsTrigger 
+    value="description" 
+    className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
+  >
+    Description
+  </TabsTrigger>
+  <TabsTrigger 
+    value="specifications"
+    className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
+  >
+    Specifications
+  </TabsTrigger>
+</TabsList>
             
             <TabsContent value="description" className="p-8">
               <h3 className="text-xl font-semibold mb-4">Product Description</h3>

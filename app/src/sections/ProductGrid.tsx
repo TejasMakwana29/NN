@@ -108,7 +108,7 @@ export function ProductGrid({
             >
               <Button
                 onClick={() => setIsCompareDialogOpen(true)}
-                className="bg-blue-600 hover:bg-indigo-900"
+                className="bg-blue-600 hover:bg-indigo-900 w-full md:w-auto"
               >
                 <BarChart3 className="w-4 h-4 mr-2" />
                 Compare ({compareList.length})
@@ -235,83 +235,87 @@ export function ProductGrid({
 
       {/* Comparison Dialog */}
       <Dialog open={isCompareDialogOpen} onOpenChange={setIsCompareDialogOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold flex items-center gap-2">
-              <BarChart3 className="w-6 h-6" />
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col p-4 md:p-6">
+          <DialogHeader className="shrink-0 mb-2">
+            <DialogTitle className="text-xl md:text-2xl font-bold flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 md:w-6 md:h-6" />
               Product Comparison
             </DialogTitle>
           </DialogHeader>
           
           {compareProducts.length > 0 ? (
-            <div className="mt-4">
-              <table className="w-full comparison-table">
-                <thead>
-                  <tr>
-                    <th className="bg-gray-50">Feature</th>
-                    {compareProducts.map(product => (
-                      <th key={product.id} className="text-center">
-                        <div className="flex flex-col items-center">
-                          <img
-                            src={getProductImageUrl(product, 'thumb')}
-                            alt={product.name}
-                            className="w-20 h-20 object-cover rounded-lg mb-2"
-                          />
-                          <span className="text-sm">{product.name}</span>
-                        </div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="font-semibold">Category</td>
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">{product.category}</td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td className="font-semibold">Capacity</td>
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">{product.baseCapacity}</td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td className="font-semibold">Precision</td>
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">±{product.precision}</td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td className="font-semibold">Action</td>
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">
-                        <Link
-                          to="/quote"
-                          onClick={() => setIsCompareDialogOpen(false)}
-                          className="inline-block px-4 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition-colors"
-                        >
-                          Get Quote
-                        </Link>
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
+            <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0">
+              {/* Responsive scroll container for the table */}
+              <div className="overflow-x-auto pb-4 custom-scrollbar">
+                <table className="w-full comparison-table min-w-[600px]">
+                  <thead>
+                    <tr>
+                      <th className="bg-gray-50 text-left p-3">Feature</th>
+                      {compareProducts.map(product => (
+                        <th key={product.id} className="text-center p-3">
+                          <div className="flex flex-col items-center">
+                            <img
+                              src={getProductImageUrl(product, 'thumb')}
+                              alt={product.name}
+                              className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg mb-2"
+                            />
+                            <span className="text-xs md:text-sm max-w-[120px] truncate">{product.name}</span>
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="font-semibold p-3 border-b">Category</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm">{product.category}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3 border-b">Capacity</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm">{product.baseCapacity}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3 border-b">Precision</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm">±{product.precision}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3">Action</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3">
+                          <Link
+                            to="/quote"
+                            onClick={() => setIsCompareDialogOpen(false)}
+                            className="inline-block px-3 py-2 bg-emerald-600 text-white text-xs md:text-sm rounded-lg hover:bg-emerald-700 transition-colors whitespace-nowrap"
+                          >
+                            Get Quote
+                          </Link>
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               
-              <div className="mt-6 flex justify-end gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t">
                 <Button
                   variant="outline"
                   onClick={() => {
                     setCompareList([]);
                     setIsCompareDialogOpen(false);
                   }}
+                  className="w-full sm:w-auto"
                 >
                   Clear Comparison
                 </Button>
                 <Button
                   onClick={() => setIsCompareDialogOpen(false)}
-                  className="bg-blue-600 hover:bg-indigo-900"
+                  className="bg-blue-600 hover:bg-indigo-900 w-full sm:w-auto"
                 >
                   Close
                 </Button>
