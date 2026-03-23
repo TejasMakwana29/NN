@@ -125,13 +125,13 @@ export function Products() {
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm text-gray-600">
-            <Link to="/" className="hover:text-[#0056b3]">Home</Link>
+            <Link to="/" className="hover:text-blue-600">Home</Link>
             <ChevronRight className="w-4 h-4" />
-            <Link to="/products" className="hover:text-[#0056b3]">Products</Link>
+            <Link to="/products" className="hover:text-blue-600">Products</Link>
             {categorySlug && (
               <>
                 <ChevronRight className="w-4 h-4" />
-                <span className="text-[#0056b3] font-medium">{pageTitle}</span>
+                <span className="text-blue-600 font-medium">{pageTitle}</span>
               </>
             )}
           </nav>
@@ -174,7 +174,7 @@ export function Products() {
               {compareList.length > 0 && (
                 <Button
                   onClick={() => setIsCompareDialogOpen(true)}
-                  className="bg-[#0056b3] hover:bg-[#003d80]"
+                  className="bg-blue-600 hover:bg-indigo-900"
                 >
                   Compare ({compareList.length})
                 </Button>
@@ -199,7 +199,7 @@ export function Products() {
                 <li>
                   <Link 
                     to="/products"
-                    className={`block text-sm transition-colors ${!categorySlug ? 'text-[#0056b3] font-bold' : 'text-gray-600 hover:text-[#0056b3]'}`}
+                    className={`block text-sm transition-colors ${!categorySlug ? 'text-blue-600 font-bold' : 'text-gray-600 hover:text-blue-600'}`}
                   >
                     All Products
                   </Link>
@@ -208,7 +208,7 @@ export function Products() {
                   <li key={cat.id}>
                     <Link 
                       to={`/products/${cat.slug}`}
-                      className={`block text-sm transition-colors ${categorySlug === cat.slug ? 'text-[#0056b3] font-bold' : 'text-gray-600 hover:text-[#0056b3]'}`}
+                      className={`block text-sm transition-colors ${categorySlug === cat.slug ? 'text-blue-600 font-bold' : 'text-gray-600 hover:text-blue-600'}`}
                     >
                       {cat.name}
                     </Link>
@@ -285,7 +285,7 @@ export function Products() {
                           }}
                           className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                             compareList.includes(product.id)
-                              ? 'bg-[#0056b3] text-white'
+                              ? 'bg-blue-600 text-white'
                               : 'bg-white/90 text-gray-400 hover:bg-white'
                           }`}
                         >
@@ -299,7 +299,7 @@ export function Products() {
                     {/* Content */}
                     <div className="p-5 flex-1">
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-gray-800 group-hover:text-[#0056b3] transition-colors">
+                        <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
                           {product.name}
                         </h3>
                       </div>
@@ -321,13 +321,13 @@ export function Products() {
                       <div className="flex gap-2 mt-4">
                         <Link
                           to={`/product/${product.id}`}
-                          className="flex-1 py-2 border border-[#0056b3] text-[#0056b3] text-center rounded-lg font-medium hover:bg-[#0056b3] hover:text-white transition-colors"
+                          className="flex-1 py-2 border border-blue-600 text-blue-600 text-center rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors"
                         >
                           View Details
                         </Link>
                         <Link
                           to="/quote"
-                          className="flex-1 py-2 bg-[#28a745] text-white text-center rounded-lg font-medium hover:bg-[#1e7e34] transition-colors"
+                          className="flex-1 py-2 bg-emerald-600 text-white text-center rounded-lg font-medium hover:bg-emerald-700 transition-colors"
                         >
                           Get Quote
                         </Link>
@@ -403,7 +403,7 @@ export function Products() {
                 </Button>
                 <Button
                   onClick={() => setIsCompareDialogOpen(false)}
-                  className="bg-[#0056b3] hover:bg-[#003d80]"
+                  className="bg-blue-600 hover:bg-indigo-900"
                 >
                   Close
                 </Button>

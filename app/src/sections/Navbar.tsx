@@ -56,7 +56,6 @@ export function Navbar() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close mobile menu on route change (defer setState to avoid sync setState in effect)
   useEffect(() => {
     const t = setTimeout(() => {
       setIsMobileMenuOpen(false);
@@ -79,16 +78,16 @@ export function Navbar() {
 
   return (
     <header className="w-full" role="banner">
-      {/* Top Bar */}
-      <div className="bg-slate-800 text-slate-200 py-2.5">
+      {/* Top Bar - Vibrant Gradient */}
+      <div className="bg-gradient-to-r from-blue-900 to-indigo-900 text-blue-100 py-2.5 text-sm border-b border-blue-800/50 shadow-inner">
         <div className="container mx-auto px-4 flex flex-wrap items-center justify-between text-sm">
           <div className="flex items-center gap-4 md:gap-6">
             <a 
-              href="mailto:info@manishscale.com" 
+              href="mailto:manishscaleindia@gmail.com" 
               className="flex items-center gap-2 hover:text-white transition-colors"
-              aria-label="Email us at info@manishscale.com"
+              aria-label="Email us at manishscaleindia@gmail.com"
             >
-              <Mail className="w-4 h-4" aria-hidden="true" />
+              <Mail className="w-4 h-4 text-blue-300" aria-hidden="true" />
               <span className="hidden sm:inline">manishscaleindia@gmail.com</span>
             </a>
             <a 
@@ -96,30 +95,30 @@ export function Navbar() {
               className="flex items-center gap-2 hover:text-white transition-colors"
               aria-label="Call us at +91 92844 05090"
             >
-              <Phone className="w-4 h-4" aria-hidden="true" />
+              <Phone className="w-4 h-4 text-emerald-400" aria-hidden="true" />
               <span>+91 92844 05090</span>
             </a>
-            <div className="hidden lg:flex items-center gap-2 text-slate-400">
+            <div className="hidden lg:flex items-center gap-2 text-blue-200/80">
               <Clock className="w-4 h-4" aria-hidden="true" />
               <span>Mon - Sun: 9:00 AM - 8:00 PM</span>
             </div>
           </div>
             <div className="flex items-center gap-4">
-            <span className="hidden md:flex items-center gap-2 text-slate-400 text-xs font-medium">
-              <Sparkles className="w-3 h-3" />
+            <span className="hidden md:flex items-center gap-2 text-blue-200/80 text-xs font-medium">
+              <Sparkles className="w-3 h-3 text-amber-400" />
               GST No. 24ADBPM0391A1Z8
             </span>
             <div className="flex items-center gap-3" role="list" aria-label="Social media links">
-              <a href="#" className="hover:text-white transition-colors p-1" aria-label="Facebook" role="listitem">
+              <a href="#" className="hover:text-white hover:scale-110 transition-all p-1" aria-label="Facebook" role="listitem">
                 <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="hover:text-white transition-colors p-1" aria-label="Instagram" role="listitem">
+              <a href="#" className="hover:text-white hover:scale-110 transition-all p-1" aria-label="Instagram" role="listitem">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="hover:text-white transition-colors p-1" aria-label="LinkedIn" role="listitem">
+              <a href="#" className="hover:text-white hover:scale-110 transition-all p-1" aria-label="LinkedIn" role="listitem">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#" className="hover:text-white transition-colors p-1" aria-label="YouTube" role="listitem">
+              <a href="#" className="hover:text-white hover:scale-110 transition-all p-1" aria-label="YouTube" role="listitem">
                 <Youtube className="w-4 h-4" />
               </a>
             </div>
@@ -131,7 +130,7 @@ export function Navbar() {
       <nav 
         className={`sticky top-0 z-50 transition-all duration-500 ${
           isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-gray-200/50' 
+            ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-blue-900/5' 
             : 'bg-white'
         }`}
         role="navigation"
@@ -146,21 +145,21 @@ export function Navbar() {
               aria-label="Manish Scale - Home"
             >
               <motion.div 
-                className="relative w-14 h-14 bg-slate-800 rounded-xl flex items-center justify-center shadow-md"
-                whileHover={{ scale: 1.02 }}
+                className="relative w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-md shadow-blue-600/20"
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <Scale className="w-8 h-8 text-white" aria-hidden="true" />
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-slate-600 rounded-full flex items-center justify-center">
-                  <span className="text-[8px] font-bold text-white">MS</span>
+                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-400 border border-white rounded-full flex items-center justify-center">
+                  <span className="text-[8px] font-bold text-gray-900">MS</span>
                 </div>
               </motion.div>
               <div>
                 <h1 className="text-2xl font-bold">
-                  <span className="text-slate-800">Manish</span>
-                  <span className="text-slate-600"> Scale</span>
+                  <span className="text-blue-700">Manish</span>
+                  <span className="text-slate-700"> Scale</span>
                 </h1>
-                <p className="text-xs text-slate-500 -mt-0.5 tracking-wider uppercase">Where trust carries weight</p>
+                <p className="text-xs font-semibold text-blue-500/80 -mt-0.5 tracking-wider uppercase">Where trust carries weight</p>
               </div>
             </Link>
 
@@ -170,8 +169,8 @@ export function Navbar() {
                 to="/" 
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                   isActivePath('/') && location.pathname === '/'
-                    ? 'text-slate-800 bg-slate-100' 
-                    : 'text-slate-700 hover:text-slate-800 hover:bg-slate-50'
+                    ? 'text-blue-700 bg-blue-50' 
+                    : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
                 }`}
               >
                 Home
@@ -184,8 +183,8 @@ export function Navbar() {
                   onMouseEnter={() => setIsMegaMenuOpen(true)}
                   className={`flex items-center gap-1 px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                     isActivePath('/products') || isMegaMenuOpen
-                      ? 'text-slate-800 bg-slate-100' 
-                      : 'text-slate-700 hover:text-slate-800 hover:bg-slate-50'
+                      ? 'text-blue-700 bg-blue-50' 
+                      : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
                   }`}
                   aria-expanded={isMegaMenuOpen}
                   aria-haspopup="true"
@@ -206,19 +205,18 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 w-[850px] mt-2 bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden z-50"
+                      className="absolute top-full left-1/2 -translate-x-1/2 w-[850px] mt-2 bg-white rounded-xl shadow-2xl border border-blue-100 overflow-hidden z-50"
                       onMouseLeave={() => {
                         setIsMegaMenuOpen(false);
                         setActiveCategory(null);
                       }}
                       role="menu"
-                      aria-label="Product categories"
                     >
                       <div className="flex">
                         {/* Categories List */}
-                        <div className="w-64 bg-slate-50 border-r border-slate-200 py-4">
+                        <div className="w-64 bg-slate-50/80 border-r border-slate-100 py-4">
                           <div className="px-4 mb-3">
-                            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Categories</span>
+                            <span className="text-xs font-bold text-blue-500 uppercase tracking-wider">Categories</span>
                           </div>
                           {categories.map((category) => (
                             <button
@@ -230,13 +228,13 @@ export function Navbar() {
                               }}
                               className={`w-full flex items-center justify-between px-4 py-3 text-left transition-all duration-200 ${
                                 activeCategory === category.id 
-                                  ? 'bg-white text-slate-800 border-l-4 border-slate-700' 
-                                  : 'text-slate-700 hover:bg-white/70 border-l-4 border-transparent'
+                                  ? 'bg-white text-blue-700 border-l-4 border-blue-600 font-semibold shadow-sm' 
+                                  : 'text-slate-600 hover:bg-white/70 border-l-4 border-transparent font-medium'
                               }`}
                               role="menuitem"
                             >
-                              <span className="font-medium">{category.name}</span>
-                              <ChevronRight className="w-4 h-4" />
+                              <span>{category.name}</span>
+                              <ChevronRight className={`w-4 h-4 ${activeCategory === category.id ? 'text-blue-600' : 'text-slate-400'}`} />
                             </button>
                           ))}
                         </div>
@@ -253,12 +251,12 @@ export function Navbar() {
                               {categories.filter(c => c.id === activeCategory).map(category => (
                                 <div key={category.id}>
                                   <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-10 h-10 bg-slate-700 rounded-xl flex items-center justify-center text-white">
+                                    <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl flex items-center justify-center text-blue-600 border border-blue-200">
                                       <Scale className="w-5 h-5" />
                                     </div>
                                     <div>
-                                      <h3 className="font-bold text-gray-900">{category.name}</h3>
-                                      <p className="text-sm text-gray-500">{category.description}</p>
+                                      <h3 className="font-bold text-slate-900 text-lg">{category.name}</h3>
+                                      <p className="text-sm text-slate-500">{category.description}</p>
                                     </div>
                                   </div>
                                   
@@ -268,9 +266,9 @@ export function Navbar() {
                                         key={type.id}
                                         to={`/products/${category.slug}/${type.slug}`}
                                         onClick={() => setIsMegaMenuOpen(false)}
-                                        className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-colors"
+                                        className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-600 hover:text-blue-700 hover:bg-blue-50 transition-colors font-medium"
                                       >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                                         {type.name}
                                       </Link>
                                     ))}
@@ -279,9 +277,9 @@ export function Navbar() {
                                         key={sub.id}
                                         to={`/products/${category.slug}/${sub.slug}`}
                                         onClick={() => setIsMegaMenuOpen(false)}
-                                        className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-colors"
+                                        className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-600 hover:text-blue-700 hover:bg-blue-50 transition-colors font-medium"
                                       >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                                         {sub.name}
                                       </Link>
                                     ))}
@@ -290,9 +288,9 @@ export function Navbar() {
                                         key={product.id}
                                         to={`/product/${product.id}`}
                                         onClick={() => setIsMegaMenuOpen(false)}
-                                        className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-600 hover:text-slate-800 hover:bg-slate-50 transition-colors"
+                                        className="flex items-center gap-2 p-2 rounded-lg text-sm text-slate-600 hover:text-blue-700 hover:bg-blue-50 transition-colors font-medium"
                                       >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                                         {product.name}
                                       </Link>
                                     ))}
@@ -301,7 +299,7 @@ export function Navbar() {
                                   <Link
                                     to={`/products/${category.slug}`}
                                     onClick={() => setIsMegaMenuOpen(false)}
-                                    className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-slate-700 hover:text-slate-900"
+                                    className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-800"
                                   >
                                     View all {category.name}
                                     <ChevronRight className="w-4 h-4" />
@@ -311,24 +309,26 @@ export function Navbar() {
                             </motion.div>
                           ) : (
                             <div className="flex flex-col items-center justify-center h-full text-center py-8">
-                              <Scale className="w-12 h-12 text-slate-300 mb-3" />
-                              <p className="text-slate-500">Hover over a category to see products</p>
+                              <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                                <Scale className="w-8 h-8 text-blue-200" />
+                              </div>
+                              <p className="text-slate-500 font-medium">Hover over a category to see products</p>
                             </div>
                           )}
                         </div>
                       </div>
 
                       {/* Bottom Bar */}
-                      <div className="px-6 py-4 bg-slate-800 flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-white">
-                          <Sparkles className="w-5 h-5 text-slate-400" />
-                          <span className="font-medium">45+ Products</span>
-                          <span className="text-slate-400">across 5 categories</span>
+                      <div className="px-6 py-4 bg-gradient-to-r from-slate-50 to-blue-50 flex items-center justify-between border-t border-blue-100/50">
+                        <div className="flex items-center gap-2 text-slate-700">
+                          <Sparkles className="w-5 h-5 text-amber-500" />
+                          <span className="font-bold">25+ Scale Types</span>
+                          <span className="text-slate-500">across 5 categories</span>
                         </div>
                         <Link
                           to="/products"
                           onClick={() => setIsMegaMenuOpen(false)}
-                          className="px-4 py-2 bg-white text-slate-800 rounded-lg font-semibold hover:bg-slate-50 transition-colors"
+                          className="px-5 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-sm"
                         >
                           View All Products
                         </Link>
@@ -342,8 +342,8 @@ export function Navbar() {
                 to="/about" 
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                   isActivePath('/about')
-                    ? 'text-slate-800 bg-slate-100' 
-                    : 'text-slate-700 hover:text-slate-800 hover:bg-slate-50'
+                    ? 'text-blue-700 bg-blue-50' 
+                    : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
                 }`}
               >
                 About
@@ -352,8 +352,8 @@ export function Navbar() {
                 to="/contact" 
                 className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                   isActivePath('/contact')
-                    ? 'text-slate-800 bg-slate-100' 
-                    : 'text-slate-700 hover:text-slate-800 hover:bg-slate-50'
+                    ? 'text-blue-700 bg-blue-50' 
+                    : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
                 }`}
               >
                 Contact
@@ -368,12 +368,12 @@ export function Navbar() {
                   placeholder="Search scales..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-52 pl-4 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:border-slate-400 focus:ring-2 focus:ring-slate-100 transition-all"
+                  className="w-52 pl-4 pr-10 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all"
                   aria-label="Search for scales"
                 />
                 <button 
                   type="submit" 
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-blue-600 transition-colors"
                   aria-label="Submit search"
                 >
                   <Search className="w-5 h-5" />
@@ -381,15 +381,15 @@ export function Navbar() {
               </form>
               <a
                 href="tel:+919284405090"
-                className="flex items-center gap-2 px-4 py-2.5 text-slate-700 hover:text-slate-800 transition-colors"
+                className="flex items-center gap-2 px-4 py-2.5 text-slate-700 hover:text-blue-600 transition-colors"
                 aria-label="Call us"
               >
-                <Phone className="w-5 h-5" />
-                <span className="font-medium">Call</span>
+                <Phone className="w-5 h-5 text-emerald-500" />
+                <span className="font-bold">Call</span>
               </a>
               <Link
                 to="/quote"
-                className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 shadow-md"
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/40 hover:-translate-y-0.5"
               >
                 Get Quote
               </Link>
@@ -398,7 +398,7 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="lg:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-600 transition-colors"
               aria-expanded={isMobileMenuOpen}
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
@@ -407,9 +407,9 @@ export function Navbar() {
                 transition={{ duration: 0.2 }}
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-6 h-6 text-gray-700" />
+                  <X className="w-6 h-6" />
                 ) : (
-                  <Menu className="w-6 h-6 text-gray-700" />
+                  <Menu className="w-6 h-6" />
                 )}
               </motion.div>
             </button>
@@ -424,9 +424,8 @@ export function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="lg:hidden bg-white border-t border-slate-200 shadow-lg"
+              className="lg:hidden bg-white border-t border-blue-100 shadow-xl"
               role="menu"
-              aria-label="Mobile navigation"
             >
               <div className="container mx-auto px-4 py-6">
                 {/* Search */}
@@ -436,13 +435,11 @@ export function Navbar() {
                     placeholder="Search scales..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-4 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-xl text-base focus:outline-none focus:bg-white focus:border-slate-400 focus:ring-2 focus:ring-slate-100 transition-all"
-                    aria-label="Search for scales"
+                    className="w-full pl-4 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-xl text-base focus:outline-none focus:bg-white focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all"
                   />
                   <button 
                     type="submit" 
-                    className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-slate-700 rounded-lg flex items-center justify-center"
-                    aria-label="Submit search"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-md shadow-blue-600/20"
                   >
                     <Search className="w-4 h-4 text-white" />
                   </button>
@@ -453,42 +450,37 @@ export function Navbar() {
                   <Link
                     to="/"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`flex items-center gap-3 py-4 px-4 rounded-xl font-medium transition-all ${
+                    className={`flex items-center gap-3 py-4 px-4 rounded-xl font-bold transition-all ${
                       location.pathname === '/' 
-                        ? 'bg-slate-100 text-slate-800' 
+                        ? 'bg-blue-50 text-blue-700' 
                         : 'text-slate-700 hover:bg-slate-50'
                     }`}
-                    role="menuitem"
                   >
-                    <span className="w-2 h-2 rounded-full bg-slate-600" />
+                    <span className="w-2 h-2 rounded-full bg-blue-600" />
                     Home
                   </Link>
 
-                  {/* Products Section */}
                   <div className="py-2">
                     <Link
                       to="/products"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 py-4 px-4 rounded-xl font-medium transition-all ${
+                      className={`flex items-center gap-3 py-4 px-4 rounded-xl font-bold transition-all ${
                         isActivePath('/products')
-                          ? 'bg-slate-100 text-slate-800' 
+                          ? 'bg-blue-50 text-blue-700' 
                           : 'text-slate-700 hover:bg-slate-50'
                       }`}
-                      role="menuitem"
                     >
-                      <span className="w-2 h-2 rounded-full bg-slate-600" />
+                      <span className="w-2 h-2 rounded-full bg-blue-600" />
                       All Products
                     </Link>
                     
-                    {/* Category Links */}
-                    <div className="ml-6 mt-2 space-y-1 border-l-2 border-slate-200 pl-4">
+                    <div className="ml-6 mt-2 space-y-1 border-l-2 border-blue-100 pl-4">
                       {categories.map((category) => (
                         <Link
                           key={category.id}
                           to={`/products/${category.slug}`}
                           onClick={() => setIsMobileMenuOpen(false)}
-                          className="block py-2.5 px-3 text-sm text-slate-600 hover:text-slate-800 hover:bg-slate-50 rounded-lg transition-colors"
-                          role="menuitem"
+                          className="block py-2.5 px-3 text-sm font-medium text-slate-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition-colors"
                         >
                           {category.name}
                         </Link>
@@ -499,28 +491,26 @@ export function Navbar() {
                   <Link
                     to="/about"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`flex items-center gap-3 py-4 px-4 rounded-xl font-medium transition-all ${
+                    className={`flex items-center gap-3 py-4 px-4 rounded-xl font-bold transition-all ${
                       isActivePath('/about')
-                        ? 'bg-slate-100 text-slate-800' 
+                        ? 'bg-blue-50 text-blue-700' 
                         : 'text-slate-700 hover:bg-slate-50'
                     }`}
-                    role="menuitem"
                   >
-                    <span className="w-2 h-2 rounded-full bg-slate-600" />
+                    <span className="w-2 h-2 rounded-full bg-blue-600" />
                     About Us
                   </Link>
                   
                   <Link
                     to="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={`flex items-center gap-3 py-4 px-4 rounded-xl font-medium transition-all ${
+                    className={`flex items-center gap-3 py-4 px-4 rounded-xl font-bold transition-all ${
                       isActivePath('/contact')
-                        ? 'bg-slate-100 text-slate-800' 
+                        ? 'bg-blue-50 text-blue-700' 
                         : 'text-slate-700 hover:bg-slate-50'
                     }`}
-                    role="menuitem"
                   >
-                    <span className="w-2 h-2 rounded-full bg-slate-600" />
+                    <span className="w-2 h-2 rounded-full bg-blue-600" />
                     Contact
                   </Link>
                 </nav>
@@ -529,38 +519,19 @@ export function Navbar() {
                 <div className="mt-6 space-y-3">
                   <a
                     href="tel:+919284405090"
-                    className="flex items-center justify-center gap-2 w-full py-4 border-2 border-slate-700 text-slate-700 rounded-xl font-semibold hover:bg-slate-50 transition-colors"
+                    className="flex items-center justify-center gap-2 w-full py-4 border-2 border-blue-100 text-blue-700 rounded-xl font-bold hover:bg-blue-50 transition-colors"
                   >
-                    <Phone className="w-5 h-5" />
+                    <Phone className="w-5 h-5 text-emerald-500" />
                     Call: +91 92844 05090
                   </a>
                   <Link
                     to="/quote"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center justify-center gap-2 w-full py-4 bg-slate-800 text-white rounded-xl font-semibold shadow-md"
+                    className="flex items-center justify-center gap-2 w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-bold shadow-lg shadow-blue-500/30"
                   >
-                    <Sparkles className="w-5 h-5" />
+                    <Sparkles className="w-5 h-5 text-amber-300" />
                     Get Free Quote
                   </Link>
-                </div>
-
-                {/* Contact Info */}
-                <div className="mt-6 pt-6 border-t border-slate-200 space-y-3 text-sm text-slate-600">
-                  <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-slate-500" />
-                  <span>manishscaleindia@gmail.com</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-slate-500" />
-                  <a
-                    href="https://share.google/BFm1HVLjVwez8BzKC"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-slate-700"
-                  >
-                    3, Shivaji Nagar, Savarkundla, Gujarat 364515
-                  </a>
-                  </div>
                 </div>
               </div>
             </motion.div>

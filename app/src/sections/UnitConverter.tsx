@@ -63,7 +63,7 @@ export function UnitConverter() {
   };
 
   return (
-    <section className="py-8 bg-[#003d80] text-white">
+    <section className="py-8 bg-indigo-900 text-white">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 items-center">
           {/* Left Side - Info */}
@@ -111,7 +111,7 @@ export function UnitConverter() {
                 <h3 className="text-xl font-bold">Weight Converter</h3>
                 <button
                   onClick={handleReset}
-                  className="p-2 text-gray-400 hover:text-[#0056b3] transition-colors"
+                  className="p-2 text-gray-400 hover:text-blue-600 transition-colors"
                   title="Reset"
                 >
                   <RotateCcw className="w-5 h-5" />
@@ -129,7 +129,7 @@ export function UnitConverter() {
                       type="number"
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#0056b3] focus:ring-2 focus:ring-[#0056b3]/20 text-lg font-semibold"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-[#0056b3]/20 text-lg font-semibold"
                       placeholder="Enter value"
                       min="0"
                       step="any"
@@ -142,7 +142,7 @@ export function UnitConverter() {
                     <select
                       value={fromUnit}
                       onChange={(e) => setFromUnit(e.target.value)}
-                      className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#0056b3] bg-white"
+                      className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white"
                     >
                       {units.map(unit => (
                         <option key={unit.value} value={unit.value}>
@@ -157,7 +157,7 @@ export function UnitConverter() {
                 <div className="flex justify-center">
                   <button
                     onClick={handleSwap}
-                    className="p-3 bg-gray-100 rounded-full hover:bg-[#0056b3] hover:text-white transition-all duration-300 hover:rotate-180"
+                    className="p-3 bg-gray-100 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 hover:rotate-180"
                   >
                     <ArrowRightLeft className="w-5 h-5" />
                   </button>
@@ -174,11 +174,11 @@ export function UnitConverter() {
                         type="text"
                         value={isConverting ? '...' : formatResult(result)}
                         readOnly
-                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-lg font-bold text-[#0056b3]"
+                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-lg font-bold text-blue-600"
                       />
                       {isConverting && (
                         <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                          <div className="w-5 h-5 border-2 border-[#0056b3] border-t-transparent rounded-full animate-spin" />
+                          <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
                         </div>
                       )}
                     </div>
@@ -190,7 +190,7 @@ export function UnitConverter() {
                     <select
                       value={toUnit}
                       onChange={(e) => setToUnit(e.target.value)}
-                      className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-[#0056b3] bg-white"
+                      className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white"
                     >
                       {units.map(unit => (
                         <option key={unit.value} value={unit.value}>
@@ -202,12 +202,12 @@ export function UnitConverter() {
                 </div>
 
                 {/* Result Display */}
-                <div className="mt-6 p-4 bg-[#0056b3]/5 rounded-lg">
+                <div className="mt-6 p-4 bg-blue-600/5 rounded-lg">
                   <p className="text-center text-gray-600">
                     <span className="font-semibold">{inputValue || '0'}</span>{' '}
                     {units.find(u => u.value === fromUnit)?.label.split('(')[0]} equals
                   </p>
-                  <p className="text-center text-2xl font-bold text-[#0056b3] mt-1">
+                  <p className="text-center text-2xl font-bold text-blue-600 mt-1">
                     {formatResult(result)}{' '}
                     {units.find(u => u.value === toUnit)?.label.split('(')[0]}
                   </p>

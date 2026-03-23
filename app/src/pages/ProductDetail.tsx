@@ -87,7 +87,7 @@ export function ProductDetail() {
           <Scale className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-800 mb-2">Product Not Found</h1>
           <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
-          <Link to="/products" className="text-[#0056b3] hover:underline">
+          <Link to="/products" className="text-blue-600 hover:underline">
             Browse All Products
           </Link>
         </div>
@@ -106,19 +106,19 @@ export function ProductDetail() {
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm text-gray-600">
-            <Link to="/" className="hover:text-[#0056b3]">Home</Link>
+            <Link to="/" className="hover:text-blue-600">Home</Link>
             <ChevronRight className="w-4 h-4" />
-            <Link to="/products" className="hover:text-[#0056b3]">Products</Link>
+            <Link to="/products" className="hover:text-blue-600">Products</Link>
             <ChevronRight className="w-4 h-4" />
             {product.category && (
               <>
-                <Link to={`/products/${product.categorySlug}`} className="hover:text-[#0056b3]">
+                <Link to={`/products/${product.categorySlug}`} className="hover:text-blue-600">
                   {product.category}
                 </Link>
                 <ChevronRight className="w-4 h-4" />
               </>
             )}
-            <span className="text-[#0056b3] font-medium">{product.name}</span>
+            <span className="text-blue-600 font-medium">{product.name}</span>
           </nav>
         </div>
       </div>
@@ -166,7 +166,7 @@ export function ProductDetail() {
             transition={{ duration: 0.5 }}
           >
             <div className="mb-4">
-              <span className="px-3 py-1 bg-[#0056b3]/10 text-[#0056b3] rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-blue-600/10 text-blue-600 rounded-full text-sm font-medium">
                 {product.category}
               </span>
               {product.type && (
@@ -191,7 +191,7 @@ export function ProductDetail() {
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                <Check className="w-6 h-6 text-[#0056b3]" />
+                <Check className="w-6 h-6 text-blue-600" />
                 <div>
                   <p className="text-sm text-gray-500">Precision</p>
                   <p className="font-semibold">±{product.precision}</p>
@@ -199,7 +199,7 @@ export function ProductDetail() {
               </div>
               {product.warranty && (
                 <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                  <Shield className="w-6 h-6 text-[#0056b3]" />
+                  <Shield className="w-6 h-6 text-blue-600" />
                   <div>
                     <p className="text-sm text-gray-500">Warranty</p>
                     <p className="font-semibold">{product.warranty}</p>
@@ -224,7 +224,7 @@ export function ProductDetail() {
                       }}
                       className={`px-4 py-2 border rounded-lg text-sm font-medium transition-colors ${
                         selectedCapacityIndex === index 
-                          ? 'bg-[#0056b3] text-white border-[#0056b3]' 
+                          ? 'bg-blue-600 text-white border-blue-600' 
                           : 'bg-white text-gray-700 hover:bg-gray-50'
                       }`}
                     >
@@ -259,7 +259,7 @@ export function ProductDetail() {
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Link
                 to="/quote"
-                className="flex-1 py-4 bg-[#28a745] text-white text-center rounded-xl font-semibold hover:bg-[#1e7e34] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                className="flex-1 py-4 bg-emerald-600 text-white text-center rounded-xl font-semibold hover:bg-emerald-700 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               >
                 Request Quote
               </Link>
@@ -276,15 +276,15 @@ export function ProductDetail() {
             {/* Features */}
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Shield className="w-6 h-6 mx-auto mb-2 text-[#0056b3]" />
+                <Shield className="w-6 h-6 mx-auto mb-2 text-blue-600" />
                 <p className="text-xs text-gray-600">1 Year Warranty</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Truck className="w-6 h-6 mx-auto mb-2 text-[#0056b3]" />
+                <Truck className="w-6 h-6 mx-auto mb-2 text-blue-600" />
                 <p className="text-xs text-gray-600">Pan-India Service Network</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Headphones className="w-6 h-6 mx-auto mb-2 text-[#0056b3]" />
+                <Headphones className="w-6 h-6 mx-auto mb-2 text-blue-600" />
                 <p className="text-xs text-gray-600">24/7 Support</p>
               </div>
             </div>
@@ -297,19 +297,19 @@ export function ProductDetail() {
             <TabsList className="w-full justify-start border-b rounded-none p-0 h-auto">
               <TabsTrigger 
                 value="description" 
-                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-[#0056b3] data-[state=active]:text-[#0056b3]"
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
               >
                 Description
               </TabsTrigger>
               <TabsTrigger 
                 value="specifications"
-                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-[#0056b3] data-[state=active]:text-[#0056b3]"
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
               >
                 Specifications
               </TabsTrigger>
               <TabsTrigger 
                 value="reviews"
-                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-[#0056b3] data-[state=active]:text-[#0056b3]"
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
               >
                 Reviews
               </TabsTrigger>
@@ -324,19 +324,19 @@ export function ProductDetail() {
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-[#28a745]" />
+                  <Check className="w-5 h-5 text-emerald-600" />
                   High-precision load cell technology
                 </li>
                 <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-[#28a745]" />
+                  <Check className="w-5 h-5 text-emerald-600" />
                   Easy-to-read digital display
                 </li>
                 <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-[#28a745]" />
+                  <Check className="w-5 h-5 text-emerald-600" />
                   Durable construction for long-lasting performance
                 </li>
                 <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-[#28a745]" />
+                  <Check className="w-5 h-5 text-emerald-600" />
                   ISO 9001:2015 certified quality
                 </li>
               </ul>
@@ -438,7 +438,7 @@ export function ProductDetail() {
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-800 group-hover:text-[#0056b3] transition-colors">
+                    <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
                       {relatedProduct.name}
                     </h3>
                     <p className="text-sm text-gray-500 mt-2">

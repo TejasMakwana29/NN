@@ -108,7 +108,7 @@ export function ProductGrid({
             >
               <Button
                 onClick={() => setIsCompareDialogOpen(true)}
-                className="bg-[#0056b3] hover:bg-[#003d80]"
+                className="bg-blue-600 hover:bg-indigo-900"
               >
                 <BarChart3 className="w-4 h-4 mr-2" />
                 Compare ({compareList.length})
@@ -161,7 +161,7 @@ export function ProductGrid({
                       }}
                       className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                         compareList.includes(product.id)
-                          ? 'bg-[#0056b3] text-white'
+                          ? 'bg-blue-600 text-white'
                           : 'bg-white/90 text-gray-400 hover:bg-white'
                       }`}
                     >
@@ -182,7 +182,7 @@ export function ProductGrid({
 
               {/* Content */}
               <div className="p-5">
-                <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-[#0056b3] transition-colors">
+                <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
                   {product.name}
                 </h3>
                 
@@ -197,7 +197,7 @@ export function ProductGrid({
                 <div className="flex items-center justify-end">
                   <Link
                     to={`/product/${product.id}`}
-                    className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-[#0056b3] transition-colors"
+                    className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
                   >
                     Details
                     <ChevronRight className="w-4 h-4" />
@@ -206,7 +206,7 @@ export function ProductGrid({
 
                 <Link
                   to="/quote"
-                  className="mt-4 block w-full py-2.5 bg-[#28a745] hover:bg-[#1e7e34] text-white text-center rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
+                  className="mt-4 block w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
                 >
                   Request Quote
                 </Link>
@@ -225,7 +225,7 @@ export function ProductGrid({
         >
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 px-8 py-3 border-2 border-[#0056b3] text-[#0056b3] rounded-full font-semibold hover:bg-[#0056b3] hover:text-white transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
           >
             View All Products
             <ChevronRight className="w-5 h-5" />
@@ -289,7 +289,7 @@ export function ProductGrid({
                         <Link
                           to="/quote"
                           onClick={() => setIsCompareDialogOpen(false)}
-                          className="inline-block px-4 py-2 bg-[#28a745] text-white text-sm rounded-lg hover:bg-[#1e7e34] transition-colors"
+                          className="inline-block px-4 py-2 bg-emerald-600 text-white text-sm rounded-lg hover:bg-emerald-700 transition-colors"
                         >
                           Get Quote
                         </Link>
@@ -311,7 +311,7 @@ export function ProductGrid({
                 </Button>
                 <Button
                   onClick={() => setIsCompareDialogOpen(false)}
-                  className="bg-[#0056b3] hover:bg-[#003d80]"
+                  className="bg-blue-600 hover:bg-indigo-900"
                 >
                   Close
                 </Button>

@@ -48,7 +48,7 @@ export function Contact() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="bg-[#0056b3] text-white py-16">
+      <section className="bg-blue-600 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -83,8 +83,8 @@ export function Contact() {
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#0056b3]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-[#0056b3]" />
+                  <div className="w-12 h-12 bg-blue-600/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
   <h4 className="font-semibold text-gray-800 mb-2">Manufacturing Unit</h4>
@@ -99,16 +99,16 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#0056b3]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-[#0056b3]" />
+                  <div className="w-12 h-12 bg-blue-600/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">Phone</h4>
                     <p className="text-gray-600">
-                      <a href="tel:+919284405090" className="hover:text-[#0056b3]">
+                      <a href="tel:+919284405090" className="hover:text-blue-600">
                         +91 92844 05090
                       </a><br />
-                      <a href="tel:+919426951916" className="hover:text-[#0056b3]">
+                      <a href="tel:+919426951916" className="hover:text-blue-600">
                         +91 94269 51916
                       </a>
                     </p>
@@ -116,13 +116,13 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#0056b3]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-[#0056b3]" />
+                  <div className="w-12 h-12 bg-blue-600/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">Email</h4>
                     <p className="text-gray-600">
-                      <a href="mailto:manishscaleindia@gmail.com" className="hover:text-[#0056b3]">
+                      <a href="mailto:manishscaleindia@gmail.com" className="hover:text-blue-600">
                         manishscaleindia@gmail.com
                       </a><br />
                     </p>
@@ -130,8 +130,8 @@ export function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#0056b3]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-[#0056b3]" />
+                  <div className="w-12 h-12 bg-blue-600/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">Business Hours</h4>
@@ -252,7 +252,7 @@ export function Contact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-6 bg-[#0056b3] hover:bg-[#003d80] text-lg font-semibold"
+                  className="w-full py-6 bg-blue-600 hover:bg-indigo-900 text-lg font-semibold"
                 >
                   {isSubmitting ? (
                     <>
@@ -311,7 +311,7 @@ export function Contact() {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center">
-              <div className="w-16 h-16 bg-[#28a745] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-white" />
               </div>
               Message Sent!
@@ -323,7 +323,7 @@ export function Contact() {
             </p>
             <Button
               onClick={() => setIsSuccessDialogOpen(false)}
-              className="w-full bg-[#0056b3] hover:bg-[#003d80]"
+              className="w-full bg-blue-600 hover:bg-indigo-900"
             >
               Close
             </Button>

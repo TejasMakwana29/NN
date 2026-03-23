@@ -158,7 +158,7 @@ export function FindYourScaleWizard() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block px-4 py-2 bg-[#0056b3]/10 text-[#0056b3] rounded-full text-sm font-medium mb-4">
+            <span className="inline-block px-4 py-2 bg-blue-600/10 text-blue-600 rounded-full text-sm font-medium mb-4">
               Smart Finder
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
@@ -185,7 +185,7 @@ export function FindYourScaleWizard() {
               <div key={step.id} className="flex items-center">
                 <div className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-all duration-300 ${
                   currentStep >= step.id 
-                    ? 'bg-[#0056b3] text-white' 
+                    ? 'bg-blue-600 text-white' 
                     : 'bg-gray-200 text-gray-500'
                 }`}>
                   {currentStep > step.id ? (
@@ -196,7 +196,7 @@ export function FindYourScaleWizard() {
                 </div>
                 {index < steps.length - 1 && (
                   <div className={`w-16 md:w-24 h-1 mx-2 transition-all duration-300 ${
-                    currentStep > step.id ? 'bg-[#0056b3]' : 'bg-gray-200'
+                    currentStep > step.id ? 'bg-blue-600' : 'bg-gray-200'
                   }`} />
                 )}
               </div>
@@ -227,12 +227,12 @@ export function FindYourScaleWizard() {
                         onClick={() => handleApplicationSelect(option.id)}
                         className={`p-6 rounded-xl border-2 text-left transition-all duration-300 hover:scale-105 ${
                           selectedApplication === option.id
-                            ? 'border-[#0056b3] bg-[#0056b3]/5'
-                            : 'border-gray-200 hover:border-[#0056b3]/50'
+                            ? 'border-blue-600 bg-blue-600/5'
+                            : 'border-gray-200 hover:border-blue-600/50'
                         }`}
                       >
                         <option.icon className={`w-8 h-8 mb-3 ${
-                          selectedApplication === option.id ? 'text-[#0056b3]' : 'text-gray-400'
+                          selectedApplication === option.id ? 'text-blue-600' : 'text-gray-400'
                         }`} />
                         <h4 className="font-semibold text-gray-800 mb-1">{option.label}</h4>
                         <p className="text-sm text-gray-500">{option.description}</p>
@@ -253,7 +253,7 @@ export function FindYourScaleWizard() {
                 >
                   <button
                     onClick={() => setCurrentStep(1)}
-                    className="flex items-center gap-2 text-gray-500 hover:text-[#0056b3] mb-6 transition-colors"
+                    className="flex items-center gap-2 text-gray-500 hover:text-blue-600 mb-6 transition-colors"
                   >
                     <ChevronLeft className="w-5 h-5" />
                     Back
@@ -266,7 +266,7 @@ export function FindYourScaleWizard() {
 
                   {isLoading ? (
                     <div className="flex flex-col items-center justify-center py-12">
-                      <div className="w-16 h-16 border-4 border-[#0056b3] border-t-transparent rounded-full animate-spin mb-4" />
+                      <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4" />
                       <p className="text-gray-600">Finding the best scale for you...</p>
                     </div>
                   ) : (
@@ -275,9 +275,9 @@ export function FindYourScaleWizard() {
                         <button
                           key={range.value}
                           onClick={() => handleWeightSelect(range.value)}
-                          className="p-5 rounded-xl border-2 border-gray-200 text-left transition-all duration-300 hover:border-[#0056b3] hover:bg-[#0056b3]/5 hover:scale-105"
+                          className="p-5 rounded-xl border-2 border-gray-200 text-left transition-all duration-300 hover:border-blue-600 hover:bg-blue-600/5 hover:scale-105"
                         >
-                          <Scale className="w-6 h-6 text-[#0056b3] mb-2" />
+                          <Scale className="w-6 h-6 text-blue-600 mb-2" />
                           <h4 className="font-semibold text-gray-800">{range.label}</h4>
                           <p className="text-sm text-gray-500">{range.description}</p>
                         </button>
@@ -303,14 +303,14 @@ export function FindYourScaleWizard() {
 
                   <div className="bg-gradient-to-br from-[#0056b3]/5 to-[#28a745]/5 rounded-xl p-8 mb-6">
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="w-12 h-12 bg-[#0056b3] rounded-full flex items-center justify-center">
+                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
                         <Scale className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h4 className="text-xl font-bold text-gray-800">
                           {recommendation.category}
                         </h4>
-                        <p className="text-[#0056b3] font-medium">{recommendation.type}</p>
+                        <p className="text-blue-600 font-medium">{recommendation.type}</p>
                       </div>
                     </div>
 
@@ -330,7 +330,7 @@ export function FindYourScaleWizard() {
                     </div>
 
                     <div className="flex items-start gap-2 text-gray-600">
-                      <Check className="w-5 h-5 text-[#28a745] mt-0.5 flex-shrink-0" />
+                      <Check className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
                       <p>{recommendation.reason}</p>
                     </div>
                   </div>
@@ -338,19 +338,19 @@ export function FindYourScaleWizard() {
                   <div className="flex flex-wrap gap-4">
                     <Link
                       to={`/products/${recommendation.category.toLowerCase().replace(' ', '-')}`}
-                      className="flex-1 bg-[#0056b3] text-white px-6 py-3 rounded-lg font-semibold text-center transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold text-center transition-all duration-300 hover:scale-105 hover:shadow-lg"
                     >
                       View Products
                     </Link>
                     <Link
                       to="/quote"
-                      className="flex-1 bg-[#28a745] text-white px-6 py-3 rounded-lg font-semibold text-center transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="flex-1 bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold text-center transition-all duration-300 hover:scale-105 hover:shadow-lg"
                     >
                       Request Quote
                     </Link>
                     <button
                       onClick={resetWizard}
-                      className="px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold text-gray-600 hover:border-[#0056b3] hover:text-[#0056b3] transition-all duration-300"
+                      className="px-6 py-3 border-2 border-gray-300 rounded-lg font-semibold text-gray-600 hover:border-blue-600 hover:text-blue-600 transition-all duration-300"
                     >
                       Start Over
                     </button>

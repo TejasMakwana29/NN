@@ -45,7 +45,7 @@ export function About() {
   return (
     <main className="min-h-screen">
       {/* Hero */}
-      <section className="bg-[#0056b3] text-white py-20">
+      <section className="bg-blue-600 text-white py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -79,8 +79,8 @@ export function About() {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 bg-[#0056b3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <stat.icon className="w-8 h-8 text-[#0056b3]" />
+                <div className="w-16 h-16 bg-blue-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <stat.icon className="w-8 h-8 text-blue-600" />
                 </div>
                 <div className="text-4xl font-bold text-gray-800 mb-1">{stat.value}</div>
                 <div className="text-gray-600">{stat.label}</div>
@@ -112,7 +112,7 @@ export function About() {
                 <p>
                   Today, Manish Scale is proudly recognized as one of the leading manufacturers of Circular Spring Balances in India, known for its exceptional quality, precision, durability, and consistent performance. Every product is designed and manufactured with strict quality standards to ensure accurate measurements and long-lasting reliability.
                 </p>
-                <p className="font-medium text-[#0056b3] text-lg mt-6">
+                <p className="font-medium text-blue-600 text-lg mt-6">
                   Manish Scale — A Name of Quality & Precision. A Legacy of Trust.
                 </p>
               </div>
@@ -125,7 +125,7 @@ export function About() {
                   'Export Quality Products'
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <Check className="w-5 h-5 text-[#28a745]" />
+                    <Check className="w-5 h-5 text-emerald-600" />
                     <span className="text-gray-700">{item}</span>
                   </div>
                 ))}
@@ -174,10 +174,10 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center p-6 rounded-xl bg-gray-50 hover:bg-[#0056b3]/5 transition-colors"
+                className="text-center p-6 rounded-xl bg-gray-50 hover:bg-blue-600/5 transition-colors"
               >
-                <div className="w-16 h-16 bg-[#0056b3]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-8 h-8 text-[#0056b3]" />
+                <div className="w-16 h-16 bg-blue-600/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <value.icon className="w-8 h-8 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">{value.title}</h3>
                 <p className="text-gray-600">{value.description}</p>
@@ -211,10 +211,10 @@ export function About() {
                 className="flex gap-6 mb-8 last:mb-0"
               >
                 <div className="flex-shrink-0 w-24 text-right">
-                  <span className="text-2xl font-bold text-[#0056b3]">{milestone.year}</span>
+                  <span className="text-2xl font-bold text-blue-600">{milestone.year}</span>
                 </div>
                 <div className="flex-shrink-0 relative">
-                  <div className="w-4 h-4 bg-[#0056b3] rounded-full" />
+                  <div className="w-4 h-4 bg-blue-600 rounded-full" />
                   <div className="absolute top-4 left-1/2 -translate-x-1/2 w-0.5 h-full bg-gray-200" />
                 </div>
                 <div className="flex-1 pb-8">
@@ -251,7 +251,7 @@ export function About() {
                 whileHover={{ y: -6 }}
                 className="text-center group"
               >
-                <div className="w-32 h-32 bg-[#0056b3] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
+                <div className="w-32 h-32 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                   <span className="text-3xl font-bold text-white">{member.image}</span>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
@@ -263,7 +263,7 @@ export function About() {
       </section> */}
 
       {/* CTA 
-      <section className="py-16 bg-[#0056b3]">
+      <section className="py-16 bg-blue-600">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -280,13 +280,13 @@ export function About() {
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="/quote"
-                className="px-8 py-4 bg-[#28a745] text-white rounded-full font-semibold hover:bg-[#1e7e34] transition-all duration-300 hover:scale-105"
+                className="px-8 py-4 bg-emerald-600 text-white rounded-full font-semibold hover:bg-emerald-700 transition-all duration-300 hover:scale-105"
               >
                 Request a Quote
               </a>
               <a
                 href="/contact"
-                className="px-8 py-4 bg-white text-[#0056b3] rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
+                className="px-8 py-4 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 hover:scale-105"
               >
                 Contact Us
               </a>

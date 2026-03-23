@@ -53,7 +53,7 @@ export function Quote() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-[#0056b3] text-white py-16">
+      <div className="bg-blue-600 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -193,7 +193,7 @@ export function Quote() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-6 bg-[#28a745] hover:bg-[#1e7e34] text-lg font-semibold"
+                  className="w-full py-6 bg-emerald-600 hover:bg-emerald-700 text-lg font-semibold"
                 >
                   {isSubmitting ? (
                     <>
@@ -230,14 +230,14 @@ export function Quote() {
                     'All-India delivery and installation support'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-[#28a745] flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                       <span className="text-gray-600">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="bg-[#0056b3] rounded-2xl shadow-lg p-6 text-white">
+              <div className="bg-blue-600 rounded-2xl shadow-lg p-6 text-white">
                 <h3 className="text-xl font-semibold mb-4">Need Immediate Assistance?</h3>
                 <p className="text-blue-100 mb-4">
                   Our sales team is available to help you with your requirements.
@@ -279,7 +279,7 @@ export function Quote() {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="text-center">
-              <div className="w-16 h-16 bg-[#28a745] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-white" />
               </div>
               Quote Request Submitted!
@@ -291,14 +291,14 @@ export function Quote() {
             </p>
             <div className="bg-gray-100 rounded-lg p-4 mb-6">
               <p className="text-sm text-gray-500">Your Quote Reference ID</p>
-              <p className="text-xl font-bold text-[#0056b3]">{quoteId}</p>
+              <p className="text-xl font-bold text-blue-600">{quoteId}</p>
             </div>
             <p className="text-sm text-gray-500 mb-6">
               Our team will contact you within 24 hours with a customized quote.
             </p>
             <Button
               onClick={() => setIsSuccessDialogOpen(false)}
-              className="w-full bg-[#0056b3] hover:bg-[#003d80]"
+              className="w-full bg-blue-600 hover:bg-indigo-900"
             >
               Close
             </Button>

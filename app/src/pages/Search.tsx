@@ -48,9 +48,9 @@ export function Search() {
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-8">
           <nav className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-            <Link to="/" className="hover:text-[#0056b3]">Home</Link>
+            <Link to="/" className="hover:text-blue-600">Home</Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-[#0056b3]">Search Results</span>
+            <span className="text-blue-600">Search Results</span>
           </nav>
           
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
@@ -96,7 +96,7 @@ export function Search() {
               </ul>
               <Link
                 to="/products"
-                className="inline-block mt-6 px-6 py-3 bg-[#0056b3] text-white rounded-lg font-medium hover:bg-[#003d80] transition-colors"
+                className="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-indigo-900 transition-colors"
               >
                 Browse All Products
               </Link>
@@ -108,14 +108,14 @@ export function Search() {
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mb-6 p-4 bg-[#0056b3]/10 rounded-lg flex items-center justify-between"
+                className="mb-6 p-4 bg-blue-600/10 rounded-lg flex items-center justify-between"
               >
                 <span className="font-medium">
                   {compareList.length} product{compareList.length > 1 ? 's' : ''} selected for comparison
                 </span>
                 <button
                   onClick={() => setCompareList([])}
-                  className="text-sm text-[#0056b3] hover:underline"
+                  className="text-sm text-blue-600 hover:underline"
                 >
                   Clear
                 </button>
@@ -156,7 +156,7 @@ export function Search() {
                         }}
                         className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                           compareList.includes(product.id)
-                            ? 'bg-[#0056b3] text-white'
+                            ? 'bg-blue-600 text-white'
                             : 'bg-white/90 text-gray-400 hover:bg-white'
                         }`}
                       >
@@ -176,7 +176,7 @@ export function Search() {
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-[#0056b3] transition-colors">
+                    <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
                       {product.name}
                     </h3>
                     
@@ -191,7 +191,7 @@ export function Search() {
                     <div className="flex items-center justify-end">
                       <Link
                         to={`/product/${product.id}`}
-                        className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-[#0056b3] transition-colors"
+                        className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
                       >
                         Details
                         <ChevronRight className="w-4 h-4" />
@@ -200,7 +200,7 @@ export function Search() {
 
                     <Link
                       to="/quote"
-                      className="mt-4 block w-full py-2.5 bg-[#28a745] hover:bg-[#1e7e34] text-white text-center rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
+                      className="mt-4 block w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
                     >
                       Request Quote
                     </Link>

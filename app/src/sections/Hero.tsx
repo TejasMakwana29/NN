@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Users, Globe, TrendingUp, Scale, Phone } from 'lucide-react';
 import { IMAGES } from '@/lib/productImages';
 
-// Lightweight counter - single RAF update to avoid 60 setState calls
 function AnimatedCounter({ value, suffix = '' }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -61,89 +60,75 @@ export function Hero() {
       className="relative min-h-screen overflow-hidden"
       aria-label="Manish Scale - Premium Weighing Solutions"
     >
-      {/* Skip to main content link for accessibility */}
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
 
-      {/* Animated Background */}
-      <motion.div 
-        className="absolute inset-0 z-0"
-      >
-        {/* Base gradient */}
+      {/* Animated Colorful Background */}
+      <motion.div className="absolute inset-0 z-0">
         <div className="absolute inset-0 animated-gradient" />
-        
-        {/* Subtle dot pattern */}
         <div 
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, #64748b 1px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 1px 1px, #3b82f6 1px, transparent 0)`,
             backgroundSize: '24px 24px'
           }}
         />
       </motion.div>
 
       {/* Content */}
-      <motion.div 
-        className="relative z-10 container mx-auto px-4 pt-24 pb-16 lg:pt-32 lg:pb-24"
-      >
+      <motion.div className="relative z-10 container mx-auto px-4 pt-24 pb-16 lg:pt-32 lg:pb-24">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh]">
           {/* Left Content */}
           <div className="text-slate-800">
-            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full text-sm font-medium border border-slate-200 text-slate-600 shadow-sm mb-6">
-                <Scale className="w-4 h-4 text-slate-500" />
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full text-sm font-bold border border-blue-100 text-blue-700 shadow-sm mb-6">
+                <Scale className="w-4 h-4 text-blue-500" />
                 <span>India's Most Trusted Weighing Scale Brand</span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               </span>
             </motion.div>
 
-            {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900"
             >
-              <span className="block">Manish</span>
-              <span className="block text-slate-700">Scale</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700">Manish</span>
+              <span className="block text-slate-800">Scale</span>
             </motion.h1>
 
-            {/* Tagline */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-xl md:text-2xl text-slate-600 mb-4 font-light"
+              className="text-xl md:text-2xl text-blue-600 mb-4 font-medium"
             >
               Where trust carries weight
             </motion.p>
 
-            {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="text-lg text-slate-600 mb-8 max-w-xl"
+              className="text-lg text-slate-600 mb-8 max-w-xl font-medium leading-relaxed"
             >
-              Carrying forward a legacy that began in 1952 with India's first manufacturer of beam scales. 
+              Carrying forward a legacy that began in 1950 with India's first manufacturer of beam scales. 
               Today, we deliver premium weighing solutions trusted by businesses across India with 
               over seven decades of traditional expertise and modern precision.
             </motion.p>
 
-            {/* Category Pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-wrap gap-2 mb-8"
               role="list"
-              aria-label="Product categories"
             >
               {categories.map((cat, i) => (
                 <motion.div
@@ -156,8 +141,7 @@ export function Hero() {
                 >
                   <Link
                     to={`/products/${cat.slug}`}
-                    className="inline-block px-4 py-2.5 bg-white rounded-xl text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-800 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md"
-                    role="listitem"
+                    className="inline-block px-4 py-2.5 bg-white rounded-xl text-sm font-bold text-slate-600 border border-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 transition-all duration-300 shadow-sm"
                   >
                     {cat.label}
                   </Link>
@@ -165,7 +149,6 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -174,35 +157,32 @@ export function Hero() {
             >
               <Link
                 to="/products"
-                className="group inline-flex items-center gap-3 bg-slate-800 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-slate-700 shadow-md hover:shadow-lg"
-                aria-label="Explore all weighing scale products"
+                className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02]"
               >
                 <span>Explore Products</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 to="/quote"
-                className="inline-flex items-center gap-3 bg-white text-slate-700 px-8 py-4 rounded-xl font-semibold border-2 border-slate-200 transition-all duration-300 hover:border-slate-300 hover:bg-slate-50"
-                aria-label="Request a free quote"
+                className="inline-flex items-center gap-3 bg-white text-blue-700 px-8 py-4 rounded-xl font-bold border-2 border-blue-100 transition-all duration-300 hover:border-blue-300 hover:bg-blue-50 hover:scale-[1.02]"
               >
                 <span>Get Free Quote</span>
-                <Phone className="w-5 h-5" />
+                <Phone className="w-5 h-5 text-emerald-500" />
               </Link>
             </motion.div>
 
-            {/* Trust Indicators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="mt-8 flex items-center gap-6 text-sm text-slate-500"
+              className="mt-8 flex items-center gap-6 text-sm font-semibold text-slate-600"
             >
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
                 ISO 9001:2015 Certified
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
                 Registered Trademark
               </span>
             </motion.div>
@@ -216,37 +196,31 @@ export function Hero() {
             className="hidden lg:block"
             style={{ perspective: 1000 }}
           >
-          <div className="relative">
-              {/* Main Card - minimal */}
-              <div className="relative bg-white rounded-2xl p-8 border border-slate-200 shadow-lg">
-                {/* Featured Badge */}
-                <div className="absolute -top-3 -right-3 px-4 py-2 bg-slate-700 text-white rounded-full text-xs font-semibold shadow">
+            <div className="relative">
+              <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl p-8 border border-white shadow-xl shadow-blue-900/10">
+                <div className="absolute -top-3 -right-3 px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full text-xs font-bold shadow-lg shadow-orange-500/30">
                   BESTSELLER
                 </div>
 
-                {/* Product Image Slider */}
-                <div className="relative h-72 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center border border-slate-200 shadow-inner">
+                <div className="relative h-72 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-blue-50/50 to-indigo-50 flex items-center justify-center border border-blue-100/50 shadow-inner">
                   <motion.img
                     key={slideIndex}
                     src={heroSlides[slideIndex]}
                     alt="Featured weighing scale"
                     className="w-full h-64 object-contain drop-shadow-2xl"
                     loading="eager"
-                    decoding="async"
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
                   />
                   
-                  {/* Floating specs */}
-                  {/* Slider dots */}
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
                     {heroSlides.map((_, i) => (
                       <button
                         key={i}
                         onClick={() => setSlideIndex(i)}
-                        className={`w-2.5 h-2.5 rounded-full border border-slate-400 ${
-                          i === slideIndex ? 'bg-slate-700' : 'bg-white/70'
+                        className={`w-2.5 h-2.5 rounded-full border border-blue-300 transition-all ${
+                          i === slideIndex ? 'bg-blue-600 w-4' : 'bg-white/70 hover:bg-white'
                         }`}
                         aria-label={`Show slide ${i + 1}`}
                       />
@@ -254,29 +228,27 @@ export function Hero() {
                   </div>
                 </div>
 
-                {/* Product Info */}
                 <div className="text-center">
-  <h3 className="text-2xl font-bold text-slate-800 mt-1 mb-6">
-    Our Top Scales Collection
-  </h3>
-  
-  {/* Quick Actions */}
-  <div className="flex gap-3">
-    <Link
-      to="/products"
-      className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2"
-    >
-      View All Products
-      <ArrowRight className="w-4 h-4" />
-    </Link>
-    <Link
-      to="/quote"
-      className="flex-1 py-3 bg-white border-2 border-slate-200 text-slate-700 hover:bg-slate-50 rounded-xl font-semibold transition-all duration-300"
-    >
-      Get Quote
-    </Link>
-  </div>
-</div>
+                  <h3 className="text-2xl font-bold text-slate-800 mt-1 mb-6">
+                    Our Top Scales Collection
+                  </h3>
+                  
+                  <div className="flex gap-3">
+                    <Link
+                      to="/products"
+                      className="flex-1 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:shadow-blue-500/25"
+                    >
+                      View All Products
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                    <Link
+                      to="/quote"
+                      className="flex-1 py-3 bg-white border-2 border-blue-100 text-blue-700 hover:bg-blue-50 hover:border-blue-300 rounded-xl font-bold transition-all duration-300"
+                    >
+                      Get Quote
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -288,8 +260,6 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
-          role="list"
-          aria-label="Company statistics"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -297,25 +267,22 @@ export function Hero() {
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
-              className="group relative overflow-hidden bg-white rounded-xl p-6 text-center text-slate-800 border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300"
-              role="listitem"
+              className="group relative overflow-hidden bg-white/80 backdrop-blur-md rounded-2xl p-6 text-center border border-blue-50 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-100 transition-all duration-300"
             >
-              <stat.icon className="w-8 h-8 mx-auto mb-3 text-slate-600" aria-hidden="true" />
-              
-              {/* FIXED ANIMATION LOGIC */}
-              <div className="text-4xl font-bold mb-1 text-slate-900">
+              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-100 transition-colors">
+                <stat.icon className="w-6 h-6 text-blue-600" />
+              </div>
+              <div className="text-4xl font-black mb-1 text-slate-800">
                 {stat.value !== null ? (
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 ) : (
-                  <span className="text-3xl">{stat.suffix}</span>
+                  <span className="text-2xl sm:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">{stat.suffix}</span>
                 )}
               </div>
-              
-              <div className="text-sm text-slate-500">{stat.label}</div>
+              <div className="text-sm font-semibold text-slate-500 uppercase tracking-wide">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
-
       </motion.div>
     </section>
   );
