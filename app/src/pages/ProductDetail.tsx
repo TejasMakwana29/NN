@@ -8,13 +8,11 @@ import {
   Shield, 
   Truck, 
   Headphones,
-  Star,
   Share2,
   Heart
 } from 'lucide-react';
 import { getProductById, getProductsByCategory, type Product } from '@/data/products';
 import { getProductImageUrl, getPlaceholderImageUrl } from '@/lib/productImages';
-// Button component not used
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export function ProductDetail() {
@@ -22,10 +20,9 @@ export function ProductDetail() {
   const [product, setProduct] = useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const [selectedCapacityIndex, setSelectedCapacityIndex] = useState(0); // NEW
-  const [currentImage, setCurrentImage] = useState<string>(''); // NEW
+  const [selectedCapacityIndex, setSelectedCapacityIndex] = useState(0); 
+  const [currentImage, setCurrentImage] = useState<string>(''); 
 
   useEffect(() => {
     let cancelled = false;
@@ -35,11 +32,9 @@ export function ProductDetail() {
       if (foundProduct) {
         setProduct(foundProduct);
         
-        // Add the two new lines right here:
         setSelectedCapacityIndex(0);
         setCurrentImage(foundProduct.capacities?.[0]?.image || foundProduct.image);
         
-        // The rest stays exactly the same:
         const related = getProductsByCategory(foundProduct.categorySlug || '')
           .filter(p => p.id !== id)
           .slice(0, 4);
@@ -135,7 +130,7 @@ export function ProductDetail() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
               <div className="aspect-square relative">
                 <img
-                  src={currentImage} // UPDATED
+                  src={currentImage} 
                   alt={product.name}
                   className="w-full h-full object-cover"
                   onError={(e) => {
@@ -176,18 +171,9 @@ export function ProductDetail() {
               )}
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
               {product.name}
             </h1>
-
-            <div className="flex items-center gap-4 mb-6">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-slate-400 fill-current" />
-                ))}
-              </div>
-              <span className="text-gray-500">(128 reviews)</span>
-            </div>
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
@@ -208,7 +194,7 @@ export function ProductDetail() {
               )}
             </div>
 
-            {/* Capacity Dropdown (NEW) */}
+            {/* Capacity Dropdown */}
             {product.capacities && product.capacities.length > 0 && product.capacities[0].weight !== 'N/A' && (
               <div className="mb-8">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -234,26 +220,6 @@ export function ProductDetail() {
                 </div>
               </div>
             )}
-
-            {/* Quantity Selector */}
-            <div className="flex items-center gap-4 mb-8">
-              <span className="font-medium">Quantity:</span>
-              <div className="flex items-center border rounded-lg">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
-                >
-                  -
-                </button>
-                <span className="px-4 py-2 font-semibold">{quantity}</span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="px-4 py-2 hover:bg-gray-100 transition-colors"
-                >
-                  +
-                </button>
-              </div>
-            </div>
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -306,12 +272,6 @@ export function ProductDetail() {
                 className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
               >
                 Specifications
-              </TabsTrigger>
-              <TabsTrigger 
-                value="reviews"
-                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
-              >
-                Reviews
               </TabsTrigger>
             </TabsList>
             
@@ -390,30 +350,6 @@ export function ProductDetail() {
                   )}
                 </tbody>
               </table>
-            </TabsContent>
-            
-            <TabsContent value="reviews" className="p-8">
-              <h3 className="text-xl font-semibold mb-4">Customer Reviews</h3>
-              <div className="space-y-6">
-                {[
-                  { name: 'Rajesh K.', rating: 5, text: 'Excellent product! Very accurate and easy to use.', date: '2 weeks ago' },
-                  { name: 'Priya M.', rating: 5, text: 'Great value for money. The precision is outstanding.', date: '1 month ago' },
-                  { name: 'Amit S.', rating: 4, text: 'Good build quality. Delivery was prompt.', date: '2 months ago' }
-                ].map((review, i) => (
-                  <div key={i} className="border-b pb-6">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="flex">
-                        {[...Array(review.rating)].map((_, j) => (
-                          <Star key={j} className="w-4 h-4 text-slate-400 fill-current" />
-                        ))}
-                      </div>
-                      <span className="text-sm text-gray-500">{review.date}</span>
-                    </div>
-                    <p className="font-medium">{review.name}</p>
-                    <p className="text-gray-600">{review.text}</p>
-                  </div>
-                ))}
-              </div>
             </TabsContent>
           </Tabs>
         </div>
