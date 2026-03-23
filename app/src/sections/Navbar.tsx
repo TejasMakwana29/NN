@@ -14,7 +14,6 @@ import {
   Linkedin,
   Youtube,
   Scale,
-  MapPin,
   Sparkles
 } from 'lucide-react';
 import { categories } from '@/data/products';
