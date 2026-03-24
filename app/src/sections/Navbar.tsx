@@ -21,7 +21,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isVisible, setIsVisible] = useState(true); // Tracks if navbar should be shown or hidden
+  const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -33,31 +33,34 @@ export function Navbar() {
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
-    
+
     const handleScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         const currentScrollY = window.scrollY;
         
-        // Change background to transparent/solid
+        // Track if we've scrolled past the top
         setIsScrolled(currentScrollY > 50);
 
-        // Hide on scroll down, show on scroll up
-        if (currentScrollY < lastScrollY) {
-          // Scrolling UP
+        // Smart Navbar Logic
+        if (currentScrollY <= 0) {
+          // Always show at the very top
+          setIsVisible(true);
+        } else if (currentScrollY < lastScrollY) {
+          // Show when scrolling UP
           setIsVisible(true);
         } else if (currentScrollY > 100 && currentScrollY > lastScrollY) {
-          // Scrolling DOWN (and past the very top to avoid jitter)
+          // Hide when scrolling DOWN (past 100px threshold)
           setIsVisible(false);
-          setIsMegaMenuOpen(false); // Close mega menu if open while scrolling down
+          setIsMegaMenuOpen(false); // Close mega menu if scrolling away
         }
 
         lastScrollY = currentScrollY;
         ticking = false;
       });
     };
-    
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -95,7 +98,12 @@ export function Navbar() {
   };
 
   return (
-    <header className="w-full" role="banner">
+    <header 
+      className={`sticky top-0 z-50 w-full transition-transform duration-300 ease-in-out ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      }`}
+      role="banner"
+    >
       {/* Top Bar - Vibrant Gradient */}
       <div className="bg-gradient-to-r from-blue-900 to-indigo-900 text-blue-100 py-2.5 text-sm border-b border-blue-800/50 shadow-inner">
         <div className="container mx-auto px-4 flex flex-wrap items-center justify-between text-sm">
@@ -146,9 +154,7 @@ export function Navbar() {
 
       {/* Main Navbar */}
       <nav 
-        className={`sticky top-0 z-50 transition-all duration-300 transform ${
-          isVisible ? 'translate-y-0' : '-translate-y-full'
-        } ${
+        className={`w-full transition-colors duration-500 ${
           isScrolled 
             ? 'bg-white/95 backdrop-blur-md shadow-lg shadow-blue-900/5' 
             : 'bg-white'
