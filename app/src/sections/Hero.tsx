@@ -1,25 +1,43 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Users, Globe, TrendingUp, Scale, Phone } from 'lucide-react';
 import { IMAGES } from '@/lib/productImages';
 
-function AnimatedCounter({ value, suffix = '' }: { value: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
+function AnimatedCounter({ start = 0, end, decimals = 0, suffix = '' }: { start?: number; end: number; decimals?: number; suffix?: string }) {
+  const [count, setCount] = useState(start);
+  const ref = useRef(null);
+  
+  // This hook ensures the animation only starts when the user scrolls to it
+  // and will reset/replay whenever the page is refreshed.
+  const isInView = useInView(ref, { once: true });
+
   useEffect(() => {
-    let start: number | null = null;
-    const duration = 1200;
-    const step = (t: number) => {
-      if (start == null) start = t;
-      const elapsed = t - start;
+    if (!isInView) return; // Wait until element is visible on screen
+
+    let startTime: number | null = null;
+    const duration = 2000; // 2 seconds animation duration
+    
+    const step = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      setCount(Math.floor(value * progress));
-      if (progress < 1) requestAnimationFrame(step);
+      
+      // Easing function (easeOutQuart) for a smooth slowdown at the end
+      const easeOut = 1 - Math.pow(1 - progress, 4);
+      
+      setCount(start + (end - start) * easeOut);
+      
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
     };
+    
     const id = requestAnimationFrame(step);
     return () => cancelAnimationFrame(id);
-  }, [value]);
-  return <span>{count}{suffix}</span>;
+  }, [start, end, isInView]);
+  
+  return <span ref={ref}>{count.toFixed(decimals)}{suffix}</span>;
 }
 
 const heroSlides = [
@@ -41,18 +59,10 @@ export function Hero() {
   }, []);
 
   const stats = [
-    { icon: Award, value: 70, suffix: '+', label: 'Years Experience' },
-    { icon: Users, value: 50, suffix: 'K+', label: 'Happy Customers' },
-    { icon: Globe, value: null, suffix: 'All Over India', label: 'Service Coverage' },
-    { icon: TrendingUp, value: 99, suffix: '.9%', label: 'Accuracy Rate' }
-  ];
-
-  const categories = [
-    { label: 'Counter Scales', slug: 'counter' },
-    { label: 'Beam Scales', slug: 'beam' },
-    { label: 'Electronic Scales', slug: 'electronic' },
-    { label: 'Hanging Scales', slug: 'hanging' },
-    { label: 'Accessories', slug: 'accessories' },
+    { icon: Award, start: 0, end: 70, decimals: 0, suffix: '+', label: 'Years Experience' },
+    { icon: Users, start: 10, end: 50, decimals: 0, suffix: 'K+', label: 'Happy Customers' },
+    { icon: Globe, start: null, end: null, suffix: 'All Over India', label: 'Service Coverage' },
+    { icon: TrendingUp, start: 0, end: 99.9, decimals: 1, suffix: '%', label: 'Accuracy Rate' }
   ];
 
   return (
@@ -93,7 +103,6 @@ export function Hero() {
               </span>
             </motion.div>
 
-            {/* Changed mb-6 to mb-2 and removed block classes to put it on one line */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -125,32 +134,6 @@ export function Hero() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex flex-wrap gap-2 mb-8"
-              role="list"
-            >
-              {categories.map((cat, i) => (
-                <motion.div
-                  key={cat.slug}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + i * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Link
-                    to={`/products/${cat.slug}`}
-                    className="inline-block px-4 py-2.5 bg-white rounded-xl text-sm font-bold text-slate-600 border border-slate-100 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200 transition-all duration-300 shadow-sm"
-                  >
-                    {cat.label}
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -172,18 +155,19 @@ export function Hero() {
               </Link>
             </motion.div>
 
+            {/* ENLARGED CERTIFICATION SECTION */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="mt-8 flex items-center gap-6 text-sm font-semibold text-slate-600"
+              className="mt-8 flex flex-wrap items-center gap-6 text-lg md:text-xl font-bold text-slate-700"
             >
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+                <span className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
                 ISO 9001:2015 Certified
               </span>
               <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+                <span className="w-3 h-3 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
                 Registered Trademark
               </span>
             </motion.div>
@@ -199,9 +183,6 @@ export function Hero() {
           >
             <div className="relative">
               <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl p-8 border border-white shadow-xl shadow-blue-900/10">
-                {/*<div className="absolute -top-3 -right-3 px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full text-xs font-bold shadow-lg shadow-orange-500/30">
-                  BESTSELLER
-                </div>*/}
 
                 <div className="relative h-72 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-blue-50/50 to-indigo-50 flex items-center justify-center border border-blue-100/50 shadow-inner">
                   <motion.img
@@ -274,8 +255,8 @@ export function Hero() {
                 <stat.icon className="w-6 h-6 text-blue-600" />
               </div>
               <div className="text-4xl font-black mb-1 text-slate-800">
-                {stat.value !== null ? (
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                {stat.end !== null && stat.end !== undefined ? (
+                  <AnimatedCounter start={stat.start || 0} end={stat.end} decimals={stat.decimals} suffix={stat.suffix} />
                 ) : (
                   <span className="text-2xl sm:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">{stat.suffix}</span>
                 )}

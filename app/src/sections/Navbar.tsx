@@ -89,13 +89,13 @@ export function Navbar() {
               <Mail className="w-4 h-4 text-blue-300" aria-hidden="true" />
               <span className="hidden sm:inline">manishscaleindia@gmail.com</span>
             </a>
+            {/* Phone icon only, but still clickable */}
             <a 
               href="tel:+919284405090" 
               className="flex items-center gap-2 hover:text-white transition-colors"
               aria-label="Call us at +91 92844 05090"
             >
               <Phone className="w-4 h-4 text-emerald-400" aria-hidden="true" />
-              <span>+91 92844 05090</span>
             </a>
             <div className="hidden lg:flex items-center gap-2 text-blue-200/80">
               <Clock className="w-4 h-4" aria-hidden="true" />
