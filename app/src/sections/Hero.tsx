@@ -93,14 +93,15 @@ export function Hero() {
               </span>
             </motion.div>
 
+            {/* Changed mb-6 to mb-2 and removed block classes to put it on one line */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-slate-900"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-2 text-slate-900"
             >
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700">Manish</span>
-              <span className="block text-slate-800">Scale</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-700">Manish </span>
+              <span className="text-slate-800">Scale</span>
             </motion.h1>
 
             <motion.p
