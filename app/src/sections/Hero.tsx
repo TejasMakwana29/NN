@@ -198,9 +198,9 @@ export function Hero() {
           >
             <div className="relative">
               <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl p-8 border border-white shadow-xl shadow-blue-900/10">
-                <div className="absolute -top-3 -right-3 px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full text-xs font-bold shadow-lg shadow-orange-500/30">
+                {/*<div className="absolute -top-3 -right-3 px-4 py-2 bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full text-xs font-bold shadow-lg shadow-orange-500/30">
                   BESTSELLER
-                </div>
+                </div>*/}
 
                 <div className="relative h-72 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-blue-50/50 to-indigo-50 flex items-center justify-center border border-blue-100/50 shadow-inner">
                   <motion.img
