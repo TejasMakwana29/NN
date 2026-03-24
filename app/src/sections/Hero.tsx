@@ -16,7 +16,7 @@ function AnimatedCounter({ start = 0, end, decimals = 0, suffix = '' }: { start?
     if (!isInView) return; // Wait until element is visible on screen
 
     let startTime: number | null = null;
-    const duration = 3000; // 3 seconds animation duration
+    const duration = 5000; // 5 seconds animation duration
     
     const step = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
