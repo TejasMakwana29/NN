@@ -160,7 +160,7 @@ export function ProductDetail() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-4">
+            {/*<div className="mb-4">
               <span className="px-3 py-1 bg-blue-600/10 text-blue-600 rounded-full text-sm font-medium">
                 {product.category}
               </span>
@@ -169,7 +169,7 @@ export function ProductDetail() {
                   {product.type}
                 </span>
               )}
-            </div>
+            </div>*/}
 
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
               {product.name}
@@ -198,7 +198,7 @@ export function ProductDetail() {
             {product.capacities && product.capacities.length > 0 && product.capacities[0].weight !== 'N/A' && (
               <div className="mb-8">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Select Capacity:
+                  Capacity:
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {product.capacities.map((cap, index) => (
@@ -206,7 +206,7 @@ export function ProductDetail() {
                       key={index}
                       onClick={() => {
                         setSelectedCapacityIndex(index);
-                        setCurrentImage(cap.image || product.image);
+                        //SetCurrentImage(cap.image || product.image);
                       }}
                       className={`px-4 py-2 border rounded-lg text-sm font-medium transition-colors ${
                         selectedCapacityIndex === index 
@@ -308,7 +308,7 @@ export function ProductDetail() {
                 <tbody className="divide-y">
                   {product.capacities && product.capacities[0].weight !== 'N/A' && (
                     <tr>
-                      <td className="py-3 text-gray-500">Selected Capacity</td>
+                      <td className="py-3 text-gray-500">Capacity</td>
                       <td className="py-3 font-medium">{product.capacities[selectedCapacityIndex].weight}</td>
                     </tr>
                   )}

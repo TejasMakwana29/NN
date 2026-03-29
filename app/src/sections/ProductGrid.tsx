@@ -171,13 +171,7 @@ export function ProductGrid({
                     </button>
                   </div>
                 )}
-
-                {/* Category Badge */}
-                <div className="absolute top-3 right-3">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-full">
-                    {product.category}
-                  </span>
-                </div>
+                {/* Removed Category Badge from here */}
               </div>
 
               {/* Content */}
@@ -191,17 +185,22 @@ export function ProductGrid({
                     <Scale className="w-4 h-4" />
                     {product.baseCapacity}
                   </span>
-                  <span>±{product.precision}</span>
+                  {product.precision && (
+                    <span>±{product.precision}</span>
+                  )}
                 </div>
 
                 <div className="flex items-center justify-end">
-                  <Link
-                    to={`/product/${product.id}`}
-                    className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
-                  >
-                    Details
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
+                  {/* CONDITIONAL RENDER FOR DETAILS BUTTON ADDED HERE */}
+                  {!['Platform Load Cell', 'Table Top Load Cell', 'Mechanical Hanging Scale Hook', 'Digital Hanging Scale Hook', 'Crane Scale Hook'].includes(product.name) && (
+                    <Link
+                      to={`/product/${product.id}`}
+                      className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
+                    >
+                      Details
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  )}
                 </div>
 
                 <Link

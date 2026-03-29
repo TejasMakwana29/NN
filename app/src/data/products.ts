@@ -87,7 +87,7 @@ export const categories: Category[] = [
               { weight: '15 kg', image: '/images/counter-emboss-15.jpg' }
             ],
             baseCapacity: '1 kg - 15 kg',
-            precision: 'Varies',
+            precision: '',
             image: '/images/counter-emboss-1.jpg',
             bodyMaterial: 'Steel (Medium weight body)',
             features: ['Available in different colors', 'Weighing option: Oblong (bowl) & Tray']
@@ -109,7 +109,7 @@ export const categories: Category[] = [
               { weight: '25 kg', image: '/images/counter-plain-25.jpg' }
             ],
             baseCapacity: '10 kg - 25 kg',
-            precision: 'Varies',
+            precision: '',
             image: '/images/counter-plain-10.jpg',
             bodyMaterial: 'M.S. (Heavy weight body)',
             features: ['Available in different colors', 'Weighing option: Oblong (bowl) & Tray']
@@ -132,7 +132,7 @@ export const categories: Category[] = [
               { weight: '10 kg', image: '/images/counter-super-10.jpg' }
             ],
             baseCapacity: '1 kg - 10 kg',
-            precision: 'Varies',
+            precision: '',
             image: '/images/counter-super-1.jpg',
             bodyMaterial: 'Stainless steel (Light weight body)',
             features: ['Available in different colors', 'Weighing option: Oblong (bowl) & Tray']
@@ -490,7 +490,7 @@ export const categories: Category[] = [
               { weight: '500 kg' }, { weight: '1 Ton' }
             ],
             baseCapacity: '100gm - 1 Ton',
-            precision: 'Varies',
+            precision: '',
             image: '/images/beam-scale.jpg',
             bodyMaterial: 'M.S.',
             features: ['Type: Swan type, 3 Axle type']

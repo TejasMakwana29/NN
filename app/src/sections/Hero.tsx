@@ -133,7 +133,7 @@ export function Hero() {
               over seven decades of traditional expertise and modern precision.
             </motion.p>
 
-            <motion.div
+           {/* <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -153,7 +153,7 @@ export function Hero() {
                 <span>Get Free Quote</span>
                 <Phone className="w-5 h-5 text-emerald-500" />
               </Link>
-            </motion.div>
+            </motion.div>*/}
 
             {/* ENLARGED CERTIFICATION SECTION */}
             <motion.div
