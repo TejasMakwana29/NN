@@ -61,10 +61,10 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-blue-100 max-w-2xl mx-auto"
+            className="text-xl text-blue-100 max-w-3xl mx-auto"
           >
-            Have questions? We'd love to hear from you. Send us a message 
-            and we'll respond as soon as possible.
+            Looking for <strong className="text-white font-semibold">precision you can trust and strength you can rely on</strong>? 
+            Get in touch with our team for solutions that deliver <strong className="text-white font-semibold">accurate results and long-lasting performance</strong>.
           </motion.p>
         </div>
       </section>

@@ -14,6 +14,20 @@ import { getProductById, getProductsByCategory, type Product } from '@/data/prod
 import { getProductImageUrl, getPlaceholderImageUrl } from '@/lib/productImages';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+// Helper to convert "**text**" into bold HTML tags
+const renderFormattedDescription = (text: string) => {
+  return text.split('\n\n').map((paragraph, pIdx) => (
+    <p key={pIdx} className="text-gray-600 leading-relaxed mb-4">
+      {paragraph.split(/(\*\*.*?\*\*)/).map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
+        }
+        return part;
+      })}
+    </p>
+  ));
+};
+
 export function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
@@ -236,13 +250,17 @@ export function ProductDetail() {
             
             <TabsContent value="description" className="p-8">
               <h3 className="text-xl font-semibold mb-4">Product Description</h3>
-              <p className="text-gray-600 leading-relaxed">
-                The {product.name} is a high-quality weighing solution designed for 
-                {product.category ? ` ${product.category.toLowerCase()}` : ' various'} applications.
-                {product.baseCapacity && ` With a capacity range of ${product.baseCapacity}`}
-                {product.precision && product.precision !== 'N/A' && `, and an accuracy of ±${product.precision}`}
-                , it delivers reliable and precise measurements every time. Built with durable materials like {product.bodyMaterial || 'industry-standard components'}, it ensures long-lasting performance for your business needs.
-              </p>
+              {product.description ? (
+                renderFormattedDescription(product.description)
+              ) : (
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  The {product.name} is a high-quality weighing solution designed for 
+                  {product.category ? ` ${product.category.toLowerCase()}` : ' various'} applications.
+                  {product.baseCapacity && ` With a capacity range of ${product.baseCapacity}`}
+                  {product.precision && product.precision !== 'N/A' && `, and an accuracy of ±${product.precision}`}
+                  , it delivers reliable and precise measurements every time. Built with durable materials like {product.bodyMaterial || 'industry-standard components'}, it ensures long-lasting performance for your business needs.
+                </p>
+              )}
             </TabsContent>
             
             <TabsContent value="specifications" className="p-8">

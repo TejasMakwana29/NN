@@ -87,9 +87,9 @@ export function Footer() {
                 </div>
               </Link>
               <p className="text-blue-100/70 mb-6 leading-relaxed">
-                A legacy of trust beginning in 1950 as India's first beam scale manufacturer. 
-                Today, Manish Scale continues to set the standard for quality, precision, 
-                and durability in weighing solutions across the nation.
+                Carrying forward a legacy that began in 1950, we deliver <strong className="text-white font-medium">precision you can trust and strength you can rely on</strong>.
+                <br /><br />
+                <span className="text-amber-400 font-medium tracking-wide">Manish Scale — A Name of Quality & Precision. A Legacy of Trust.</span>
               </p>
               <div className="flex gap-3">
                 <a 

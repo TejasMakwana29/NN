@@ -66,10 +66,10 @@ export function Quote() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-blue-100 max-w-2xl mx-auto"
+            className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed"
           >
-            Fill out the form below and our team will get back to you within 24 hours 
-            with a customized quote for your requirements.
+            Request a customized quote for <strong className="text-white font-semibold">high-performance, precision-engineered weighing solutions</strong>. 
+            From <strong className="text-white font-semibold">agriculture to heavy industries</strong>, we deliver <strong className="text-white font-semibold">power, durability, and unmatched reliability</strong>.
           </motion.p>
         </div>
       </div>
@@ -222,16 +222,16 @@ export function Quote() {
                 <h3 className="text-xl font-semibold mb-4">Why Choose Us?</h3>
                 <ul className="space-y-4">
                   {[
+                    'Crafted using high-grade materials and advanced technology',
+                    'Accurate results and long-lasting performance in real working conditions',
                     'Transparent quotations with no hidden costs',
-                    'Free consultation and site survey',
-                    'Custom solutions for your specific needs',
+                    'Custom solutions for your specific industry needs',
                     'Quick turnaround on quotes (within 24 hours)',
-                    'Flexible payment options available',
-                    'All-India delivery and installation support'
+                    'Manish Scale – Precision Engineered. Trust Delivered.'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-600">{item}</span>
+                      <span className="text-gray-600 font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>

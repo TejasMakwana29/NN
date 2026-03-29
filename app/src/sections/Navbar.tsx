@@ -348,8 +348,8 @@ export function Navbar() {
                       <div className="px-6 py-4 bg-gradient-to-r from-slate-50 to-blue-50 flex items-center justify-between border-t border-blue-100/50">
                         <div className="flex items-center gap-2 text-slate-700">
                           <Sparkles className="w-5 h-5 text-amber-500" />
-                          <span className="font-bold">25+ Scale Types</span>
-                          <span className="text-slate-500">across 5 categories</span>
+                          <span className="font-bold">Precision Engineered. Trust Delivered.</span>
+                          <span className="text-slate-500 font-medium ml-1">Since 1950</span>
                         </div>
                         <Link
                           to="/products"
