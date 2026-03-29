@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Target, Eye, ShieldCheck, History, Scale, CheckCircle2, ChevronRight, Gem, Shield, HeartHandshake, Lightbulb } from 'lucide-react';
+import { Target, Eye, ShieldCheck, History, Scale, CheckCircle2, ChevronRight, Gem, HeartHandshake, Lightbulb } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function About() {
