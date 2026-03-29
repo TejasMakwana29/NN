@@ -78,7 +78,7 @@ const productTree: ProductNode[] = [
     children: [
       { id: 'micro', name: 'Micro Scales', slug: 'micro', description: 'Laboratory-grade micro precision' },
       { id: 'tabletop', name: 'Table Top', slug: 'tabletop', description: 'Versatile table top digital scales' },
-      { id: 'chicken', name: 'Chicken/Poultry', slug: 'poultry', description: 'Water for poultry and meat applications' },
+      { id: 'chicken', name: 'Chicken(Poultry) Scale', slug: 'poultry', description: 'Water for poultry and meat applications' },
       { id: 'platform', name: 'Platform', slug: 'platform', description: 'Heavy duty industrial platforms' },
       { id: 'jewellery', name: 'Jewellery', slug: 'jewellery', description: 'High precision for gems and jewelry' },
       { id: 'kitchen', name: 'Kitchen', slug: 'kitchen', description: 'Compact kitchen scales for home use' },
@@ -106,7 +106,6 @@ const productTree: ProductNode[] = [
     slug: 'accessories',
     icon: <Package className="w-5 h-5" />,
     description: 'Weights, calibration tools and spare parts',
-    // ADDED CHILDREN HERE so it behaves like the other categories
     children: [
       { id: 'weights', name: 'Calibration Weights', slug: 'weights', description: 'Standard weights for calibration' },
       { id: 'adapters', name: 'Power Adapters', slug: 'adapters', description: 'Power supplies and adapters' },

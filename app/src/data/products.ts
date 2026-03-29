@@ -2,22 +2,31 @@
 
 export interface ProductCapacity {
   weight: string;
-  image?: string; // Optional specific image for this capacity
+  image?: string; 
 }
 
 export interface Product {
   id: string;
   name: string;
-  baseCapacity?: string; // Kept for backwards compatibility in lists
-  capacities: ProductCapacity[]; // New array for selectable capacities
+  baseCapacity?: string; 
+  capacities: ProductCapacity[]; 
   precision: string;
-  image: string; // Default image
+  image: string; 
   bodyMaterial?: string;
   displayType?: string;
   warranty?: string;
   battery?: string;
   panSize?: string;
   brand?: string;
+  color?: string;
+  weighingOption?: string;
+  keyPoints?: string;
+  panMaterial?: string;
+  onOff?: string;
+  glass?: string;
+  adjustable?: string;
+  hook?: string;
+  designType?: string;
   features?: string[];
   category?: string;
   categorySlug?: string;
@@ -90,10 +99,8 @@ export const categories: Category[] = [
             precision: 'N/A',
             image: '/images/counter-emboss-1.jpg',
             bodyMaterial: 'Steel (Medium weight body)',
-            features: [
-              'Color: Available in different colors', 
-              'Weighing option: Oblong (bowl) & Tray'
-            ]
+            color: 'Available in different colors',
+            weighingOption: 'Oblong (bowl) & Tray'
           }
         ]
       },
@@ -115,10 +122,8 @@ export const categories: Category[] = [
             precision: 'N/A',
             image: '/images/counter-plain-10.jpg',
             bodyMaterial: 'M.S. (Heavy weight body)',
-            features: [
-              'Color: Available in different colors', 
-              'Weighing option: Oblong (bowl) & Tray'
-            ]
+            color: 'Available in different colors',
+            weighingOption: 'Oblong (bowl) & Tray'
           }
         ]
       },
@@ -141,10 +146,8 @@ export const categories: Category[] = [
             precision: 'N/A',
             image: '/images/counter-super-1.jpg',
             bodyMaterial: 'Stainless steel (Light weight body)',
-            features: [
-              'Color: Available in different colors', 
-              'Weighing option: Oblong (bowl) & Tray'
-            ]
+            color: 'Available in different colors',
+            weighingOption: 'Oblong (bowl) & Tray'
           }
         ]
       }
@@ -175,9 +178,7 @@ export const categories: Category[] = [
             battery: 'Rechargeable 4V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
             warranty: '6 months (t&c apply)',
-            features: [
-              'Compact in size'
-            ]
+            features: ['Compact in size']
           }
         ]
       },
@@ -199,21 +200,19 @@ export const categories: Category[] = [
             battery: 'Rechargeable 4V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
             warranty: '1 year (t&c apply)',
-            features: [
-              'Add-ons: Pole Display'
-            ]
+            keyPoints: 'Pole Display'
           }
         ]
       },
       {
         id: 'es-poultry',
-        name: 'Chicken (Poultry)',
+        name: 'Chicken(Poultry) Scale',
         slug: 'poultry',
         description: 'Scales for poultry applications',
         products: [
           {
             id: 'ep-multi',
-            name: 'Poultry Scale',
+            name: 'Chicken(Poultry) Scale',
             capacities: [
               { weight: '50 kg' },
               { weight: '100 kg' },
@@ -224,14 +223,12 @@ export const categories: Category[] = [
             precision: '10 gm to 50 gm',
             image: '/images/poultry-50kg.jpg',
             bodyMaterial: 'M.S.',
+            panMaterial: 'Chequered (MS) or Stainless Steel',
             panSize: '300x300 mm to 500x500 mm (depends on Capacity)',
             battery: 'Rechargeable 6V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
             warranty: '1 year (t&c apply)',
-            features: [
-              'Pan material: Chequered (MS) or Stainless Steel', 
-              'Add-ons: Grill for support'
-            ]
+            keyPoints: 'Grill for support'
           }
         ]
       },
@@ -257,14 +254,12 @@ export const categories: Category[] = [
             precision: '10 gm to 200 gm',
             image: '/images/platform-100kg.jpg',
             bodyMaterial: 'M.S.',
+            panMaterial: 'Chequered (MS) or Stainless Steel',
             panSize: '400x400 mm to 900x900 mm (depends on Capacity)',
             battery: 'Rechargeable 6V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
             warranty: '1 year (t&c apply)',
-            features: [
-              'Pan material: Chequered (MS) or Stainless Steel', 
-              'Add-ons: Grill for support, extra extended display'
-            ]
+            keyPoints: 'Grill for support, extra extended display'
           }
         ]
       },
@@ -320,13 +315,11 @@ export const categories: Category[] = [
             baseCapacity: '180 kg',
             precision: '50 gm',
             image: '/images/bathroom-180kg.jpg',
-            bodyMaterial: 'Strong Reinforced glass body, Scratch resistance',
             displayType: 'LCD display',
             battery: '2x AAA battery',
             warranty: '3 years',
-            features: [
-              'Auto On/Off (step on & step off)'
-            ]
+            onOff: 'Auto (step on & step off)',
+            glass: 'Strong Reinforced glass body, Scratch resistance'
           }
         ]
       },
@@ -375,11 +368,11 @@ export const categories: Category[] = [
             bodyMaterial: 'Aluminium',
             displayType: 'Strong Fiber glass display',
             warranty: '1 year',
+            adjustable: 'Yes (Zero adjust knob)',
+            hook: 'High strength hook at top & bottom',
             features: [
-              'Adjustable: Yes (Zero adjust knob)', 
-              'Hook: High strength hook at top & bottom', 
               'Attractive design & look', 
-              'Registered trade mark'
+              'Registered Trademark'
             ]
           },
           {
@@ -389,15 +382,15 @@ export const categories: Category[] = [
             baseCapacity: '100 kg',
             precision: '500 gm',
             image: '/images/hanging-circular-100kg.jpg',
-            brand: 'Paras, Shubhm, Ajanta',
+            brand: 'Paras, Shubham, Ajanta',
             bodyMaterial: 'Aluminium',
             displayType: 'Strong Fiber glass display',
             warranty: '1 year',
+            adjustable: 'Yes (Zero adjust knob)',
+            hook: 'High strength hook at top & bottom',
             features: [
-              'Adjustable: Yes (Zero adjust knob)', 
-              'Hook: High strength hook at top & bottom', 
               'Attractive design & look', 
-              'Registered trade mark'
+              'Registered Trademark'
             ]
           },
           {
@@ -407,15 +400,15 @@ export const categories: Category[] = [
             baseCapacity: '200 kg',
             precision: '1 kg',
             image: '/images/hanging-circular-200kg.jpg',
-            brand: 'Paras, Shubhm, Ajanta',
+            brand: 'Paras, Shubham, Ajanta',
             bodyMaterial: 'Aluminium',
             displayType: 'Strong Fiber glass display',
             warranty: '1 year (t&c apply)',
+            adjustable: 'Yes (Zero adjust knob)',
+            hook: 'High strength hook at top & bottom',
             features: [
-              'Adjustable: Yes (Zero adjust knob)', 
-              'Hook: High strength hook at top & bottom', 
               'Attractive design & look', 
-              'Registered trade mark'
+              'Registered Trademark'
             ]
           }
         ]
@@ -435,10 +428,8 @@ export const categories: Category[] = [
             image: '/images/hanging-pocket-100kg.jpg',
             brand: 'Paras, Fish',
             bodyMaterial: 'Steel',
-            features: [
-              'Adjustable: No', 
-              'Hook: High strength hook at top & bottom'
-            ]
+            adjustable: 'No',
+            hook: 'High strength hook at top & bottom'
           }
         ]
       },
@@ -460,10 +451,8 @@ export const categories: Category[] = [
             image: '/images/hanging-tubular-50kg.jpg',
             brand: 'Paras',
             bodyMaterial: 'Steel',
-            features: [
-              'Adjustable: Yes (zero adjust knob)', 
-              'Hook: High strength hook at top & bottom'
-            ]
+            adjustable: 'Yes (zero adjust knob)',
+            hook: 'High strength hook at top & bottom'
           }
         ]
       },
@@ -488,9 +477,7 @@ export const categories: Category[] = [
             displayType: 'LED Bright & Big display',
             battery: '6V Rechargeable battery (up to 72 hrs backup)',
             warranty: '1 year (t&c apply)',
-            features: [
-              'Hook: High strength hook at top & bottom'
-            ]
+            hook: 'High strength hook at top & bottom'
           }
         ]
       },
@@ -510,14 +497,12 @@ export const categories: Category[] = [
             baseCapacity: '100 kg & 200 kg',
             precision: '500 gm, 1 kg',
             image: '/images/hanging-digital.jpg',
-            brand: 'Paras, Shubhm',
+            brand: 'Paras, Shubham',
             bodyMaterial: 'Aluminium',
             displayType: 'LED dual display',
             battery: 'Rechargeable 6V battery',
             warranty: '1 year (t&c apply)',
-            features: [
-              'Hook: High strength hook at top & bottom'
-            ]
+            hook: 'High strength hook at top & bottom'
           }
         ]
       }
@@ -550,9 +535,7 @@ export const categories: Category[] = [
             precision: 'N/A',
             image: '/images/beam-scale.jpg',
             bodyMaterial: 'M.S.',
-            features: [
-              'Type: Swan type, 3 Axle type'
-            ]
+            designType: 'Swan type, 3 Axle type'
           }
         ]
       }
@@ -582,8 +565,8 @@ export const categories: Category[] = [
             baseCapacity: '5 gm - 2 kg',
             precision: 'N/A',
             image: '/images/weights-knob.jpg', 
+            designType: 'Cylindrical shape (knob type)',
             features: [
-              'Type: Cylindrical shape (knob type)', 
               'Set: 9 pcs. in one set', 
               'More precise & accurate'
             ]
@@ -608,9 +591,7 @@ export const categories: Category[] = [
             baseCapacity: '20 gm - 100 kg',
             precision: 'N/A',
             image: '/images/weights-hex.jpg',
-            features: [
-              'Type: Hexagonal shape'
-            ]
+            designType: 'Hexagonal shape'
           }
         ]
       },
@@ -669,7 +650,6 @@ export const categories: Category[] = [
   }
 ];
 
-// Helper function to get all products flattened
 export function getAllProducts(): Product[] {
   const allProducts: Product[] = [];
   
@@ -711,12 +691,10 @@ export function getAllProducts(): Product[] {
   return allProducts;
 }
 
-// Helper function to get product by ID
 export function getProductById(id: string): Product | undefined {
   return getAllProducts().find(p => p.id === id);
 }
 
-// Helper function to get products by category
 export function getProductsByCategory(slug: string): Product[] {
   const category = categories.find(cat => cat.slug === slug);
   if (!category) return [];
@@ -751,7 +729,6 @@ export function getProductsByCategory(slug: string): Product[] {
   return products;
 }
 
-// Helper function to get products by type
 export function getProductsByType(categorySlug: string, typeSlug: string): Product[] {
   const category = categories.find(cat => cat.slug === categorySlug);
   if (!category || !category.types) return [];
@@ -760,7 +737,6 @@ export function getProductsByType(categorySlug: string, typeSlug: string): Produ
   return type?.products?.map(p => ({ ...p, category: category.name, type: type.name })) || [];
 }
 
-// Helper function to search products
 export function searchProducts(query: string): Product[] {
   const searchTerm = query.toLowerCase();
   return getAllProducts().filter(product => 

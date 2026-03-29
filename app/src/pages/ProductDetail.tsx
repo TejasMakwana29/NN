@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { 
   ChevronRight, 
   Scale, 
-  Check, 
   Shield, 
   Truck, 
   Headphones,
@@ -238,28 +237,12 @@ export function ProductDetail() {
             <TabsContent value="description" className="p-8">
               <h3 className="text-xl font-semibold mb-4">Product Description</h3>
               <p className="text-gray-600 leading-relaxed">
-                The {product.name} is a high-precision weighing solution designed for 
-                {product.category?.toLowerCase() || 'various'} applications. With a capacity of {product.baseCapacity} 
-                and accuracy of ±{product.precision}, it delivers accurate measurements every time.
+                The {product.name} is a high-quality weighing solution designed for 
+                {product.category ? ` ${product.category.toLowerCase()}` : ' various'} applications.
+                {product.baseCapacity && ` With a capacity range of ${product.baseCapacity}`}
+                {product.precision && product.precision !== 'N/A' && `, and an accuracy of ±${product.precision}`}
+                , it delivers reliable and precise measurements every time. Built with durable materials like {product.bodyMaterial || 'industry-standard components'}, it ensures long-lasting performance for your business needs.
               </p>
-              <ul className="mt-6 space-y-3">
-                <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-emerald-600" />
-                  High-precision load cell technology
-                </li>
-                <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-emerald-600" />
-                  Easy-to-read digital display
-                </li>
-                <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-emerald-600" />
-                  Durable construction for long-lasting performance
-                </li>
-                <li className="flex items-center gap-2 text-gray-600">
-                  <Check className="w-5 h-5 text-emerald-600" />
-                  ISO 9001:2015 certified quality
-                </li>
-              </ul>
             </TabsContent>
             
             <TabsContent value="specifications" className="p-8">
@@ -274,16 +257,46 @@ export function ProductDetail() {
                       </td>
                     </tr>
                   )}
-                  {product.precision !== 'N/A' && (
+                  {product.precision && product.precision !== 'N/A' && (
                     <tr>
                       <td className="py-3 text-gray-500">Accuracy</td>
                       <td className="py-3 font-medium">{product.precision}</td>
+                    </tr>
+                  )}
+                  {product.brand && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Brand</td>
+                      <td className="py-3 font-medium">{product.brand}</td>
                     </tr>
                   )}
                   {product.bodyMaterial && (
                     <tr>
                       <td className="py-3 text-gray-500">Body Material</td>
                       <td className="py-3 font-medium">{product.bodyMaterial}</td>
+                    </tr>
+                  )}
+                  {product.color && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Color Options</td>
+                      <td className="py-3 font-medium">{product.color}</td>
+                    </tr>
+                  )}
+                  {product.panSize && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Pan Size</td>
+                      <td className="py-3 font-medium">{product.panSize}</td>
+                    </tr>
+                  )}
+                  {product.panMaterial && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Pan Material</td>
+                      <td className="py-3 font-medium">{product.panMaterial}</td>
+                    </tr>
+                  )}
+                  {product.weighingOption && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Weighing Options</td>
+                      <td className="py-3 font-medium">{product.weighingOption}</td>
                     </tr>
                   )}
                   {product.displayType && (
@@ -298,16 +311,59 @@ export function ProductDetail() {
                       <td className="py-3 font-medium">{product.battery}</td>
                     </tr>
                   )}
-                  {product.panSize && (
+                  {product.onOff && (
                     <tr>
-                      <td className="py-3 text-gray-500">Pan Size</td>
-                      <td className="py-3 font-medium">{product.panSize}</td>
+                      <td className="py-3 text-gray-500">On/Off Operation</td>
+                      <td className="py-3 font-medium">{product.onOff}</td>
+                    </tr>
+                  )}
+                  {product.glass && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Glass Type</td>
+                      <td className="py-3 font-medium">{product.glass}</td>
+                    </tr>
+                  )}
+                  {product.adjustable && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Adjustable</td>
+                      <td className="py-3 font-medium">{product.adjustable}</td>
+                    </tr>
+                  )}
+                  {product.hook && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Hook System</td>
+                      <td className="py-3 font-medium">{product.hook}</td>
+                    </tr>
+                  )}
+                  {product.designType && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Design Type</td>
+                      <td className="py-3 font-medium">{product.designType}</td>
+                    </tr>
+                  )}
+                  {product.keyPoints && (
+                    <tr>
+                      <td className="py-3 text-gray-500">Add ons / Key Points</td>
+                      <td className="py-3 font-medium">{product.keyPoints}</td>
                     </tr>
                   )}
                   {product.warranty && (
                     <tr>
                       <td className="py-3 text-gray-500">Warranty</td>
                       <td className="py-3 font-medium">{product.warranty}</td>
+                    </tr>
+                  )}
+                  {/* FEATURES MOVED HERE */}
+                  {product.features && product.features.length > 0 && (
+                    <tr>
+                      <td className="py-3 text-gray-500 align-top">Features</td>
+                      <td className="py-3 font-medium">
+                        <ul className="list-disc list-inside space-y-1">
+                          {product.features.map((feature, idx) => (
+                            <li key={idx}>{feature}</li>
+                          ))}
+                        </ul>
+                      </td>
                     </tr>
                   )}
                 </tbody>
