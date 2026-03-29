@@ -21,7 +21,6 @@ export function ProductDetail() {
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const [selectedCapacityIndex, setSelectedCapacityIndex] = useState(0); 
   const [currentImage, setCurrentImage] = useState<string>(''); 
 
   useEffect(() => {
@@ -32,7 +31,6 @@ export function ProductDetail() {
       if (foundProduct) {
         setProduct(foundProduct);
         
-        setSelectedCapacityIndex(0);
         setCurrentImage(foundProduct.capacities?.[0]?.image || foundProduct.image);
         
         const related = getProductsByCategory(foundProduct.categorySlug || '')
@@ -160,62 +158,24 @@ export function ProductDetail() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/*<div className="mb-4">
-              <span className="px-3 py-1 bg-blue-600/10 text-blue-600 rounded-full text-sm font-medium">
-                {product.category}
-              </span>
-              {product.type && (
-                <span className="ml-2 px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm">
-                  {product.type}
-                </span>
-              )}
-            </div>*/}
-
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
               {product.name}
             </h1>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                <Check className="w-6 h-6 text-blue-600" />
-                <div>
-                  <p className="text-sm text-gray-500">Accuracy</p>
-                  <p className="font-semibold">±{product.precision}</p>
-                </div>
-              </div>
-              {product.warranty && (
-                <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
-                  <Shield className="w-6 h-6 text-blue-600" />
-                  <div>
-                    <p className="text-sm text-gray-500">Warranty</p>
-                    <p className="font-semibold">{product.warranty}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Capacity Dropdown */}
+            {/* Capacity Options */}
             {product.capacities && product.capacities.length > 0 && product.capacities[0].weight !== 'N/A' && (
               <div className="mb-8">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Capacity:
+                  Available Capacities:
                 </label>
                 <div className="flex flex-wrap gap-2">
                   {product.capacities.map((cap, index) => (
-                    <button
+                    <span
                       key={index}
-                      onClick={() => {
-                        setSelectedCapacityIndex(index);
-                        //SetCurrentImage(cap.image || product.image);
-                      }}
-                      className={`px-4 py-2 border rounded-lg text-sm font-medium transition-colors ${
-                        selectedCapacityIndex === index 
-                          ? 'bg-blue-600 text-white border-blue-600' 
-                          : 'bg-white text-gray-700 hover:bg-gray-50'
-                      }`}
+                      className="px-4 py-2 border rounded-lg text-sm font-medium bg-white text-gray-700"
                     >
                       {cap.weight}
-                    </button>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -308,8 +268,10 @@ export function ProductDetail() {
                 <tbody className="divide-y">
                   {product.capacities && product.capacities[0].weight !== 'N/A' && (
                     <tr>
-                      <td className="py-3 text-gray-500">Capacity</td>
-                      <td className="py-3 font-medium">{product.capacities[selectedCapacityIndex].weight}</td>
+                      <td className="py-3 text-gray-500">Available Capacities</td>
+                      <td className="py-3 font-medium">
+                        {product.capacities.map(cap => cap.weight).join(', ')}
+                      </td>
                     </tr>
                   )}
                   {product.precision !== 'N/A' && (

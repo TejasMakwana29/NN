@@ -76,10 +76,10 @@ export function ProductGrid({
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
           <div>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -171,7 +171,6 @@ export function ProductGrid({
                     </button>
                   </div>
                 )}
-                {/* Removed Category Badge from here */}
               </div>
 
               {/* Content */}
@@ -185,13 +184,12 @@ export function ProductGrid({
                     <Scale className="w-4 h-4" />
                     {product.baseCapacity}
                   </span>
-                  {product.precision && (
+                  {product.precision && product.precision !== 'N/A' && (
                     <span>±{product.precision}</span>
                   )}
                 </div>
 
                 <div className="flex items-center justify-end">
-                  {/* CONDITIONAL RENDER FOR DETAILS BUTTON ADDED HERE */}
                   {!['Platform Load Cell', 'Table Top Load Cell', 'Mechanical Hanging Scale Hook', 'Digital Hanging Scale Hook', 'Crane Scale Hook'].includes(product.name) && (
                     <Link
                       to={`/product/${product.id}`}
@@ -220,7 +218,7 @@ export function ProductGrid({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="text-center mt-12"
+          className="text-center mt-8"
         >
           <Link
             to="/products"
@@ -244,7 +242,6 @@ export function ProductGrid({
           
           {compareProducts.length > 0 ? (
             <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0">
-              {/* Responsive scroll container for the table */}
               <div className="overflow-x-auto pb-4 custom-scrollbar">
                 <table className="w-full comparison-table min-w-[600px]">
                   <thead>
@@ -280,7 +277,9 @@ export function ProductGrid({
                     <tr>
                       <td className="font-semibold p-3 border-b">Accuracy</td>
                       {compareProducts.map(product => (
-                        <td key={product.id} className="text-center p-3 border-b text-sm">±{product.precision}</td>
+                        <td key={product.id} className="text-center p-3 border-b text-sm">
+                          {product.precision && product.precision !== 'N/A' ? `±${product.precision}` : '-'}
+                        </td>
                       ))}
                     </tr>
                     <tr>

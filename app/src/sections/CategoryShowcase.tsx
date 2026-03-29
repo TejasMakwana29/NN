@@ -16,7 +16,7 @@ import { categories } from '@/data/products';
 // Helper to count actual products from the data file dynamically
 const getProductCount = (categorySlug: string) => {
   const category = categories.find(c => c.slug === categorySlug);
-  if (!category) return 1; // Fallback so it never shows 0
+  if (!category) return 1; 
   
   let count = 0;
   if (category.products) count += category.products.length;
@@ -148,7 +148,7 @@ export function CategoryShowcase() {
 
   return (
     <section 
-      className="py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
+      className="py-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden"
       aria-labelledby="categories-title"
     >
       <div className="container mx-auto px-4">
@@ -157,7 +157,7 @@ export function CategoryShowcase() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -309,7 +309,7 @@ export function CategoryShowcase() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-10"
         >
           <Link
             to="/products"

@@ -46,13 +46,13 @@ export function Home() {
       <Hero />
       
       {/* Trust Features Section */}
-      <section className="py-16 bg-blue-50/40 relative overflow-hidden" aria-labelledby="features-title">
+      <section className="py-12 bg-blue-50/40 relative overflow-hidden" aria-labelledby="features-title">
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-4 shadow-sm">
               <CheckCircle2 className="w-4 h-4 text-blue-600" />
@@ -100,13 +100,13 @@ export function Home() {
       />
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-white" aria-labelledby="testimonials-title">
+      <section className="py-16 bg-white" aria-labelledby="testimonials-title">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-10"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 rounded-full text-sm font-semibold mb-4 border border-amber-100">
               <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
@@ -158,7 +158,7 @@ export function Home() {
             ))}
           </div>
 
-          <motion.div className="mt-16 overflow-hidden relative w-full pt-8 border-t border-slate-100">
+          <motion.div className="mt-10 overflow-hidden relative w-full pt-8 border-t border-slate-100">
             <span className="text-sm font-semibold uppercase tracking-wider text-center block mb-6 text-blue-400">Trusted by leading brands</span>
             <div className="flex w-full overflow-hidden">
               <div className="flex animate-[marquee_20s_linear_infinite] whitespace-nowrap gap-16 items-center">
@@ -176,7 +176,7 @@ export function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900" aria-labelledby="cta-title">
+      <section className="py-16 relative overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900" aria-labelledby="cta-title">
         <div className="absolute inset-0 opacity-[0.05]" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)`,
           backgroundSize: '32px 32px'
@@ -228,7 +228,7 @@ export function Home() {
               </motion.a>
             </div>
 
-            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
                 { label: 'Years Experience', value: '70+' },
                 { label: 'Happy Customers', value: '50K+' },

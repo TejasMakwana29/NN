@@ -8,22 +8,19 @@ function AnimatedCounter({ start = 0, end, decimals = 0, suffix = '' }: { start?
   const [count, setCount] = useState(start);
   const ref = useRef(null);
   
-  // This hook ensures the animation only starts when the user scrolls to it
-  // and will reset/replay whenever the page is refreshed.
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!isInView) return; // Wait until element is visible on screen
+    if (!isInView) return; 
 
     let startTime: number | null = null;
-    const duration = 5000; // 5 seconds animation duration
+    const duration = 5000; 
     
     const step = (currentTime: number) => {
       if (startTime === null) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       
-      // Easing function (easeOutQuart) for a smooth slowdown at the end
       const easeOut = 1 - Math.pow(1 - progress, 4);
       
       setCount(start + (end - start) * easeOut);
@@ -87,8 +84,8 @@ export function Hero() {
       </motion.div>
 
       {/* Content */}
-      <motion.div className="relative z-10 container mx-auto px-4 pt-24 pb-16 lg:pt-32 lg:pb-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[70vh]">
+      <motion.div className="relative z-10 container mx-auto px-4 pt-20 pb-12 lg:pt-24 lg:pb-16">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[60vh]">
           {/* Left Content */}
           <div className="text-slate-800">
             <motion.div
@@ -132,28 +129,6 @@ export function Hero() {
               Today, we deliver premium weighing solutions trusted by businesses across India with 
               over seven decades of traditional expertise and modern precision.
             </motion.p>
-
-           {/* <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-wrap gap-4"
-            >
-              <Link
-                to="/products"
-                className="group inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-[1.02]"
-              >
-                <span>Explore Products</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                to="/quote"
-                className="inline-flex items-center gap-3 bg-white text-blue-700 px-8 py-4 rounded-xl font-bold border-2 border-blue-100 transition-all duration-300 hover:border-blue-300 hover:bg-blue-50 hover:scale-[1.02]"
-              >
-                <span>Get Free Quote</span>
-                <Phone className="w-5 h-5 text-emerald-500" />
-              </Link>
-            </motion.div>*/}
 
             {/* ENLARGED CERTIFICATION SECTION */}
             <motion.div
@@ -241,7 +216,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
+          className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6"
         >
           {stats.map((stat, index) => (
             <motion.div

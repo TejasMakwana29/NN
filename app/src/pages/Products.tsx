@@ -30,10 +30,9 @@ export function Products() {
     contentTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [viewMode]);
 
-  // FIXED useEffect FOR FILTERING
   useEffect(() => {
     let cancelled = false;
-    setIsLoading(true); // Ensure loading state is set when changing categories
+    setIsLoading(true); 
 
     const t = setTimeout(() => {
       let allProducts = getAllProducts();
@@ -43,14 +42,12 @@ export function Products() {
         const category = categories.find(c => c.slug === categorySlug);
         if (category) {
           title = category.name;
-          // Filter by categorySlug
           allProducts = allProducts.filter(p => p.categorySlug === categorySlug);
 
           if (typeSlug && category.types) {
             const type = category.types.find(t => t.slug === typeSlug);
             if (type) {
               title = `${category.name} - ${type.name}`;
-              // Filter by type name
               allProducts = allProducts.filter(p => p.type === type.name);
             }
           }
@@ -74,7 +71,7 @@ export function Products() {
         setFilteredProducts(allProducts);
         setIsLoading(false);
       }
-    }, 400); // Faster loading feel
+    }, 400); 
 
     return () => {
       cancelled = true;
@@ -187,7 +184,7 @@ export function Products() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           
-          {/* FIXED Sidebar Filters */}
+          {/* Sidebar Filters */}
           <aside className="lg:w-64 flex-shrink-0">
             <div className="bg-white rounded-xl shadow-sm p-6 sticky top-24">
               <div className="flex items-center gap-2 mb-6">
@@ -307,10 +304,14 @@ export function Products() {
                       <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
                         <span className="flex items-center gap-1">
                           <Scale className="w-4 h-4" />
-                          {/* FIXED to baseCapacity */}
                           {product.baseCapacity}
                         </span>
-                        <span>±{product.precision}</span>
+                        
+                        {/* FIXED: Hide ±N/A here */}
+                        {product.precision && product.precision !== 'N/A' && (
+                          <span>±{product.precision}</span>
+                        )}
+                        
                         {product.category && (
                           <span className="px-2 py-1 bg-gray-100 rounded text-xs">
                             {product.category}
@@ -319,12 +320,14 @@ export function Products() {
                       </div>
 
                       <div className="flex gap-2 mt-4">
-                        <Link
-                          to={`/product/${product.id}`}
-                          className="flex-1 py-2 border border-blue-600 text-blue-600 text-center rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors"
-                        >
-                          View Details
-                        </Link>
+                        {!['Platform Load Cell', 'Table Top Load Cell', 'Mechanical Hanging Scale Hook', 'Digital Hanging Scale Hook', 'Crane Scale Hook'].includes(product.name) && (
+                          <Link
+                            to={`/product/${product.id}`}
+                            className="flex-1 py-2 border border-blue-600 text-blue-600 text-center rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors"
+                          >
+                            View Details
+                          </Link>
+                        )}
                         <Link
                           to="/quote"
                           className="flex-1 py-2 bg-emerald-600 text-white text-center rounded-lg font-medium hover:bg-emerald-700 transition-colors"
@@ -377,15 +380,17 @@ export function Products() {
                   </tr>
                   <tr>
                     <td className="font-semibold">Capacity</td>
-                    {/* FIXED to baseCapacity */}
                     {compareProducts.map(product => (
                       <td key={product.id} className="text-center">{product.baseCapacity}</td>
                     ))}
                   </tr>
                   <tr>
                     <td className="font-semibold">Precision</td>
+                    {/* FIXED: Hide ±N/A here too */}
                     {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">±{product.precision}</td>
+                      <td key={product.id} className="text-center">
+                        {product.precision && product.precision !== 'N/A' ? `±${product.precision}` : '-'}
+                      </td>
                     ))}
                   </tr>
                 </tbody>

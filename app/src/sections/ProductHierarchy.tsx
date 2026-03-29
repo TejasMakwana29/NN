@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   ChevronRight, 
   Scale, 
   Cpu,
   CircleDot,
   Package,
-  Sparkles,
   ArrowRight
 } from 'lucide-react';
 
@@ -106,7 +105,15 @@ const productTree: ProductNode[] = [
     name: 'Accessories',
     slug: 'accessories',
     icon: <Package className="w-5 h-5" />,
-    description: 'Weights, calibration tools and spare parts'
+    description: 'Weights, calibration tools and spare parts',
+    // ADDED CHILDREN HERE so it behaves like the other categories
+    children: [
+      { id: 'weights', name: 'Calibration Weights', slug: 'weights', description: 'Standard weights for calibration' },
+      { id: 'adapters', name: 'Power Adapters', slug: 'adapters', description: 'Power supplies and adapters' },
+      { id: 'batteries', name: 'Batteries', slug: 'batteries', description: 'Replacement batteries for scales' },
+      { id: 'displays', name: 'External Displays', slug: 'displays', description: 'Additional display units' },
+      { id: 'parts', name: 'Spare Parts', slug: 'parts', description: 'Load cells, motherboards, and parts' }
+    ]
   }
 ];
 
@@ -118,6 +125,7 @@ interface TreeNodeProps {
 
 function TreeNode({ node, level, index }: TreeNodeProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
   const hasChildren = node.children && node.children.length > 0;
 
   return (
@@ -140,11 +148,21 @@ function TreeNode({ node, level, index }: TreeNodeProps) {
             : 'hover:bg-gray-50'}
           ${isExpanded && hasChildren ? 'bg-blue-50' : ''}
         `}
-        onClick={() => hasChildren && setIsExpanded(!isExpanded)}
+        onClick={() => {
+          if (hasChildren) {
+            setIsExpanded(!isExpanded);
+          } else {
+            navigate(`/products/${node.slug}`);
+          }
+        }}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            if (hasChildren) setIsExpanded(prev => !prev);
+            if (hasChildren) {
+              setIsExpanded(prev => !prev);
+            } else {
+              navigate(`/products/${node.slug}`);
+            }
           }
         }}
         role={hasChildren ? 'button' : 'link'}
@@ -157,7 +175,7 @@ function TreeNode({ node, level, index }: TreeNodeProps) {
           <div className="absolute left-0 top-1/2 w-4 h-px bg-blue-400 -ml-4" />
         )}
         
-        {/* Expand/Collapse Icon */}
+        {/* Expand/Collapse or Link Icon */}
         {hasChildren ? (
           <motion.div
             animate={{ rotate: isExpanded ? 90 : 0 }}
@@ -167,8 +185,8 @@ function TreeNode({ node, level, index }: TreeNodeProps) {
             <ChevronRight className="w-4 h-4" />
           </motion.div>
         ) : (
-          <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 flex items-center justify-center">
-            <Sparkles className="w-3 h-3 text-white" />
+          <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+            <ArrowRight className="w-4 h-4" />
           </div>
         )}
 
