@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Award, Users, Globe, TrendingUp, Scale, Phone } from 'lucide-react';
+import { ArrowRight, Award, Users, Globe, TrendingUp, Scale } from 'lucide-react';
 import { IMAGES } from '@/lib/productImages';
 
 function AnimatedCounter({ start = 0, end, decimals = 0, suffix = '' }: { start?: number; end: number; decimals?: number; suffix?: string }) {
