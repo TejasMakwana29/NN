@@ -179,7 +179,7 @@ export function ProductDetail() {
               <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
                 <Check className="w-6 h-6 text-blue-600" />
                 <div>
-                  <p className="text-sm text-gray-500">Precision</p>
+                  <p className="text-sm text-gray-500">Accuracy</p>
                   <p className="font-semibold">±{product.precision}</p>
                 </div>
               </div>
@@ -260,28 +260,27 @@ export function ProductDetail() {
         {/* Product Tabs */}
         <div className="mt-16">
           <Tabs defaultValue="description" className="bg-white rounded-xl shadow-sm">
-            {/* Update this line in ProductDetail.tsx */}
-<TabsList className="w-full justify-start border-b rounded-none p-0 h-auto overflow-x-auto flex-nowrap whitespace-nowrap hide-scrollbar">
-  <TabsTrigger 
-    value="description" 
-    className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
-  >
-    Description
-  </TabsTrigger>
-  <TabsTrigger 
-    value="specifications"
-    className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
-  >
-    Specifications
-  </TabsTrigger>
-</TabsList>
+            <TabsList className="w-full justify-start border-b rounded-none p-0 h-auto overflow-x-auto flex-nowrap whitespace-nowrap hide-scrollbar">
+              <TabsTrigger 
+                value="description" 
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
+              >
+                Description
+              </TabsTrigger>
+              <TabsTrigger 
+                value="specifications"
+                className="px-8 py-4 rounded-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 data-[state=active]:text-blue-600"
+              >
+                Specifications
+              </TabsTrigger>
+            </TabsList>
             
             <TabsContent value="description" className="p-8">
               <h3 className="text-xl font-semibold mb-4">Product Description</h3>
               <p className="text-gray-600 leading-relaxed">
                 The {product.name} is a high-precision weighing solution designed for 
                 {product.category?.toLowerCase() || 'various'} applications. With a capacity of {product.baseCapacity} 
-                and precision of ±{product.precision}, it delivers accurate measurements every time.
+                and accuracy of ±{product.precision}, it delivers accurate measurements every time.
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center gap-2 text-gray-600">
@@ -315,7 +314,7 @@ export function ProductDetail() {
                   )}
                   {product.precision !== 'N/A' && (
                     <tr>
-                      <td className="py-3 text-gray-500">Precision</td>
+                      <td className="py-3 text-gray-500">Accuracy</td>
                       <td className="py-3 font-medium">{product.precision}</td>
                     </tr>
                   )}

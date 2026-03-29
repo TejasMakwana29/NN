@@ -279,7 +279,7 @@ export function ProductGrid({
                       ))}
                     </tr>
                     <tr>
-                      <td className="font-semibold p-3 border-b">Precision</td>
+                      <td className="font-semibold p-3 border-b">Accuracy</td>
                       {compareProducts.map(product => (
                         <td key={product.id} className="text-center p-3 border-b text-sm">±{product.precision}</td>
                       ))}

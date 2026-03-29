@@ -310,7 +310,7 @@ export function ProductHierarchy() {
             { label: 'Product Categories', value: '5+' },
             { label: 'Scale Types', value: '25+' },
             { label: 'Capacity Range', value: '1mg - 5 Ton' },
-            { label: 'Years of Excellence', value: '30+' }
+            { label: 'Years of Excellence', value: '70+' }
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
