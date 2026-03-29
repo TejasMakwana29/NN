@@ -87,10 +87,13 @@ export const categories: Category[] = [
               { weight: '15 kg', image: '/images/counter-emboss-15.jpg' }
             ],
             baseCapacity: '1 kg - 15 kg',
-            precision: '',
+            precision: 'N/A',
             image: '/images/counter-emboss-1.jpg',
             bodyMaterial: 'Steel (Medium weight body)',
-            features: ['Available in different colors', 'Weighing option: Oblong (bowl) & Tray']
+            features: [
+              'Color: Available in different colors', 
+              'Weighing option: Oblong (bowl) & Tray'
+            ]
           }
         ]
       },
@@ -109,10 +112,13 @@ export const categories: Category[] = [
               { weight: '25 kg', image: '/images/counter-plain-25.jpg' }
             ],
             baseCapacity: '10 kg - 25 kg',
-            precision: '',
+            precision: 'N/A',
             image: '/images/counter-plain-10.jpg',
             bodyMaterial: 'M.S. (Heavy weight body)',
-            features: ['Available in different colors', 'Weighing option: Oblong (bowl) & Tray']
+            features: [
+              'Color: Available in different colors', 
+              'Weighing option: Oblong (bowl) & Tray'
+            ]
           }
         ]
       },
@@ -132,10 +138,13 @@ export const categories: Category[] = [
               { weight: '10 kg', image: '/images/counter-super-10.jpg' }
             ],
             baseCapacity: '1 kg - 10 kg',
-            precision: '',
+            precision: 'N/A',
             image: '/images/counter-super-1.jpg',
             bodyMaterial: 'Stainless steel (Light weight body)',
-            features: ['Available in different colors', 'Weighing option: Oblong (bowl) & Tray']
+            features: [
+              'Color: Available in different colors', 
+              'Weighing option: Oblong (bowl) & Tray'
+            ]
           }
         ]
       }
@@ -163,9 +172,12 @@ export const categories: Category[] = [
             image: '/images/micro-scale.jpg',
             bodyMaterial: 'Stainless Steel',
             panSize: 'Stainless Steel (6x7 inches)',
-            battery: 'Rechargeable 4v battery (up to 48 hrs backup)',
+            battery: 'Rechargeable 4V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
-            warranty: '6 months (t&c apply)'
+            warranty: '6 months (t&c apply)',
+            features: [
+              'Compact in size'
+            ]
           }
         ]
       },
@@ -184,10 +196,12 @@ export const categories: Category[] = [
             image: '/images/tabletop-30kg.jpg',
             bodyMaterial: 'Steel',
             panSize: 'Stainless Steel (250x300 mm)',
-            battery: 'Rechargeable 4v battery (up to 48 hrs backup)',
+            battery: 'Rechargeable 4V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
             warranty: '1 year (t&c apply)',
-            features: ['Pole Display available']
+            features: [
+              'Add-ons: Pole Display'
+            ]
           }
         ]
       },
@@ -206,15 +220,18 @@ export const categories: Category[] = [
               { weight: '150 kg' },
               { weight: '200 kg' }
             ],
-            baseCapacity: '50kg - 200kg',
-            precision: '10gm to 50gm',
+            baseCapacity: '50 kg - 200 kg',
+            precision: '10 gm to 50 gm',
             image: '/images/poultry-50kg.jpg',
             bodyMaterial: 'M.S.',
             panSize: '300x300 mm to 500x500 mm (depends on Capacity)',
-            battery: 'Rechargeable 6v battery (up to 48 hrs backup)',
+            battery: 'Rechargeable 6V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
             warranty: '1 year (t&c apply)',
-            features: ['Pan material: Chequered (MS) or Stainless Steel', 'Add ons: Grill for support']
+            features: [
+              'Pan material: Chequered (MS) or Stainless Steel', 
+              'Add-ons: Grill for support'
+            ]
           }
         ]
       },
@@ -236,15 +253,18 @@ export const categories: Category[] = [
               { weight: '1 Ton' },
               { weight: '2 Ton' }
             ],
-            baseCapacity: '50kg - 2 Ton',
-            precision: '10gm to 200gm',
+            baseCapacity: '50 kg - 2 Ton',
+            precision: '10 gm to 200 gm',
             image: '/images/platform-100kg.jpg',
             bodyMaterial: 'M.S.',
             panSize: '400x400 mm to 900x900 mm (depends on Capacity)',
-            battery: 'Rechargeable 6v battery (up to 48 hrs backup)',
+            battery: 'Rechargeable 6V battery (up to 48 hrs backup)',
             displayType: 'LED dual display (Front & Back) in Green or Red color',
             warranty: '1 year (t&c apply)',
-            features: ['Pan material: Chequered (MS) or Stainless Steel', 'Add ons: Grill for support, extra extended display']
+            features: [
+              'Pan material: Chequered (MS) or Stainless Steel', 
+              'Add-ons: Grill for support, extra extended display'
+            ]
           }
         ]
       },
@@ -259,7 +279,7 @@ export const categories: Category[] = [
             name: 'Jewellery Scale',
             capacities: [{ weight: '510 gm' }],
             baseCapacity: '510 gm',
-            precision: '10 mg (0.01gm)',
+            precision: '10 mg (0.01 gm)',
             image: '/images/jewelry-100g.jpg',
             panSize: 'Round Stainless Steel, 110 mm',
             displayType: 'LED dual display',
@@ -304,7 +324,9 @@ export const categories: Category[] = [
             displayType: 'LCD display',
             battery: '2x AAA battery',
             warranty: '3 years',
-            features: ['Auto On/off (step on & step off)']
+            features: [
+              'Auto On/Off (step on & step off)'
+            ]
           }
         ]
       },
@@ -322,7 +344,7 @@ export const categories: Category[] = [
             precision: '10 gm',
             image: '/images/luggage-scale.jpg',
             bodyMaterial: 'ABS',
-            displayType: 'LED display (green colour)',
+            displayType: 'LED display (green color)',
             battery: '2x AA battery'
           }
         ]
@@ -353,7 +375,12 @@ export const categories: Category[] = [
             bodyMaterial: 'Aluminium',
             displayType: 'Strong Fiber glass display',
             warranty: '1 year',
-            features: ['Adjustable: Yes (Zero adjust knob)', 'Hook: High strength hook at top & bottom', 'Attractive design & look', 'Registered trade mark']
+            features: [
+              'Adjustable: Yes (Zero adjust knob)', 
+              'Hook: High strength hook at top & bottom', 
+              'Attractive design & look', 
+              'Registered trade mark'
+            ]
           },
           {
             id: 'hc-100',
@@ -366,7 +393,12 @@ export const categories: Category[] = [
             bodyMaterial: 'Aluminium',
             displayType: 'Strong Fiber glass display',
             warranty: '1 year',
-            features: ['Adjustable: Yes (Zero adjust knob)', 'Hook: High strength hook at top & bottom', 'Attractive design & look', 'Registered trade mark']
+            features: [
+              'Adjustable: Yes (Zero adjust knob)', 
+              'Hook: High strength hook at top & bottom', 
+              'Attractive design & look', 
+              'Registered trade mark'
+            ]
           },
           {
             id: 'hc-200',
@@ -379,7 +411,12 @@ export const categories: Category[] = [
             bodyMaterial: 'Aluminium',
             displayType: 'Strong Fiber glass display',
             warranty: '1 year (t&c apply)',
-            features: ['Adjustable: Yes (Zero adjust knob)', 'Hook: High strength hook at top & bottom', 'Attractive design & look', 'Registered trade mark']
+            features: [
+              'Adjustable: Yes (Zero adjust knob)', 
+              'Hook: High strength hook at top & bottom', 
+              'Attractive design & look', 
+              'Registered trade mark'
+            ]
           }
         ]
       },
@@ -398,7 +435,10 @@ export const categories: Category[] = [
             image: '/images/hanging-pocket-100kg.jpg',
             brand: 'Paras, Fish',
             bodyMaterial: 'Steel',
-            features: ['Adjustable: No', 'Hook: High strength hook at top & bottom']
+            features: [
+              'Adjustable: No', 
+              'Hook: High strength hook at top & bottom'
+            ]
           }
         ]
       },
@@ -411,13 +451,19 @@ export const categories: Category[] = [
           {
             id: 'ht-multi',
             name: 'Tubular Scale',
-            capacities: [{ weight: '50 kg' }, { weight: '100 kg' }],
-            baseCapacity: '50kg & 100kg',
+            capacities: [
+              { weight: '50 kg' }, 
+              { weight: '100 kg' }
+            ],
+            baseCapacity: '50 kg & 100 kg',
             precision: '50 gm',
             image: '/images/hanging-tubular-50kg.jpg',
             brand: 'Paras',
             bodyMaterial: 'Steel',
-            features: ['Adjustable: yes (zero adjust knob)', 'Hook: High strength hook at top & bottom']
+            features: [
+              'Adjustable: Yes (zero adjust knob)', 
+              'Hook: High strength hook at top & bottom'
+            ]
           }
         ]
       },
@@ -430,15 +476,21 @@ export const categories: Category[] = [
           {
             id: 'hcr-multi',
             name: 'Crane Scale',
-            capacities: [{ weight: '3 Ton' }, { weight: '5 Ton' }, { weight: '10 Ton' }],
+            capacities: [
+              { weight: '3 Ton' }, 
+              { weight: '5 Ton' }, 
+              { weight: '10 Ton' }
+            ],
             baseCapacity: '3 Ton - 10 Ton',
             precision: '1 kg',
-            image: '/images/hanging-crane.jpg', // You may need to add this image
+            image: '/images/hanging-crane.jpg', 
             brand: 'Paras',
             displayType: 'LED Bright & Big display',
-            battery: '6v Rechargeable battery (up to 72 hrs backup)',
+            battery: '6V Rechargeable battery (up to 72 hrs backup)',
             warranty: '1 year (t&c apply)',
-            features: ['Hook: High strength hook at top & bottom']
+            features: [
+              'Hook: High strength hook at top & bottom'
+            ]
           }
         ]
       },
@@ -451,16 +503,21 @@ export const categories: Category[] = [
           {
             id: 'hd-multi',
             name: 'Digital Hanging Scale',
-            capacities: [{ weight: '100 kg' }, { weight: '200 kg' }],
-            baseCapacity: '100kg & 200kg',
-            precision: '500gm, 1kg',
-            image: '/images/hanging-digital.jpg', // You may need to add this image
+            capacities: [
+              { weight: '100 kg' }, 
+              { weight: '200 kg' }
+            ],
+            baseCapacity: '100 kg & 200 kg',
+            precision: '500 gm, 1 kg',
+            image: '/images/hanging-digital.jpg',
             brand: 'Paras, Shubhm',
             bodyMaterial: 'Aluminium',
             displayType: 'LED dual display',
-            battery: 'Rechargeable 6v battery',
+            battery: 'Rechargeable 6V battery',
             warranty: '1 year (t&c apply)',
-            features: ['Hook: High strength hook at top & bottom']
+            features: [
+              'Hook: High strength hook at top & bottom'
+            ]
           }
         ]
       }
@@ -489,11 +546,13 @@ export const categories: Category[] = [
               { weight: '100 kg' }, { weight: '200 kg' }, { weight: '300 kg' },
               { weight: '500 kg' }, { weight: '1 Ton' }
             ],
-            baseCapacity: '100gm - 1 Ton',
-            precision: '',
+            baseCapacity: '100 gm - 1 Ton',
+            precision: 'N/A',
             image: '/images/beam-scale.jpg',
             bodyMaterial: 'M.S.',
-            features: ['Type: Swan type, 3 Axle type']
+            features: [
+              'Type: Swan type, 3 Axle type'
+            ]
           }
         ]
       }
@@ -520,10 +579,14 @@ export const categories: Category[] = [
               { weight: '50 gm' }, { weight: '100 gm' }, { weight: '200 gm' },
               { weight: '500 gm' }, { weight: '1 kg' }, { weight: '2 kg' }
             ],
-            baseCapacity: '5gm - 2kg',
+            baseCapacity: '5 gm - 2 kg',
             precision: 'N/A',
-            image: '/images/weights-knob.jpg', // Need to add
-            features: ['Type: Cylindrical shape (knob type)', 'Set: 9 pcs. In one set', 'More precise & Accurate']
+            image: '/images/weights-knob.jpg', 
+            features: [
+              'Type: Cylindrical shape (knob type)', 
+              'Set: 9 pcs. in one set', 
+              'More precise & accurate'
+            ]
           }
         ]
       },
@@ -542,10 +605,12 @@ export const categories: Category[] = [
               { weight: '2 kg' }, { weight: '5 kg' }, { weight: '10 kg' },
               { weight: '20 kg' }, { weight: '50 kg' }, { weight: '100 kg' }
             ],
-            baseCapacity: '20gm - 100kg',
+            baseCapacity: '20 gm - 100 kg',
             precision: 'N/A',
-            image: '/images/weights-hex.jpg', // Need to add
-            features: ['Type: Hexagonal shape']
+            image: '/images/weights-hex.jpg',
+            features: [
+              'Type: Hexagonal shape'
+            ]
           }
         ]
       },
