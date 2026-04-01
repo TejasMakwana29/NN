@@ -66,7 +66,6 @@ const weightRanges = [
 export function FindYourScaleWizard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedApplication, setSelectedApplication] = useState('');
-  const [selectedWeight, setSelectedWeight] = useState(''); // FIXED for strict mode compliance
   const [recommendation, setRecommendation] = useState<Recommendation | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -78,7 +77,6 @@ export function FindYourScaleWizard() {
   const recommendationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleWeightSelect = (weight: string) => {
-    setSelectedWeight(weight);
     setIsLoading(true);
     if (recommendationTimerRef.current) clearTimeout(recommendationTimerRef.current);
     // Brief feedback only - no long delay that causes perceived hang
@@ -144,7 +142,6 @@ export function FindYourScaleWizard() {
   const resetWizard = () => {
     setCurrentStep(1);
     setSelectedApplication('');
-    setSelectedWeight('');
     setRecommendation(null);
   };
  

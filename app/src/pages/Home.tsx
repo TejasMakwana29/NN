@@ -194,7 +194,7 @@ export function Home() {
               </motion.div>
             </div>
 
-            {/* Right Content - 3D Product Showcase (NOW VISIBLE ON MOBILE TOO) */}
+            {/* Right Content - 3D Product Showcase */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -285,7 +285,8 @@ export function Home() {
             {trustFeatures.map((feature, index) => (
               <motion.div key={feature.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} whileHover={{ y: -4, transition: { duration: 0.2 } }} className={`group relative p-6 md:p-8 rounded-2xl border shadow-sm hover:shadow-xl transition-all duration-300 ${feature.bgClass} ${feature.borderClass}`}>
                 <div className="relative">
-                  <div className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br ${feature.iconBg} ${feature.hoverFrom} ${feature.hoverTo} rounded-xl flex items-center justify-center mb-4 md:mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 border border-white/50`}>
+                  {/* Fixed the unused properties from the class string below */}
+                  <div className={`w-12 h-12 md:w-14 md:h-14 ${feature.iconBg} rounded-xl flex items-center justify-center mb-4 md:mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 border border-white/50`}>
                     <feature.icon className={`w-6 h-6 md:w-7 md:h-7 ${feature.iconColor} group-hover:text-white transition-colors`} aria-hidden="true" />
                   </div>
                   <h3 className={`text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3 ${feature.titleHover} transition-colors`}>{feature.title}</h3>
