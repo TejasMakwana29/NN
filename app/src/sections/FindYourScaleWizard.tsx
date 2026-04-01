@@ -66,7 +66,7 @@ const weightRanges = [
 export function FindYourScaleWizard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedApplication, setSelectedApplication] = useState('');
-  const [, setSelectedWeight] = useState('');
+  const [selectedWeight, setSelectedWeight] = useState(''); // FIXED for strict mode compliance
   const [recommendation, setRecommendation] = useState<Recommendation | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 

@@ -67,7 +67,7 @@ export function Search() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm">
-                <div className="aspect-square skeleton-shimmer" />
+                <div className="h-56 w-full skeleton-shimmer" />
                 <div className="p-4 space-y-3">
                   <div className="h-5 w-3/4 skeleton-shimmer rounded" />
                   <div className="h-4 w-1/2 skeleton-shimmer rounded" />
@@ -133,14 +133,14 @@ export function Search() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                  className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
                 >
-                  {/* Image */}
-                  <div className="relative aspect-square overflow-hidden bg-gray-100">
+                  {/* Image - UPDATED TO PERFECT SIZE */}
+                  <div className="relative h-56 p-4 overflow-hidden bg-slate-50/50 flex items-center justify-center border-b border-gray-100">
                     <img
                       src={getProductImageUrl(product, 'medium')}
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
                       loading="lazy"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = getPlaceholderImageUrl(product.name);
@@ -154,10 +154,10 @@ export function Search() {
                           e.preventDefault();
                           toggleCompare(product.id);
                         }}
-                        className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm border ${
                           compareList.includes(product.id)
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white/90 text-gray-400 hover:bg-white'
+                            ? 'bg-blue-600 border-blue-600 text-white'
+                            : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-50'
                         }`}
                       >
                         {compareList.includes(product.id) ? (
@@ -168,7 +168,7 @@ export function Search() {
 
                     {/* Category Badge */}
                     <div className="absolute top-3 right-3">
-                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-full">
+                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-gray-700 rounded-full shadow-sm">
                         {product.category}
                       </span>
                     </div>
@@ -176,31 +176,37 @@ export function Search() {
 
                   {/* Content */}
                   <div className="p-5">
-                    <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors line-clamp-1">
                       {product.name}
                     </h3>
                     
-                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                      <span className="flex items-center gap-1">
-                        <Scale className="w-4 h-4" />
+                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4 font-medium">
+                      <span className="flex items-center gap-1 bg-gray-50 px-2 py-1 rounded border border-gray-100">
+                        <Scale className="w-3.5 h-3.5 text-blue-500" />
                         {product.baseCapacity}
                       </span>
-                      <span>±{product.precision}</span>
+                      
+                      {/* FIXED: Hide ±N/A here */}
+                      {product.precision && product.precision !== 'N/A' && (
+                        <span className="bg-gray-50 px-2 py-1 rounded border border-gray-100">
+                          ±{product.precision}
+                        </span>
+                      )}
                     </div>
 
                     <div className="flex items-center justify-end">
                       <Link
                         to={`/product/${product.id}`}
-                        className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
+                        className="flex items-center gap-1 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors"
                       >
-                        Details
+                        View Details
                         <ChevronRight className="w-4 h-4" />
                       </Link>
                     </div>
 
                     <Link
                       to="/quote"
-                      className="mt-4 block w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
+                      className="mt-4 block w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded-lg font-bold transition-all duration-300 hover:shadow-md"
                     >
                       Request Quote
                     </Link>
