@@ -5,7 +5,7 @@ import {
   ChevronRight, 
   Scale, 
   Cpu,
-  CircleDot,
+  Anchor,
   Package,
   ArrowRight
 } from 'lucide-react';
@@ -90,7 +90,7 @@ const productTree: ProductNode[] = [
     id: 'hanging',
     name: 'Hanging Scales',
     slug: 'hanging',
-    icon: <CircleDot className="w-5 h-5" />,
+    icon: <Anchor className="w-5 h-5" />,
     description: 'Spring balance scales for portable weighing',
     children: [
       { id: 'circular', name: 'Circular', slug: 'circular', description: 'Classic dial display' },

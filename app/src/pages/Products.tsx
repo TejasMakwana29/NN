@@ -224,8 +224,8 @@ export function Products() {
                   : 'grid-cols-1'
               }`}>
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm">
-                    <div className="aspect-square skeleton-shimmer" />
+                  <div key={i} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+                    <div className="h-56 w-full skeleton-shimmer" />
                     <div className="p-4 space-y-3">
                       <div className="h-5 w-3/4 skeleton-shimmer rounded" />
                       <div className="h-4 w-1/2 skeleton-shimmer rounded" />
@@ -255,18 +255,18 @@ export function Products() {
                   <motion.div
                     key={product.id}
                     variants={itemVariants}
-                    className={`group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ${
-                      viewMode === 'list' ? 'flex' : ''
+                    className={`group bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 ${
+                      viewMode === 'list' ? 'flex flex-col sm:flex-row' : 'flex flex-col'
                     }`}
                   >
-                    {/* Image */}
-                    <div className={`relative overflow-hidden bg-gray-100 ${
-                      viewMode === 'list' ? 'w-48 flex-shrink-0' : 'aspect-square'
+                    {/* Image - UPDATED TO PERFECT SIZE */}
+                    <div className={`relative p-4 overflow-hidden bg-slate-50/50 flex items-center justify-center ${
+                      viewMode === 'list' ? 'w-full sm:w-64 min-h-[14rem] flex-shrink-0 border-b sm:border-b-0 sm:border-r border-gray-100' : 'h-56 border-b border-gray-100'
                     }`}>
                       <img
                         src={getProductImageUrl(product, 'medium')}
                         alt={product.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
                         loading="lazy"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = getPlaceholderImageUrl(product.name);
@@ -274,16 +274,16 @@ export function Products() {
                       />
                       
                       {/* Compare Checkbox */}
-                      <div className="absolute top-3 left-3 z-10">
+                      <div className="absolute top-3 right-3 z-10">
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             toggleCompare(product.id);
                           }}
-                          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm border ${
                             compareList.includes(product.id)
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-white/90 text-gray-400 hover:bg-white'
+                              ? 'bg-blue-600 border-blue-600 text-white'
+                              : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-50'
                           }`}
                         >
                           {compareList.includes(product.id) ? (
@@ -294,43 +294,50 @@ export function Products() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-5 flex-1">
+                    <div className="p-5 flex-1 flex flex-col">
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                        <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">
                           {product.name}
                         </h3>
                       </div>
                       
-                      <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4">
-                        <span className="flex items-center gap-1">
-                          <Scale className="w-4 h-4" />
+                      <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500 mb-4 font-medium">
+                        <span className="flex items-center gap-1.5 bg-gray-50 px-2 py-1 rounded-md border border-gray-100">
+                          <Scale className="w-3.5 h-3.5 text-blue-500" />
                           {product.baseCapacity}
                         </span>
                         
-                        {/* FIXED: Hide ±N/A here */}
                         {product.precision && product.precision !== 'N/A' && (
-                          <span>±{product.precision}</span>
+                          <span className="bg-gray-50 px-2 py-1 rounded-md border border-gray-100">
+                            ±{product.precision}
+                          </span>
                         )}
                         
                         {product.category && (
-                          <span className="px-2 py-1 bg-gray-100 rounded text-xs">
+                          <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded-md border border-blue-100 text-xs">
                             {product.category}
                           </span>
                         )}
                       </div>
 
-                      <div className="flex gap-2 mt-4">
+                      {viewMode === 'list' && product.description && (
+                        <p className="text-sm text-gray-600 mb-6 line-clamp-2 leading-relaxed">
+                          {product.description.replace(/\*\*/g, '')}
+                        </p>
+                      )}
+
+                      <div className="flex gap-2 mt-auto">
                         {!['Platform Load Cell', 'Table Top Load Cell', 'Mechanical Hanging Scale Hook', 'Digital Hanging Scale Hook', 'Crane Scale Hook'].includes(product.name) && (
                           <Link
                             to={`/product/${product.id}`}
-                            className="flex-1 py-2 border border-blue-600 text-blue-600 text-center rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-colors"
+                            className="flex-1 py-2 border border-blue-600 text-blue-600 text-center rounded-lg font-bold hover:bg-blue-600 hover:text-white transition-colors"
                           >
                             View Details
                           </Link>
                         )}
                         <Link
                           to="/quote"
-                          className="flex-1 py-2 bg-emerald-600 text-white text-center rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+                          className="flex-1 py-2 bg-emerald-600 text-white text-center rounded-lg font-bold hover:bg-emerald-700 transition-colors shadow-sm"
                         >
                           Get Quote
                         </Link>
@@ -346,69 +353,96 @@ export function Products() {
 
       {/* Comparison Dialog */}
       <Dialog open={isCompareDialogOpen} onOpenChange={setIsCompareDialogOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">Product Comparison</DialogTitle>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden flex flex-col p-4 md:p-6">
+          <DialogHeader className="shrink-0 mb-2">
+            <DialogTitle className="text-2xl font-bold flex items-center gap-2">
+              <Scale className="w-6 h-6 text-blue-600" />
+              Product Comparison
+            </DialogTitle>
           </DialogHeader>
           
           {compareProducts.length > 0 ? (
-            <div className="mt-4">
-              <table className="w-full comparison-table">
-                <thead>
-                  <tr>
-                    <th className="bg-gray-50">Feature</th>
-                    {compareProducts.map(product => (
-                      <th key={product.id} className="text-center">
-                        <div className="flex flex-col items-center">
-                          <img
-                            src={getProductImageUrl(product, 'thumb')}
-                            alt={product.name}
-                            className="w-20 h-20 object-cover rounded-lg mb-2"
-                          />
-                          <span className="text-sm">{product.name}</span>
-                        </div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="font-semibold">Category</td>
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">{product.category}</td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td className="font-semibold">Capacity</td>
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">{product.baseCapacity}</td>
-                    ))}
-                  </tr>
-                  <tr>
-                    <td className="font-semibold">Precision</td>
-                    {/* FIXED: Hide ±N/A here too */}
-                    {compareProducts.map(product => (
-                      <td key={product.id} className="text-center">
-                        {product.precision && product.precision !== 'N/A' ? `±${product.precision}` : '-'}
-                      </td>
-                    ))}
-                  </tr>
-                </tbody>
-              </table>
+            <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0">
+              <div className="overflow-x-auto pb-4 custom-scrollbar">
+                <table className="w-full comparison-table min-w-[600px]">
+                  <thead>
+                    <tr>
+                      <th className="bg-gray-50 text-left p-3 border-b">Feature</th>
+                      {compareProducts.map(product => (
+                        <th key={product.id} className="text-center p-3 border-b">
+                          <div className="flex flex-col items-center">
+                            <img
+                              src={getProductImageUrl(product, 'thumb')}
+                              alt={product.name}
+                              className="w-16 h-16 md:w-20 md:h-20 object-contain bg-white border border-gray-200 p-1 rounded-lg mb-2"
+                            />
+                            <span className="text-xs md:text-sm font-bold max-w-[120px] truncate text-gray-900">{product.name}</span>
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="font-semibold p-3 border-b text-gray-700">Category</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">{product.category}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3 border-b text-gray-700">Capacity</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">{product.baseCapacity}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3 border-b text-gray-700">Accuracy</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">
+                          {product.precision && product.precision !== 'N/A' ? `±${product.precision}` : '-'}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3 border-b text-gray-700">Brand</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">
+                          {product.brand || 'Manish Scale'}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3 text-gray-700">Action</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3">
+                          <Link
+                            to="/quote"
+                            onClick={() => setIsCompareDialogOpen(false)}
+                            className="inline-block px-4 py-2 bg-emerald-600 text-white text-xs md:text-sm font-bold rounded-lg hover:bg-emerald-700 transition-colors whitespace-nowrap shadow-sm"
+                          >
+                            Get Quote
+                          </Link>
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
               
-              <div className="mt-6 flex justify-end gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t">
                 <Button
                   variant="outline"
                   onClick={() => {
                     setCompareList([]);
                     setIsCompareDialogOpen(false);
                   }}
+                  className="w-full sm:w-auto font-semibold"
                 >
                   Clear Comparison
                 </Button>
                 <Button
                   onClick={() => setIsCompareDialogOpen(false)}
-                  className="bg-blue-600 hover:bg-indigo-900"
+                  className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto font-semibold"
                 >
                   Close
                 </Button>

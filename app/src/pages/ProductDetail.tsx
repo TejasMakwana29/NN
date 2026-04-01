@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import { 
   ChevronRight, 
   Scale, 
-  Shield, 
-  Truck, 
+  Globe, 
   Headphones,
+  Award,
   Share2,
   Heart
 } from 'lucide-react';
@@ -14,10 +14,10 @@ import { getProductById, getProductsByCategory, type Product } from '@/data/prod
 import { getProductImageUrl, getPlaceholderImageUrl } from '@/lib/productImages';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-// Helper to convert "**text**" into bold HTML tags
+// Helper to convert "**text**" into bold HTML tags AND JUSTIFY TEXT
 const renderFormattedDescription = (text: string) => {
   return text.split('\n\n').map((paragraph, pIdx) => (
-    <p key={pIdx} className="text-gray-600 leading-relaxed mb-4">
+    <p key={pIdx} className="text-gray-600 leading-relaxed mb-4 text-justify">
       {paragraph.split(/(\*\*.*?\*\*)/).map((part, i) => {
         if (part.startsWith('**') && part.endsWith('**')) {
           return <strong key={i} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
@@ -132,32 +132,32 @@ export function ProductDetail() {
       {/* Product Details */}
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Image Gallery */}
+          {/* Image Gallery - OBJECT-CONTAIN */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-              <div className="aspect-square relative">
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-6 md:p-10">
+              <div className="aspect-square relative flex items-center justify-center">
                 <img
                   src={currentImage} 
                   alt={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain drop-shadow-xl"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = getPlaceholderImageUrl(product.name, 600);
                   }}
                 />
-                <div className="absolute top-4 right-4 flex gap-2">
+                <div className="absolute top-0 right-0 flex gap-2">
                   <button
                     onClick={() => setIsWishlisted(!isWishlisted)}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${
-                      isWishlisted ? 'bg-red-500 text-white' : 'bg-white/90 text-gray-600 hover:bg-white'
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors shadow-sm border ${
+                      isWishlisted ? 'bg-red-500 text-white border-red-500' : 'bg-white text-gray-400 hover:bg-gray-50 border-gray-200'
                     }`}
                   >
                     <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
                   </button>
-                  <button className="w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-gray-600 hover:bg-white transition-colors">
+                  <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-50 transition-colors shadow-sm border border-gray-200">
                     <Share2 className="w-5 h-5" />
                   </button>
                 </div>
@@ -212,19 +212,19 @@ export function ProductDetail() {
               </a>
             </div>
 
-            {/* Features */}
+            {/* Features (Updated to Premium Quality, 24/7 Support, Global Service Network) */}
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Shield className="w-6 h-6 mx-auto mb-2 text-blue-600" />
-                <p className="text-xs text-gray-600">1 Year Warranty</p>
-              </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <Truck className="w-6 h-6 mx-auto mb-2 text-blue-600" />
-                <p className="text-xs text-gray-600">Pan-India Service Network</p>
+                <Globe className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+                <p className="text-xs text-gray-600 font-medium">Global Service Network</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
                 <Headphones className="w-6 h-6 mx-auto mb-2 text-blue-600" />
-                <p className="text-xs text-gray-600">24/7 Support</p>
+                <p className="text-xs text-gray-600 font-medium">24/7 Support</p>
+              </div>
+              <div className="text-center p-4 bg-gray-50 rounded-lg">
+                <Award className="w-6 h-6 mx-auto mb-2 text-blue-600" />
+                <p className="text-xs text-gray-600 font-medium">Premium Quality Products</p>
               </div>
             </div>
           </motion.div>
@@ -253,7 +253,7 @@ export function ProductDetail() {
               {product.description ? (
                 renderFormattedDescription(product.description)
               ) : (
-                <p className="text-gray-600 leading-relaxed mb-4">
+                <p className="text-gray-600 leading-relaxed mb-4 text-justify">
                   The {product.name} is a high-quality weighing solution designed for 
                   {product.category ? ` ${product.category.toLowerCase()}` : ' various'} applications.
                   {product.baseCapacity && ` With a capacity range of ${product.baseCapacity}`}
@@ -390,7 +390,7 @@ export function ProductDetail() {
           </Tabs>
         </div>
 
-        {/* Related Products */}
+        {/* Related Products - PERFECT SIZE CONTAINER */}
         {relatedProducts.length > 0 && (
           <div className="mt-16">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Related Products</h2>
@@ -399,18 +399,21 @@ export function ProductDetail() {
                 <Link
                   key={relatedProduct.id}
                   to={`/product/${relatedProduct.id}`}
-                  className="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  className="group block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
                 >
-                  <div className="aspect-square overflow-hidden bg-gray-100">
+                  <div className="relative h-56 p-4 overflow-hidden bg-slate-50/50 flex items-center justify-center border-b border-gray-50">
                     <img
                       src={getProductImageUrl(relatedProduct, 'medium')}
                       alt={relatedProduct.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
                       loading="lazy"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = getPlaceholderImageUrl(relatedProduct.name);
+                      }}
                     />
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                    <h3 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">
                       {relatedProduct.name}
                     </h3>
                     <p className="text-sm text-gray-500 mt-2">

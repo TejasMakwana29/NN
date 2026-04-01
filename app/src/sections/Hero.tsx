@@ -55,11 +55,36 @@ export function Hero() {
     return () => clearInterval(id);
   }, []);
 
+  // Upgraded vibrant gradient stats
   const stats = [
-    { icon: Award, start: 0, end: 70, decimals: 0, suffix: '+', label: 'Years Experience' },
-    { icon: Users, start: 10, end: 50, decimals: 0, suffix: 'K+', label: 'Happy Customers' },
-    { icon: Globe, start: null, end: null, suffix: 'All Over India', label: 'Service Coverage' },
-    { icon: TrendingUp, start: 0, end: 99.9, decimals: 1, suffix: '%', label: 'Accuracy Rate' }
+    { 
+      icon: Award, start: 0, end: 70, decimals: 0, suffix: '+', label: 'Years Experience',
+      bgClass: 'bg-gradient-to-br from-blue-50 to-white',
+      borderClass: 'border-blue-200 hover:border-blue-400 hover:shadow-blue-500/25',
+      iconBg: 'bg-gradient-to-br from-blue-500 to-blue-600 shadow-md shadow-blue-500/30',
+      iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-blue-700'
+    },
+    { 
+      icon: Users, start: 10, end: 50, decimals: 0, suffix: 'K+', label: 'Happy Customers',
+      bgClass: 'bg-gradient-to-br from-emerald-50 to-white',
+      borderClass: 'border-emerald-200 hover:border-emerald-400 hover:shadow-emerald-500/25',
+      iconBg: 'bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-md shadow-emerald-500/30',
+      iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-emerald-700'
+    },
+    { 
+      icon: Globe, start: null, end: null, suffix: 'All Over India', label: 'Service Coverage',
+      bgClass: 'bg-gradient-to-br from-amber-50 to-white',
+      borderClass: 'border-amber-200 hover:border-amber-400 hover:shadow-amber-500/25',
+      iconBg: 'bg-gradient-to-br from-amber-500 to-orange-500 shadow-md shadow-amber-500/30',
+      iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-amber-700'
+    },
+    { 
+      icon: TrendingUp, start: 0, end: 99.9, decimals: 1, suffix: '%', label: 'Accuracy Rate',
+      bgClass: 'bg-gradient-to-br from-purple-50 to-white',
+      borderClass: 'border-purple-200 hover:border-purple-400 hover:shadow-purple-500/25',
+      iconBg: 'bg-gradient-to-br from-purple-500 to-purple-600 shadow-md shadow-purple-500/30',
+      iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-purple-700'
+    }
   ];
 
   return (
@@ -71,7 +96,6 @@ export function Hero() {
         Skip to main content
       </a>
 
-      {/* Animated Colorful Background */}
       <motion.div className="absolute inset-0 z-0">
         <div className="absolute inset-0 animated-gradient" />
         <div 
@@ -83,7 +107,6 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* Content */}
       <motion.div className="relative z-10 container mx-auto px-4 pt-20 pb-12 lg:pt-24 lg:pb-16">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[60vh]">
           {/* Left Content */}
@@ -123,14 +146,11 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="text-lg text-slate-600 mb-8 max-w-xl font-medium leading-relaxed"
+              className="text-lg text-slate-600 mb-8 max-w-xl font-medium leading-relaxed text-justify"
             >
-              Carrying forward a legacy that began in 1950 with India's first manufacturer of beam scales. 
-              Today, we deliver premium weighing solutions trusted by businesses across India with 
-              over seven decades of traditional expertise and modern precision.
+              As <strong className="font-bold text-slate-900">India's leading manufacturer of mechanical, electronic, and hanging scales</strong>, we offer a wide variety of weighing solutions crafted with <strong className="font-bold text-slate-900">exceptional quality</strong>. <strong className="font-bold text-slate-900">Trusted by businesses across India</strong>, we combine <strong className="font-bold text-slate-900">over seven decades of tradition</strong> with a commitment to <strong className="font-bold text-slate-900">complete customer satisfaction</strong>.
             </motion.p>
 
-            {/* ENLARGED CERTIFICATION SECTION */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -148,7 +168,7 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Content - 3D Product Showcase */}
+          {/* Right Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -224,19 +244,19 @@ export function Hero() {
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
-              className="group relative overflow-hidden bg-white/80 backdrop-blur-md rounded-2xl p-6 text-center border border-blue-50 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 hover:border-blue-100 transition-all duration-300"
+              className={`group relative overflow-hidden rounded-2xl p-6 text-center border shadow-sm hover:-translate-y-1 transition-all duration-300 ${stat.bgClass} ${stat.borderClass}`}
             >
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-100 transition-colors">
-                <stat.icon className="w-6 h-6 text-blue-600" />
+              <div className={`w-14 h-14 ${stat.iconBg} rounded-xl flex items-center justify-center mx-auto mb-5 transition-transform duration-300 group-hover:scale-110`}>
+                <stat.icon className={`w-7 h-7 ${stat.iconColor}`} />
               </div>
-              <div className="text-4xl font-black mb-1 text-slate-800">
+              <div className={`text-4xl font-black mb-1 ${stat.textColor}`}>
                 {stat.end !== null && stat.end !== undefined ? (
                   <AnimatedCounter start={stat.start || 0} end={stat.end} decimals={stat.decimals} suffix={stat.suffix} />
                 ) : (
-                  <span className="text-2xl sm:text-3xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-indigo-700">{stat.suffix}</span>
+                  <span className={`text-2xl sm:text-3xl ${stat.textColor}`}>{stat.suffix}</span>
                 )}
               </div>
-              <div className="text-sm font-semibold text-slate-500 uppercase tracking-wide">{stat.label}</div>
+              <div className={`text-sm font-bold uppercase tracking-wide ${stat.labelColor}`}>{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>

@@ -61,7 +61,7 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-blue-100 max-w-3xl mx-auto"
+            className="text-xl text-blue-100 max-w-3xl mx-auto text-justify"
           >
             Looking for <strong className="text-white font-semibold">precision you can trust and strength you can rely on</strong>? 
             Get in touch with our team for solutions that deliver <strong className="text-white font-semibold">accurate results and long-lasting performance</strong>.
@@ -86,16 +86,16 @@ export function Contact() {
                   <div className="w-12 h-12 bg-blue-600/10 rounded-lg flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-6 h-6 text-blue-600" />
                   </div>
-                  <div>
-  <h4 className="font-semibold text-gray-800 mb-2">Manufacturing Unit</h4>
-  <p className="text-gray-600 mb-4">
-    3, Shivaji Nagar, Savarkundla,<br />Dist. Amreli, Gujarat - 364515
-  </p>
-  <h4 className="font-semibold text-gray-800 mb-2">Branch Office</h4>
-  <p className="text-gray-600">
-    B-21, Shivalik Industrial Park, OPP. Karmbhoomi Estate,<br />Bakrol (Bujrang), Ahmedabad - 382430
-  </p>
-</div>
+                  <div className="text-justify">
+                    <h4 className="font-semibold text-gray-800 mb-2">Manufacturing Unit</h4>
+                    <p className="text-gray-600 mb-4">
+                      3, Shivaji Nagar, Savarkundla,<br />Dist. Amreli, Gujarat - 364515
+                    </p>
+                    <h4 className="font-semibold text-gray-800 mb-2">Branch Office</h4>
+                    <p className="text-gray-600">
+                      B-21, Shivalik Industrial Park, OPP. Karmbhoomi Estate,<br />Bakrol (Bujrang), Ahmedabad - 382430
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex items-start gap-4">
@@ -104,11 +104,11 @@ export function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">Phone</h4>
-                    <p className="text-gray-600">
-                      <a href="tel:+919284405090" className="hover:text-blue-600">
+                    <p className="text-gray-600 font-medium">
+                      <a href="tel:+919284405090" className="hover:text-blue-600 transition-colors">
                         +91 92844 05090
                       </a><br />
-                      <a href="tel:+919426951916" className="hover:text-blue-600">
+                      <a href="tel:+919426951916" className="hover:text-blue-600 transition-colors">
                         +91 94269 51916
                       </a>
                     </p>
@@ -122,9 +122,9 @@ export function Contact() {
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-1">Email</h4>
                     <p className="text-gray-600">
-                      <a href="mailto:manishscaleindia@gmail.com" className="hover:text-blue-600">
+                      <a href="mailto:manishscaleindia@gmail.com" className="hover:text-blue-600 transition-colors">
                         manishscaleindia@gmail.com
-                      </a><br />
+                      </a>
                     </p>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export function Contact() {
                     <h4 className="font-semibold text-gray-800 mb-1">Business Hours</h4>
                     <p className="text-gray-600">
                       Monday - Sunday: 9:00 AM - 8:00 PM<br />
-                      Open all 7 days
+                      <span className="text-blue-600 font-medium">Open all 7 days</span>
                     </p>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export function Contact() {
                 href="https://wa.me/919284405090"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-3 bg-white text-[#25D366] text-center rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                className="block w-full py-3 bg-white text-[#25D366] text-center rounded-lg font-bold hover:bg-gray-100 transition-colors shadow-sm"
               >
                 Start Chat
               </a>
@@ -172,7 +172,7 @@ export function Contact() {
             className="lg:col-span-2"
           >
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h3 className="text-2xl font-semibold mb-6">Send us a Message</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -252,7 +252,7 @@ export function Contact() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-6 bg-blue-600 hover:bg-indigo-900 text-lg font-semibold"
+                  className="w-full py-6 bg-blue-600 hover:bg-indigo-900 text-lg font-bold shadow-lg shadow-blue-200"
                 >
                   {isSubmitting ? (
                     <>
@@ -272,8 +272,8 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Map Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Two Maps Section - REAL GOOGLE MAPS EMBEDS */}
+      <section className="py-12 bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -281,28 +281,60 @@ export function Contact() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">Find Us</h2>
-            <p className="text-gray-600">Visit our manufacturing facility in Savarkundla and Ahmedabad</p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Locations</h2>
+            <p className="text-gray-600">Visit us in Savarkundla or Ahmedabad</p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg overflow-hidden"
-          >
-            <div className="aspect-video w-full">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118147.68202058476!2d71.258281!3d21.336184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39589d8924b80b3d%3A0x6b8f10b7a8c3d9!2sSavarkundla%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-    width="100%" 
-    height="100%" 
-    style={{ border: 0 }} 
-    allowFullScreen={true} 
-    loading="lazy" 
-    referrerPolicy="no-referrer-when-downgrade"
-  ></iframe>
-</div>
-          </motion.div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {/* Map 1: Manufacturing Unit */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 group"
+            >
+              <div className="p-3 bg-blue-50 border-b border-gray-100">
+                <p className="text-xs font-bold text-blue-700 uppercase tracking-wider">Manufacturing Unit - Savarkundla</p>
+              </div>
+              <div className="h-80 w-full">
+                <iframe 
+                  src="https://maps.google.com/maps?q=Manish+Scale,+3,+Shivaji+Nagar,+Savarkundla,+Gujarat&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Savarkundla Location"
+                ></iframe>
+              </div>
+            </motion.div>
+
+            {/* Map 2: Ahmedabad Branch */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 group"
+            >
+              <div className="p-3 bg-indigo-50 border-b border-gray-100">
+                <p className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Branch Office - Ahmedabad</p>
+              </div>
+              <div className="h-80 w-full">
+                <iframe 
+                  src="https://maps.google.com/maps?q=B-21,+Shivalik+Industrial+Park,+Bakrol,+Ahmedabad&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ahmedabad Location"
+                ></iframe>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

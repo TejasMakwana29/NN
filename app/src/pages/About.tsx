@@ -80,7 +80,7 @@ export function About() {
                 <h2 className="text-3xl font-bold text-gray-900">Our Legacy</h2>
               </div>
               
-              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed text-justify">
                 <p>
                   <strong className="font-bold text-blue-900">Manish Scale</strong> carries forward a legacy that began in <strong className="font-bold text-blue-900">1950</strong> with <strong className="font-bold text-blue-900">Karshan Ramji and Sons</strong>, a pioneering company that became <strong className="font-bold text-blue-900">India’s first manufacturer of beam scales and mechanical weighing scales</strong>. At a time when the weighing industry in India was still developing, <strong className="font-bold text-blue-900">Karshan Ramji and Sons</strong> set new standards with its commitment to precision, quality craftsmanship, and reliable performance. Over the decades, the company earned the trust of businesses across the country and became a respected name in the weighing scale industry.
                 </p>
@@ -108,7 +108,7 @@ export function About() {
                 <h2 className="text-3xl font-bold text-gray-900">Why Choose Manish Scale?</h2>
               </div>
 
-              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed text-justify">
                 <p>
                   At <strong className="font-bold text-blue-900">Manish Scale</strong>, we don’t just manufacture weighing instruments—we deliver <strong className="font-bold text-blue-900">precision you can trust and strength you can rely on</strong>. With a legacy dating back to <strong className="font-bold text-blue-900">1925</strong>, our journey is built on <strong className="font-bold text-blue-900">quality, innovation, and customer confidence</strong>.
                 </p>
@@ -118,7 +118,7 @@ export function About() {
                 <p>
                   From <strong className="font-bold text-blue-900">agriculture to heavy industries</strong>, our solutions are designed to perform where it matters most—<strong className="font-bold text-blue-900">on the ground, in real working conditions</strong>. Backed by decades of expertise and a commitment to excellence, we continue to set benchmarks in the weighing industry.
                 </p>
-                <div className="pt-4">
+                <div className="pt-4 text-center md:text-left">
                   <span className="inline-block bg-blue-600 text-white font-bold px-6 py-3 rounded-xl shadow-md">
                     Manish Scale – Precision Engineered. Trust Delivered. 🚀
                   </span>
@@ -139,7 +139,7 @@ export function About() {
               <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-10" />
               <Eye className="w-12 h-12 text-blue-600 mb-6" />
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-justify">
                 To become a globally trusted leader in weighing solutions, delivering precision, durability, and innovation across every industry we serve.
                 <br /><br />
                 We envision building a future where Manish Scale sets the benchmark for quality and accuracy, empowering businesses with reliable tools that drive efficiency and growth.
@@ -153,7 +153,7 @@ export function About() {
               <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full -z-10" />
               <Target className="w-12 h-12 text-emerald-600 mb-6" />
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-justify">
                 To deliver high-performance, precision-engineered weighing solutions that empower industries with unmatched Quality, reliability, and excellence.
               </p>
             </div>
@@ -210,7 +210,7 @@ export function About() {
                   <value.icon className="w-7 h-7 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-justify">
                   {value.description}
                 </p>
               </motion.div>

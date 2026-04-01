@@ -4,7 +4,7 @@ import { ProductHierarchy } from '@/sections/ProductHierarchy';
 import { CategoryShowcase } from '@/sections/CategoryShowcase';
 import { UnitConverter } from '@/sections/UnitConverter';
 import { motion } from 'framer-motion';
-import { Award, Truck, Headphones, Shield, Star, Quote, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Award, Truck, Headphones, Shield, Star, StarHalf, Quote, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const features = [
@@ -14,30 +14,36 @@ const features = [
   { icon: Headphones, title: 'Dedicated Support', description: 'Expert customer service and technical support team' }
 ];
 
-const avatarPlaceholder = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="28" fill="%23e2e8f0"/><circle cx="28" cy="22" r="10" fill="%2394a3b8"/><path fill="%2394a3b8" d="M8 56c0-11 8.95-20 20-20s20 9 20 20H8z"/></svg>');
-
 const testimonials = [
   {
     name: 'Rajesh Patel',
     company: 'Patel Traders, Ahmedabad',
     text: 'Manish Scale has been our trusted supplier for over 10 years. Their counter scales are incredibly accurate and have never let us down.',
-    rating: 5,
-    image: avatarPlaceholder
+    rating: 3.5 // Updated to 3.5 Stars
   },
   {
     name: 'Priya Sharma',
     company: 'Golden Jewellers, Mumbai',
     text: 'The jewelry scales we purchased have exceptional 0.001g precision. Perfect for our diamond and gold grading work.',
-    rating: 5,
-    image: avatarPlaceholder
+    rating: 5
   },
   {
     name: 'Mohammed Khan',
-    company: 'Khan Poultry, Delhi',
+    company: 'Khan Poultry, Savarkundla',
     text: 'Their electronic poultry scales are water-resistant and easy to clean. Exactly what we needed for our processing unit.',
-    rating: 5,
-    image: avatarPlaceholder
+    rating: 4
   }
+];
+
+// Brand logos pointing to the public/logos folder
+const clientBrands = [
+  { name: 'L&T', image: '/logos/lnt.png' },
+  { name: 'Wipro', image: '/logos/wipro.png' },
+  { name: 'UPL', image: '/logos/upl.png' },
+  { name: 'Adani', image: '/logos/adani.png' },
+  { name: 'Metso', image: '/logos/metso.png' },
+  { name: 'Hitachi', image: '/logos/hitachi.png' },
+  { name: 'Texspin', image: '/logos/texspin.png' }
 ];
 
 export function Home() {
@@ -93,10 +99,11 @@ export function Home() {
       {/* Category Showcase */}
       <CategoryShowcase />
       
+      {/* Top Products Grid with Specific IDs */}
       <ProductGrid 
         title="Our Top Products"
         subtitle="Explore our best-selling weighing scales trusted by businesses nationwide"
-        limit={4}
+        productIds={['hc-100', 'epl-multi', 'ht-multi', 'ett-30']}
       />
 
       {/* Testimonials Section */}
@@ -129,47 +136,105 @@ export function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -4, boxShadow: '0 20px 25px -5px rgba(59, 130, 246, 0.1)' }}
-                className="group relative bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:border-blue-100 transition-all duration-300"
+                className="group relative bg-white rounded-2xl p-8 border border-slate-100 shadow-sm hover:border-blue-100 transition-all duration-300 flex flex-col"
               >
                 <Quote className="absolute top-6 right-6 w-10 h-10 text-blue-50 group-hover:text-blue-100 transition-colors" aria-hidden="true" />
                 
+                {/* Dynamic Star Rating */}
                 <div className="flex gap-1 mb-4" role="img" aria-label={`${testimonial.rating} out of 5 stars`}>
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
-                  ))}
+                  {[...Array(5)].map((_, i) => {
+                    if (testimonial.rating >= i + 1) {
+                      return <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />;
+                    } else if (testimonial.rating > i) {
+                      return <StarHalf key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />;
+                    } else {
+                      return <Star key={i} className="w-5 h-5 text-gray-200" />;
+                    }
+                  })}
                 </div>
                 
-                <p className="text-slate-700 text-lg mb-6 leading-relaxed">"{testimonial.text}"</p>
+                <p className="text-slate-700 text-lg mb-8 leading-relaxed flex-1">"{testimonial.text}"</p>
                 
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-14 h-14 rounded-full object-cover border-2 border-blue-100"
-                    loading="lazy"
-                    decoding="async"
-                  />
+                <div className="flex items-center gap-4 mt-auto">
                   <div>
                     <p className="font-bold text-slate-900">{testimonial.name}</p>
-                    <p className="text-sm text-slate-500">{testimonial.company}</p>
+                    <p className="text-sm font-medium text-blue-600">{testimonial.company}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <motion.div className="mt-10 overflow-hidden relative w-full pt-8 border-t border-slate-100">
-            <span className="text-sm font-semibold uppercase tracking-wider text-center block mb-6 text-blue-400">Trusted by leading brands</span>
-            <div className="flex w-full overflow-hidden">
-              <div className="flex animate-[marquee_20s_linear_infinite] whitespace-nowrap gap-16 items-center">
-                {['L&T', 'Wipro', 'UPL', 'Adani', 'Metso', 'Hitachi', 'Texspin'].map((brand, i) => (
-                  <span key={i} className="text-3xl font-bold text-slate-300 mx-8 hover:text-blue-500 transition-colors cursor-default">{brand}</span>
-                ))}
-                {/* Duplicate for infinite effect */}
-                {['L&T', 'Wipro', 'UPL', 'Adani', 'Metso', 'Hitachi', 'Texspin'].map((brand, i) => (
-                  <span key={`dup-${i}`} className="text-3xl font-bold text-slate-300 mx-8">{brand}</span>
+          <style>
+            {`
+              @keyframes seamless-scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-100%); }
+              }
+              .animate-seamless-scroll {
+                animation: seamless-scroll 35s linear infinite;
+              }
+            `}
+          </style>
+
+          {/* Seamless Image Brand Logos */}
+          <motion.div className="mt-16 overflow-hidden relative w-full pt-10 border-t border-slate-100">
+            <span className="text-sm font-semibold uppercase tracking-wider text-center block mb-8 text-slate-400">Trusted by leading brands</span>
+            
+            {/* Flex Container for Tracks */}
+            <div className="flex w-full overflow-hidden flex-nowrap">
+              
+              {/* Track 1 */}
+              <div className="flex items-center flex-nowrap animate-seamless-scroll">
+                {clientBrands.map((brand, i) => (
+                  <div key={i} className="flex-shrink-0 w-32 h-16 flex items-center justify-center mx-8 md:mx-12">
+                    <img 
+                      src={brand.image} 
+                      alt={`${brand.name} logo`} 
+                      className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                        e.currentTarget.parentElement!.innerHTML = `<span class="text-2xl font-bold text-slate-400">${brand.name}</span>`;
+                      }}
+                    />
+                  </div>
                 ))}
               </div>
+
+              {/* Track 2 (Exact Duplicate to ensure no space) */}
+              <div className="flex items-center flex-nowrap animate-seamless-scroll" aria-hidden="true">
+                {clientBrands.map((brand, i) => (
+                  <div key={`dup1-${i}`} className="flex-shrink-0 w-32 h-16 flex items-center justify-center mx-8 md:mx-12">
+                    <img 
+                      src={brand.image} 
+                      alt={`${brand.name} logo`} 
+                      className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                        e.currentTarget.parentElement!.innerHTML = `<span class="text-2xl font-bold text-slate-400">${brand.name}</span>`;
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Track 3 (Safety Duplicate for ultra-wide screens) */}
+              <div className="flex items-center flex-nowrap animate-seamless-scroll" aria-hidden="true">
+                {clientBrands.map((brand, i) => (
+                  <div key={`dup2-${i}`} className="flex-shrink-0 w-32 h-16 flex items-center justify-center mx-8 md:mx-12">
+                    <img 
+                      src={brand.image} 
+                      alt={`${brand.name} logo`} 
+                      className="max-w-full max-h-full object-contain"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                        e.currentTarget.parentElement!.innerHTML = `<span class="text-2xl font-bold text-slate-400">${brand.name}</span>`;
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+
             </div>
           </motion.div>
         </div>

@@ -17,6 +17,7 @@ interface ProductGridProps {
   subtitle?: string;
   limit?: number;
   categorySlug?: string;
+  productIds?: string[]; // Added this to hand-pick products
   showComparison?: boolean;
 }
 
@@ -25,19 +26,28 @@ export function ProductGrid({
   subtitle = 'Discover our range of precision weighing solutions',
   limit = 8,
   categorySlug,
+  productIds,
   showComparison = true
 }: ProductGridProps) {
   const [compareList, setCompareList] = useState<string[]>([]);
   const [isCompareDialogOpen, setIsCompareDialogOpen] = useState(false);
 
-  // Memoized product list - no artificial delay to avoid UI hang
+  // Memoized product list - filters by specific IDs if provided
   const products = useMemo(() => {
     let allProducts = getAllProducts();
+    
+    if (productIds && productIds.length > 0) {
+      // Return only the exact products requested, in the order requested
+      return productIds
+        .map(id => allProducts.find(p => p.id === id))
+        .filter(Boolean) as Product[];
+    }
+    
     if (categorySlug) {
       allProducts = allProducts.filter(p => (p as Product & { categorySlug?: string }).categorySlug === categorySlug);
     }
     return allProducts.slice(0, limit);
-  }, [limit, categorySlug]);
+  }, [limit, categorySlug, productIds]);
 
   const toggleCompare = (productId: string) => {
     setCompareList(prev => {
@@ -131,19 +141,20 @@ export function ProductGrid({
               variants={itemVariants}
               whileHover={{ y: -6, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.98 }}
-              className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 relative"
+              className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 relative border border-gray-100"
             >
-              {index === 0 && (
+              {/*index === 0 && (
                 <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-amber-500 text-white text-xs font-bold rounded-md shadow-md">
                   Bestseller
                 </span>
-              )}
-              {/* Image */}
-              <div className="relative aspect-square overflow-hidden bg-gray-100">
+              )*/}
+              
+              {/* Image Container - REDUCED HEIGHT AND FIXED OBJECT FIT */}
+              <div className="relative h-56 p-4 overflow-hidden bg-slate-50/50 flex items-center justify-center border-b border-gray-50">
                 <img
                   src={getProductImageUrl(product, 'medium')}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
                   loading="lazy"
                   decoding="async"
                   onError={(e) => {
@@ -153,21 +164,24 @@ export function ProductGrid({
                 
                 {/* Comparison Checkbox */}
                 {showComparison && (
-                  <div className="absolute top-3 left-3 z-10">
+                  <div className="absolute top-3 right-3 z-10">
                     <button
                       onClick={(e) => {
                         e.preventDefault();
                         toggleCompare(product.id);
                       }}
-                      className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm border ${
                         compareList.includes(product.id)
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-white/90 text-gray-400 hover:bg-white'
+                          ? 'bg-blue-600 border-blue-600 text-white'
+                          : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-50'
                       }`}
+                      aria-label="Compare product"
                     >
                       {compareList.includes(product.id) ? (
                         <Check className="w-4 h-4" />
-                      ) : null}
+                      ) : (
+                        <BarChart3 className="w-4 h-4 opacity-50" />
+                      )}
                     </button>
                   </div>
                 )}
@@ -175,38 +189,38 @@ export function ProductGrid({
 
               {/* Content */}
               <div className="p-5">
-                <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-1">
                   {product.name}
                 </h3>
                 
-                <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                  <span className="flex items-center gap-1">
-                    <Scale className="w-4 h-4" />
+                <div className="flex items-center gap-4 text-sm text-gray-500 mb-5 font-medium">
+                  <span className="flex items-center gap-1.5 bg-gray-50 px-2 py-1 rounded-md border border-gray-100">
+                    <Scale className="w-3.5 h-3.5 text-blue-500" />
                     {product.baseCapacity}
                   </span>
                   {product.precision && product.precision !== 'N/A' && (
-                    <span>±{product.precision}</span>
+                    <span className="bg-gray-50 px-2 py-1 rounded-md border border-gray-100">
+                      ±{product.precision}
+                    </span>
                   )}
                 </div>
 
-                <div className="flex items-center justify-end">
+                <div className="flex items-center justify-between mt-auto">
                   {!['Platform Load Cell', 'Table Top Load Cell', 'Mechanical Hanging Scale Hook', 'Digital Hanging Scale Hook', 'Crane Scale Hook'].includes(product.name) && (
                     <Link
                       to={`/product/${product.id}`}
-                      className="flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-blue-600 transition-colors"
+                      className="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors"
                     >
-                      Details
-                      <ChevronRight className="w-4 h-4" />
+                      View Details
                     </Link>
                   )}
+                  <Link
+                    to="/quote"
+                    className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg font-bold transition-all duration-300 shadow-sm hover:shadow-md"
+                  >
+                    Get Quote
+                  </Link>
                 </div>
-
-                <Link
-                  to="/quote"
-                  className="mt-4 block w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-center rounded-lg font-medium transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
-                >
-                  Request Quote
-                </Link>
               </div>
             </motion.div>
           ))}
@@ -217,12 +231,12 @@ export function ProductGrid({
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-8"
+          transition={{ delay: 0.3 }}
+          className="text-center mt-10"
         >
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-full font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-3 border-2 border-blue-600 text-blue-600 rounded-xl font-bold hover:bg-blue-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
           >
             View All Products
             <ChevronRight className="w-5 h-5" />
@@ -253,9 +267,9 @@ export function ProductGrid({
                             <img
                               src={getProductImageUrl(product, 'thumb')}
                               alt={product.name}
-                              className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg mb-2"
+                              className="w-16 h-16 md:w-20 md:h-20 object-contain rounded-lg mb-2 bg-white border p-1"
                             />
-                            <span className="text-xs md:text-sm max-w-[120px] truncate">{product.name}</span>
+                            <span className="text-xs md:text-sm font-bold max-w-[120px] truncate">{product.name}</span>
                           </div>
                         </th>
                       ))}
@@ -263,33 +277,41 @@ export function ProductGrid({
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="font-semibold p-3 border-b">Category</td>
+                      <td className="font-semibold p-3 border-b text-gray-700">Category</td>
                       {compareProducts.map(product => (
-                        <td key={product.id} className="text-center p-3 border-b text-sm">{product.category}</td>
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">{product.category}</td>
                       ))}
                     </tr>
                     <tr>
-                      <td className="font-semibold p-3 border-b">Capacity</td>
+                      <td className="font-semibold p-3 border-b text-gray-700">Capacity</td>
                       {compareProducts.map(product => (
-                        <td key={product.id} className="text-center p-3 border-b text-sm">{product.baseCapacity}</td>
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">{product.baseCapacity}</td>
                       ))}
                     </tr>
                     <tr>
-                      <td className="font-semibold p-3 border-b">Accuracy</td>
+                      <td className="font-semibold p-3 border-b text-gray-700">Accuracy</td>
                       {compareProducts.map(product => (
-                        <td key={product.id} className="text-center p-3 border-b text-sm">
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">
                           {product.precision && product.precision !== 'N/A' ? `±${product.precision}` : '-'}
                         </td>
                       ))}
                     </tr>
                     <tr>
-                      <td className="font-semibold p-3">Action</td>
+                      <td className="font-semibold p-3 border-b text-gray-700">Brand</td>
+                      {compareProducts.map(product => (
+                        <td key={product.id} className="text-center p-3 border-b text-sm font-medium">
+                          {product.brand || 'Manish Scale'}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="font-semibold p-3 text-gray-700">Action</td>
                       {compareProducts.map(product => (
                         <td key={product.id} className="text-center p-3">
                           <Link
                             to="/quote"
                             onClick={() => setIsCompareDialogOpen(false)}
-                            className="inline-block px-3 py-2 bg-emerald-600 text-white text-xs md:text-sm rounded-lg hover:bg-emerald-700 transition-colors whitespace-nowrap"
+                            className="inline-block px-4 py-2 bg-emerald-600 text-white text-xs md:text-sm font-bold rounded-lg hover:bg-emerald-700 transition-colors whitespace-nowrap shadow-sm"
                           >
                             Get Quote
                           </Link>
@@ -307,13 +329,13 @@ export function ProductGrid({
                     setCompareList([]);
                     setIsCompareDialogOpen(false);
                   }}
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto font-semibold"
                 >
                   Clear Comparison
                 </Button>
                 <Button
                   onClick={() => setIsCompareDialogOpen(false)}
-                  className="bg-blue-600 hover:bg-indigo-900 w-full sm:w-auto"
+                  className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto font-semibold"
                 >
                   Close
                 </Button>
