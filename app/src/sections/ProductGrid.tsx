@@ -17,7 +17,7 @@ interface ProductGridProps {
   subtitle?: string;
   limit?: number;
   categorySlug?: string;
-  productIds?: string[]; // Added this to hand-pick products
+  productIds?: string[];
   showComparison?: boolean;
 }
 
@@ -135,7 +135,8 @@ export function ProductGrid({
           viewport={{ once: true }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {products.map((product, index) => (
+          {/* Removed the unused 'index' variable here */}
+          {products.map((product) => (
             <motion.div
               key={product.id}
               variants={itemVariants}
@@ -143,13 +144,7 @@ export function ProductGrid({
               whileTap={{ scale: 0.98 }}
               className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 relative border border-gray-100"
             >
-              {/*index === 0 && (
-                <span className="absolute top-3 left-3 z-10 px-2.5 py-1 bg-amber-500 text-white text-xs font-bold rounded-md shadow-md">
-                  Bestseller
-                </span>
-              )*/}
-              
-              {/* Image Container - REDUCED HEIGHT AND FIXED OBJECT FIT */}
+              {/* Image Container */}
               <div className="relative h-56 p-4 overflow-hidden bg-slate-50/50 flex items-center justify-center border-b border-gray-50">
                 <img
                   src={getProductImageUrl(product, 'medium')}
