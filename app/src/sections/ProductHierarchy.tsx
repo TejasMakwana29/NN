@@ -74,7 +74,7 @@ const productTree: ProductNode[] = [
     name: 'Electronic Scales',
     slug: 'electronic',
     icon: <Cpu className="w-5 h-5" />,
-    description: 'Modern digital scales with LCD displays',
+    description: 'Modern digital scales with LED displays',
     children: [
       { id: 'micro', name: 'Micro Scales', slug: 'micro', description: 'Laboratory-grade micro precision' },
       { id: 'tabletop', name: 'Table Top', slug: 'tabletop', description: 'Versatile table top digital scales' },

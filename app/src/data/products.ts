@@ -304,7 +304,7 @@ export const categories: Category[] = [
             precision: '1 gm',
             image: '/images/kitchen-10kg.jpg',
             bodyMaterial: 'Plastic (ABS)',
-            displayType: 'LCD display',
+            displayType: 'LED display',
             battery: '2x AA battery',
             warranty: '6 months'
           }
@@ -324,7 +324,7 @@ export const categories: Category[] = [
             baseCapacity: '180 kg',
             precision: '50 gm',
             image: '/images/bathroom-180kg.jpg',
-            displayType: 'LCD display',
+            displayType: 'LED display',
             battery: '2x AAA battery',
             warranty: '3 years',
             onOff: 'Auto (step on & step off)',
