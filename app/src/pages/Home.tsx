@@ -134,7 +134,7 @@ export function Home() {
       iconBg: 'bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-md shadow-emerald-500/30', iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-emerald-700'
     },
     { 
-      icon: Globe, start: null, end: null, suffix: 'All Over India', label: 'Service Coverage',
+      icon: Globe, start: null, end: null, suffix: 'All Over India', label: 'Supply Coverage',
       bgClass: 'bg-gradient-to-br from-amber-50 to-white', borderClass: 'border-amber-200 hover:border-amber-400 hover:shadow-amber-500/25',
       iconBg: 'bg-gradient-to-br from-amber-500 to-orange-500 shadow-md shadow-amber-500/30', iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-amber-700'
     },
@@ -444,8 +444,8 @@ export function Home() {
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { label: 'Years Experience', value: '70+' },
-                { label: 'Happy Customers', value: '50K+' },
-                { label: 'Service Coverage', value: 'All Over India' },
+                { label: 'Happy Customers', value: '1K+' },
+                { label: 'Supply Coverage', value: 'All Over India' },
                 { label: 'Accuracy Rate', value: '99.9%' }
               ].map((stat, i) => (
                 <motion.div key={stat.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 * i }} className="text-center p-3 md:p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">

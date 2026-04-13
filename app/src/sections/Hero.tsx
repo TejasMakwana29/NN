@@ -72,7 +72,7 @@ export function Hero() {
       iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-emerald-700'
     },
     { 
-      icon: Globe, start: null, end: null, suffix: 'All Over India', label: 'Service Coverage',
+      icon: Globe, start: null, end: null, suffix: 'All Over India', label: 'S Coverage',
       bgClass: 'bg-gradient-to-br from-amber-50 to-white',
       borderClass: 'border-amber-200 hover:border-amber-400 hover:shadow-amber-500/25',
       iconBg: 'bg-gradient-to-br from-amber-500 to-orange-500 shadow-md shadow-amber-500/30',
