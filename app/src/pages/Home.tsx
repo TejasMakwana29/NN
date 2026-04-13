@@ -129,7 +129,7 @@ export function Home() {
       iconBg: 'bg-gradient-to-br from-blue-500 to-blue-600 shadow-md shadow-blue-500/30', iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-blue-700'
     },
     { 
-      icon: Users, start: 10, end: 50, decimals: 0, suffix: 'K+', label: 'Happy Customers',
+      icon: Users, start: 800, end: 1000, decimals: 0, suffix: '+', label: 'Happy Customers',
       bgClass: 'bg-gradient-to-br from-emerald-50 to-white', borderClass: 'border-emerald-200 hover:border-emerald-400 hover:shadow-emerald-500/25',
       iconBg: 'bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-md shadow-emerald-500/30', iconColor: 'text-white', textColor: 'text-slate-900', labelColor: 'text-emerald-700'
     },
@@ -343,7 +343,6 @@ export function Home() {
             ))}
           </div>
 
-          {/* Dedicated CSS for Perfect Seamless Marquee Loop WITH HARDWARE ACCELERATION */}
           <style>
             {`
               @keyframes seamless-scroll {
@@ -444,7 +443,7 @@ export function Home() {
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { label: 'Years Experience', value: '70+' },
-                { label: 'Happy Customers', value: '1K+' },
+                { label: 'Happy Customers', value: '1000+' },
                 { label: 'Supply Coverage', value: 'All Over India' },
                 { label: 'Accuracy Rate', value: '99.9%' }
               ].map((stat, i) => (
