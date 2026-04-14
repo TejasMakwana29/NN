@@ -42,9 +42,9 @@ const productTree: ProductNode[] = [
       },
       {
         id: 'counter-super',
-        name: 'Super Body',
+        name: 'Super Body (Close Body)',
         slug: 'counter',
-        description: 'Premium super body counter scales for intensive use'
+        description: 'Premium Super Body (Close Body) counter scales for intensive use'
       }
     ]
   },

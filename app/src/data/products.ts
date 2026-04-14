@@ -75,7 +75,7 @@ export const categories: Category[] = [
     id: 'counter-scales',
     name: 'Counter Scales',
     slug: 'counter',
-    description: 'Available in Emboss, Plain, and Super Body options.',
+    description: 'Available in Emboss, Plain, and Super Body (Close Body) options.',
     image: '/images/counter-scale.jpg',
     types: [
       {
@@ -130,14 +130,14 @@ export const categories: Category[] = [
       },
       {
         id: 'cs-super',
-        name: 'Super Body',
+        name: 'Super Body (Close Body)',
         slug: 'super',
         description: 'Light weight stainless steel body.',
         products: [
           {
             id: 'cs-sup',
-            name: 'Super Body Counter Scale',
-            description: 'Super Body or closed body are premium quality weighing scales offering top accuracy. Made of stainless steel, featuring a lightweight and unique design. It is very portable and can be used for daily applications. Available in oblong or tray options for weighing products.\n\nIt can be used for various applications such as grocery, fruits & vegetables, dry fruits, etc.',
+            name: 'Super Body (Close Body) Counter Scale',
+            description: 'Super Body (Close Body) or closed body are premium quality weighing scales offering top accuracy. Made of stainless steel, featuring a lightweight and unique design. It is very portable and can be used for daily applications. Available in oblong or tray options for weighing products.\n\nIt can be used for various applications such as grocery, fruits & vegetables, dry fruits, etc.',
             capacities: [
               { weight: '1 kg', image: '/images/counter-super-1.jpg' },
               { weight: '2 kg', image: '/images/counter-super-2.jpg' },
