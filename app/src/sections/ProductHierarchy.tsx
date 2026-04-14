@@ -42,9 +42,9 @@ const productTree: ProductNode[] = [
       },
       {
         id: 'counter-super',
-        name: 'Super Body (Close Body)',
+        name: 'Super Body',
         slug: 'counter',
-        description: 'Premium Super Body (Close Body) counter scales for intensive use'
+        description: 'Premium super body counter scales for intensive use'
       }
     ]
   },
@@ -327,7 +327,7 @@ export function ProductHierarchy() {
             { label: 'Product Categories', value: '5+' },
             { label: 'Scale Types', value: '25+' },
             { label: 'Capacity Range', value: '1mg - 5 Ton' },
-            { label: 'Years of Excellence', value: '70+' }
+            { label: 'Client Satisfaction', value: '100%' }
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
