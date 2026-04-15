@@ -5,9 +5,9 @@ import {
   ChevronRight, 
   Scale, 
   Cpu,
-  Anchor,
   Package,
-  ArrowRight
+  ArrowRight,
+  CircleGauge
 } from 'lucide-react';
 
 interface ProductNode {
@@ -31,19 +31,19 @@ const productTree: ProductNode[] = [
       {
         id: 'counter-embossed',
         name: 'Embossed Body',
-        slug: 'counter',
+        slug: 'counter/emboss',
         description: 'Heavy-duty embossed body counter scales'
       },
       {
         id: 'counter-plain',
         name: 'Plain Body',
-        slug: 'counter',
+        slug: 'counter/plain',
         description: 'Classic plain body counter scales'
       },
       {
         id: 'counter-super',
-        name: 'Super Body',
-        slug: 'counter',
+        name: 'Super Body (Close Body)',
+        slug: 'counter/super',
         description: 'Premium super body counter scales for intensive use'
       }
     ]
@@ -56,15 +56,9 @@ const productTree: ProductNode[] = [
     description: 'Traditional mechanical precision scales',
     children: [
       {
-        id: 'beam-class-b',
-        name: 'Class B - Jewelry',
-        slug: 'class-b',
-        description: 'High precision for jewelry and precious metals'
-      },
-      {
         id: 'beam-class-c',
         name: 'Class C - General',
-        slug: 'class-c',
+        slug: 'beam/class-c',
         description: 'Versatile scales for various applications'
       }
     ]
@@ -76,28 +70,28 @@ const productTree: ProductNode[] = [
     icon: <Cpu className="w-5 h-5" />,
     description: 'Modern digital scales with LED displays',
     children: [
-      { id: 'micro', name: 'Micro Scales', slug: 'micro', description: 'Laboratory-grade micro precision' },
-      { id: 'tabletop', name: 'Table Top', slug: 'tabletop', description: 'Versatile table top digital scales' },
-      { id: 'chicken', name: 'Chicken(Poultry) Scale', slug: 'poultry', description: 'Water for poultry and meat applications' },
-      { id: 'platform', name: 'Platform', slug: 'platform', description: 'Heavy duty industrial platforms' },
-      { id: 'jewellery', name: 'Jewellery', slug: 'jewellery', description: 'High precision for gems and jewelry' },
-      { id: 'kitchen', name: 'Kitchen', slug: 'kitchen', description: 'Compact kitchen scales for home use' },
-      { id: 'bathroom', name: 'Bathroom (Body)', slug: 'bathroom', description: 'Personal body weight scales' },
-      { id: 'luggage', name: 'Luggage Scale', slug: 'luggage', description: 'Portable scales for travel' }
+      { id: 'micro', name: 'Micro Scales', slug: 'electronic/micro', description: 'Laboratory-grade micro precision' },
+      { id: 'tabletop', name: 'Table Top', slug: 'electronic/tabletop', description: 'Versatile table top digital scales' },
+      { id: 'chicken', name: 'Chicken(Poultry) Scale', slug: 'electronic/poultry', description: 'Water for poultry and meat applications' },
+      { id: 'platform', name: 'Platform', slug: 'electronic/platform', description: 'Heavy duty industrial platforms' },
+      { id: 'jewellery', name: 'Jewellery', slug: 'electronic/jewellery', description: 'High precision for gems and jewelry' },
+      { id: 'kitchen', name: 'Kitchen', slug: 'electronic/kitchen', description: 'Compact kitchen scales for home use' },
+      { id: 'bathroom', name: 'Bathroom (Body)', slug: 'electronic/personal', description: 'Personal body weight scales' },
+      { id: 'luggage', name: 'Luggage Scale', slug: 'electronic/luggage', description: 'Portable scales for travel' }
     ]
   },
   {
     id: 'hanging',
     name: 'Hanging Scales',
     slug: 'hanging',
-    icon: <Anchor className="w-5 h-5" />,
+    icon: <CircleGauge className="w-5 h-5" />,
     description: 'Spring balance scales for portable weighing',
     children: [
-      { id: 'circular', name: 'Circular', slug: 'circular', description: 'Classic dial display' },
-      { id: 'pocket', name: 'Pocket', slug: 'pocket', description: 'Compact pocket-sized' },
-      { id: 'tubular', name: 'Tubular', slug: 'tubular', description: 'Heavy duty tubular design' },
-      { id: 'digital', name: 'Digital Hanging Scales', slug: 'digital', description: 'Backlit digital display hanging scales' },
-      { id: 'crane', name: 'Crane Scales', slug: 'crane', description: 'Heavy-duty crane scales for industrial lifting' }
+      { id: 'circular', name: 'Circular', slug: 'hanging/circular', description: 'Classic dial display' },
+      { id: 'pocket', name: 'Pocket', slug: 'hanging/pocket', description: 'Compact pocket-sized' },
+      { id: 'tubular', name: 'Tubular', slug: 'hanging/tubular', description: 'Heavy duty tubular design' },
+      { id: 'digital', name: 'Digital Hanging Scales', slug: 'hanging/digital', description: 'Backlit digital display hanging scales' },
+      { id: 'crane', name: 'Crane Scales', slug: 'hanging/crane', description: 'Heavy-duty crane scales for industrial lifting' }
     ]
   },
   {
@@ -107,11 +101,10 @@ const productTree: ProductNode[] = [
     icon: <Package className="w-5 h-5" />,
     description: 'Weights, calibration tools and spare parts',
     children: [
-      { id: 'weights', name: 'Calibration Weights', slug: 'weights', description: 'Standard weights for calibration' },
-      { id: 'adapters', name: 'Power Adapters', slug: 'adapters', description: 'Power supplies and adapters' },
-      { id: 'batteries', name: 'Batteries', slug: 'batteries', description: 'Replacement batteries for scales' },
-      { id: 'displays', name: 'External Displays', slug: 'displays', description: 'Additional display units' },
-      { id: 'parts', name: 'Spare Parts', slug: 'parts', description: 'Load cells, motherboards, and parts' }
+      { id: 'weights', name: 'Knob Cast Iron Weights', slug: 'accessories/knob-weights', description: 'Standard brass plated knob weights' },
+      { id: 'hex-weights', name: 'Hexagonal Cast Iron Weights', slug: 'accessories/hex-weights', description: 'Heavy duty hexagonal weights' },
+      { id: 'load-cells', name: 'Load Cells', slug: 'accessories/load-cells', description: 'Platform and Table top load cells' },
+      { id: 'hooks', name: 'Hooks', slug: 'accessories/hooks', description: 'Hooks for various scales' }
     ]
   }
 ];
@@ -147,8 +140,9 @@ function TreeNode({ node, level, index }: TreeNodeProps) {
             : 'hover:bg-gray-50'}
           ${isExpanded && hasChildren ? 'bg-blue-50' : ''}
         `}
-        onClick={() => {
+        onClick={(e) => {
           if (hasChildren) {
+            e.preventDefault();
             setIsExpanded(!isExpanded);
           } else {
             navigate(`/products/${node.slug}`);
@@ -214,14 +208,14 @@ function TreeNode({ node, level, index }: TreeNodeProps) {
           )}
         </div>
 
-        {/* Action Button */}
+        {/* Action Button: Now enabled for both parents (View All) and children (View) */}
         <Link
           to={`/products/${node.slug}`}
           onClick={(e) => e.stopPropagation()}
           className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center gap-1"
           aria-label={`View ${node.name} products`}
         >
-          View
+          {hasChildren ? 'View All' : 'View'}
           <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
