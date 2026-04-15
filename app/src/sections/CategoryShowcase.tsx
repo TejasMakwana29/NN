@@ -59,7 +59,7 @@ const categoryCards: CategoryCard[] = [
     slug: 'counter',
     icon: <Scale className="w-8 h-8" />,
     description: 'Perfect for retail shops, grocery stores, and commercial establishments',
-    features: ['Digital LED Display', 'Tare Function', 'Auto Power Off', 'Rechargeable Battery'],
+    features: ['Digital LCD Display', 'Tare Function', 'Auto Power Off', 'Rechargeable Battery'],
     productCount: getProductCount('counter'),
     priceRange: '',
     image: IMAGES.counter,
@@ -84,7 +84,7 @@ const categoryCards: CategoryCard[] = [
     name: 'Electronic Scales',
     slug: 'electronic',
     icon: <Cpu className="w-8 h-8" />,
-    description: 'Modern digital scales with advanced features and LED displays',
+    description: 'Modern digital scales with advanced features and LCD displays',
     features: ['High Precision', 'Multiple Units', 'Memory Function', 'Stainless Steel Platform'],
     productCount: getProductCount('electronic'),
     priceRange: '',
@@ -122,7 +122,6 @@ const categoryCards: CategoryCard[] = [
 
 export function CategoryShowcase() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -212,10 +211,8 @@ export function CategoryShowcase() {
               variants={cardVariants}
               onMouseEnter={() => setHoveredCard(category.id)}
               onMouseLeave={() => setHoveredCard(null)}
-              onClick={() => setSelectedCard(selectedCard === category.id ? null : category.id)}
-              whileTap={{ scale: 0.99 }}
               className={`
-                group relative bg-white rounded-3xl overflow-hidden cursor-pointer
+                group relative bg-white rounded-3xl overflow-hidden flex flex-col
                 transition-all duration-500 ease-out border border-white/10
                 ${hoveredCard === category.id ? 'shadow-2xl shadow-blue-900/50 -translate-y-2' : 'shadow-xl'}
                 ${index === 2 ? 'md:col-span-2 lg:col-span-1' : ''}
@@ -230,7 +227,7 @@ export function CategoryShowcase() {
               `} />
 
               {/* Image Section */}
-              <div className="relative h-48 overflow-hidden bg-gray-100">
+              <div className="relative h-48 overflow-hidden bg-gray-100 shrink-0">
                 <motion.img
                   src={category.image}
                   alt={`${category.name} - Weighing scales`}
@@ -270,8 +267,8 @@ export function CategoryShowcase() {
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
+              {/* Content Container (flex-1 pushes the button down) */}
+              <div className="p-6 flex flex-col flex-1">
                 <p className="text-gray-600 mb-5 line-clamp-2 leading-relaxed">
                   {category.description}
                 </p>
@@ -295,10 +292,11 @@ export function CategoryShowcase() {
                   ))}
                 </ul>
 
-                {/* Action Button */}
+                {/* Action Button - mt-auto pushes this to the absolute bottom */}
                 <Link
                   to={`/products/${category.slug}`}
                   className={`
+                    mt-auto
                     w-full py-3.5 rounded-xl font-bold flex items-center justify-center gap-2
                     bg-gradient-to-r ${category.gradient} text-white
                     transform transition-all duration-300 shadow-md

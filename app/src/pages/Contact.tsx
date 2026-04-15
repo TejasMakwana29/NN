@@ -91,7 +91,7 @@ export function Contact() {
                     <p className="text-gray-600 mb-4">
                       3, Shivaji Nagar, Savarkundla,<br />Dist. Amreli, Gujarat - 364515
                     </p>
-                    <h4 className="font-semibold text-gray-800 mb-2">Branch Office</h4>
+                    <h4 className="font-semibold text-gray-800 mb-2">Branch</h4>
                     <p className="text-gray-600">
                       B-21, Shivalik Industrial Park, OPP. Karmbhoomi Estate,<br />Bakrol (Bujrang), Ahmedabad - 382430
                     </p>
@@ -319,7 +319,7 @@ export function Contact() {
               className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200 group"
             >
               <div className="p-3 bg-indigo-50 border-b border-gray-100">
-                <p className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Branch Office - Ahmedabad</p>
+                <p className="text-xs font-bold text-indigo-700 uppercase tracking-wider">Branch - Ahmedabad</p>
               </div>
               <div className="h-80 w-full">
                 <iframe 
