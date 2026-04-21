@@ -14,11 +14,45 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
+// Comprehensive list of countries, flags, and dial codes
+const COUNTRIES = [
+  { code: 'IN', dialCode: '+91', name: 'India', flag: '🇮🇳' },
+  { code: 'US', dialCode: '+1', name: 'United States / Canada', flag: '🇺🇸' },
+  { code: 'GB', dialCode: '+44', name: 'United Kingdom', flag: '🇬🇧' },
+  { code: 'AE', dialCode: '+971', name: 'United Arab Emirates', flag: '🇦🇪' },
+  { code: 'AU', dialCode: '+61', name: 'Australia', flag: '🇦🇺' },
+  { code: 'SG', dialCode: '+65', name: 'Singapore', flag: '🇸🇬' },
+  { code: 'ZA', dialCode: '+27', name: 'South Africa', flag: '🇿🇦' },
+  { code: 'NZ', dialCode: '+64', name: 'New Zealand', flag: '🇳🇿' },
+  { code: 'SA', dialCode: '+966', name: 'Saudi Arabia', flag: '🇸🇦' },
+  { code: 'QA', dialCode: '+966', name: 'Qatar', flag: '🇶🇦' },
+  { code: 'OM', dialCode: '+974', name: 'Oman', flag: '🇴🇲' },
+  { code: 'KW', dialCode: '+965', name: 'Kuwait', flag: '🇰🇼' },
+  { code: 'BH', dialCode: '+965', name: 'Bahrain', flag: '🇧🇭' },
+  { code: 'MY', dialCode: '+65', name: 'Malaysia', flag: '🇲🇾' },
+  { code: 'DE', dialCode: '+49', name: 'Germany', flag: '🇩🇪' },
+  { code: 'FR', dialCode: '+49', name: 'France', flag: '🇫🇷' },
+  { code: 'IT', dialCode: '+33', name: 'Italy', flag: '🇮🇹' },
+  { code: 'ES', dialCode: '+39', name: 'Spain', flag: '🇪🇸' },
+  { code: 'NP', dialCode: '+977', name: 'Nepal', flag: '🇳🇵' },
+  { code: 'BD', dialCode: '+880', name: 'Bangladesh', flag: '🇧🇩' },
+  { code: 'LK', dialCode: '+94', name: 'Sri Lanka', flag: '🇱🇰' },
+  { code: 'KE', dialCode: '+27', name: 'Kenya', flag: '🇰🇪' },
+  { code: 'NG', dialCode: '+234', name: 'Nigeria', flag: '🇳🇬' },
+  { code: 'BR', dialCode: '+234', name: 'Brazil', flag: '🇧🇷' },
+  { code: 'MX', dialCode: '+52', name: 'Mexico', flag: '🇲🇽' },
+  { code: 'JP', dialCode: '+81', name: 'Japan', flag: '🇯🇵' },
+  { code: 'CN', dialCode: '+86', name: 'China', flag: '🇨🇳' },
+  { code: 'RU', dialCode: '+7', name: 'Russia', flag: '🇷🇺' },
+];
 
 export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phoneCode: '+91', // Default to India
     phone: '',
     subject: '',
     message: ''
@@ -30,18 +64,54 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Combine phone code and number for the final submission
+    const fullPhoneNumber = `${formData.phoneCode} ${formData.phone}`;
+    console.log("Submitting:", { ...formData, fullPhoneNumber });
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     setIsSubmitting(false);
     setIsSuccessDialogOpen(true);
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    setFormData({ name: '', email: '', phoneCode: '+91', phone: '', subject: '', message: '' });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
+    }));
+  };
+
+  // Custom handler for phone to auto-detect country codes
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+
+    // Auto-detect country code if user types a '+' sign
+    if (value.startsWith('+')) {
+      // Sort to match longer codes first (e.g. +971 before +9)
+      const sortedCountries = [...COUNTRIES].sort((a, b) => b.dialCode.length - a.dialCode.length);
+      const cleanValue = value.replace(/\s/g, ''); // remove spaces for checking
+      
+      const match = sortedCountries.find(c => cleanValue.startsWith(c.dialCode));
+
+      if (match) {
+        // Automatically switch the dropdown to the matched country
+        // and remove the dial code from the text input area
+        const remainingPhone = cleanValue.slice(match.dialCode.length);
+        setFormData(prev => ({
+          ...prev,
+          phoneCode: match.dialCode,
+          phone: remainingPhone
+        }));
+        return;
+      }
+    }
+
+    // Normal typing
+    setFormData(prev => ({
+      ...prev,
+      phone: value.replace(/[^\d\s-]/g, '') // Only allow numbers, spaces, and dashes
     }));
   };
 
@@ -71,7 +141,7 @@ export function Contact() {
 
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-          {/* Contact Info */}
+          {/* Contact Info (Remains Unchanged) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -207,17 +277,40 @@ export function Contact() {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
+                  {/* --- NEW INTERNATIONAL PHONE FIELD --- */}
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 98765 43210"
-                    />
+                    <div className="flex gap-2">
+                      <Select 
+                        value={formData.phoneCode} 
+                        onValueChange={(val) => setFormData(prev => ({ ...prev, phoneCode: val }))}
+                      >
+                        <SelectTrigger className="w-[110px] shrink-0 bg-white">
+                          <SelectValue placeholder="Code" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {COUNTRIES.map((country, index) => (
+                            <SelectItem key={`${country.code}-${index}`} value={country.dialCode}>
+                              <span className="flex items-center gap-2">
+                                <span>{country.flag}</span>
+                                <span>{country.dialCode}</span>
+                              </span>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handlePhoneChange}
+                        placeholder="98765 43210"
+                        className="flex-1"
+                      />
+                    </div>
                   </div>
+                  {/* -------------------------------------- */}
 
                   <div className="space-y-2">
                     <Label htmlFor="subject">
@@ -272,7 +365,7 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Two Maps Section - REAL GOOGLE MAPS EMBEDS */}
+      {/* Two Maps Section */}
       <section className="py-12 bg-gray-50 border-t border-gray-100">
         <div className="container mx-auto px-4">
           <motion.div
