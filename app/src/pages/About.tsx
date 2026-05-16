@@ -110,7 +110,7 @@ export function About() {
 
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed text-justify">
                 <p>
-                  At <strong className="font-bold text-blue-900">Manish Scale</strong>, we don’t just manufacture weighing instruments—we deliver <strong className="font-bold text-blue-900">precision you can trust and strength you can rely on</strong>. With a legacy dating back to <strong className="font-bold text-blue-900">1925</strong>, our journey is built on <strong className="font-bold text-blue-900">quality, innovation, and customer confidence</strong>.
+                  At <strong className="font-bold text-blue-900">Manish Scale</strong>, we don’t just manufacture weighing instruments—we deliver <strong className="font-bold text-blue-900">precision you can trust and strength you can rely on</strong>. With a legacy dating back to <strong className="font-bold text-blue-900">1950</strong>, our journey is built on <strong className="font-bold text-blue-900">quality, innovation, and customer confidence</strong>.
                 </p>
                 <p>
                   Every product is crafted using <strong className="font-bold text-blue-900">high-grade materials and advanced technology</strong>, ensuring <strong className="font-bold text-blue-900">accurate results and long-lasting performance</strong> even in the toughest environments. Our premium brand <strong className="font-bold text-blue-900">Paras</strong> stands as a symbol of <strong className="font-bold text-blue-900">power, durability, and unmatched reliability</strong> across industries.
