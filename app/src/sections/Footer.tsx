@@ -87,7 +87,7 @@ export function Footer() {
                 </div>
               </Link>
               <p className="text-blue-100/70 mb-6 leading-relaxed">
-                Carrying forward a legacy that began in 1950, we deliver <strong className="text-white font-medium">precision you can trust and strength you can rely on</strong>.
+                Carrying forward a legacy that began in 1932, we deliver <strong className="text-white font-medium">precision you can trust and strength you can rely on</strong>.
                 <br /><br />
                 <span className="text-amber-400 font-medium tracking-wide">Manish Scale — A Name of Quality & Precision. A Legacy of Trust.</span>
               </p>
@@ -256,7 +256,7 @@ export function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="text-blue-100/50 text-sm text-center md:text-left">
                 © {new Date().getFullYear()} <span className="text-blue-400 font-medium">Manish Scale</span>. All rights reserved. 
-                <span className="hidden md:inline"> | A Legacy of Trust Since 1950</span>
+                <span className="hidden md:inline"> | A Legacy of Trust Since 1932</span>
               </p>
               <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm">
                 <Link to="/privacy" className="text-blue-100/50 hover:text-white transition-colors">

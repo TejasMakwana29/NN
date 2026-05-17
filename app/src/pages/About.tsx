@@ -17,7 +17,7 @@ export function About() {
     {
       icon: HeartHandshake,
       title: "Legacy of Trust",
-      description: "Building lasting relationships with our customers since 1950 through transparency, integrity, and consistent performance."
+      description: "Building lasting relationships with our customers since 1932 through transparency, integrity, and consistent performance."
     },
     {
       icon: Lightbulb,
@@ -82,7 +82,7 @@ export function About() {
               
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed text-justify">
                 <p>
-                  <strong className="font-bold text-blue-900">Manish Scale</strong> carries forward a legacy that began in <strong className="font-bold text-blue-900">1950</strong> with <strong className="font-bold text-blue-900">Karshan Ramji and Sons</strong>, a pioneering company that became <strong className="font-bold text-blue-900">India’s first manufacturer of beam scales and mechanical weighing scales</strong>. At a time when the weighing industry in India was still developing, <strong className="font-bold text-blue-900">Karshan Ramji and Sons</strong> set new standards with its commitment to precision, quality craftsmanship, and reliable performance. Over the decades, the company earned the trust of businesses across the country and became a respected name in the weighing scale industry.
+                  <strong className="font-bold text-blue-900">Manish Scale</strong> carries forward a legacy that began in <strong className="font-bold text-blue-900">1932</strong> with <strong className="font-bold text-blue-900">Karshan Ramji and Sons</strong>, a pioneering company that became <strong className="font-bold text-blue-900">India’s first manufacturer of beam scales and mechanical weighing scales</strong>. At a time when the weighing industry in India was still developing, <strong className="font-bold text-blue-900">Karshan Ramji and Sons</strong> set new standards with its commitment to precision, quality craftsmanship, and reliable performance. Over the decades, the company earned the trust of businesses across the country and became a respected name in the weighing scale industry.
                 </p>
                 <p>
                   With changing times and advancements in technology, the business continued to evolve while preserving its strong foundation of accuracy and reliability. In <strong className="font-bold text-blue-900">2012</strong>, the next chapter of this legacy began with the establishment of <strong className="font-bold text-blue-900">Manish Scale</strong>, focusing on the manufacturing of <strong className="font-bold text-blue-900">Hanging Spring Balances</strong>. By combining decades of traditional expertise with modern manufacturing techniques, the brand quickly gained recognition for producing high-quality and highly precise weighing instruments.
@@ -110,7 +110,7 @@ export function About() {
 
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed text-justify">
                 <p>
-                  At <strong className="font-bold text-blue-900">Manish Scale</strong>, we don’t just manufacture weighing instruments—we deliver <strong className="font-bold text-blue-900">precision you can trust and strength you can rely on</strong>. With a legacy dating back to <strong className="font-bold text-blue-900">1950</strong>, our journey is built on <strong className="font-bold text-blue-900">quality, innovation, and customer confidence</strong>.
+                  At <strong className="font-bold text-blue-900">Manish Scale</strong>, we don’t just manufacture weighing instruments—we deliver <strong className="font-bold text-blue-900">precision you can trust and strength you can rely on</strong>. With a legacy dating back to <strong className="font-bold text-blue-900">1932</strong>, our journey is built on <strong className="font-bold text-blue-900">quality, innovation, and customer confidence</strong>.
                 </p>
                 <p>
                   Every product is crafted using <strong className="font-bold text-blue-900">high-grade materials and advanced technology</strong>, ensuring <strong className="font-bold text-blue-900">accurate results and long-lasting performance</strong> even in the toughest environments. Our premium brand <strong className="font-bold text-blue-900">Paras</strong> stands as a symbol of <strong className="font-bold text-blue-900">power, durability, and unmatched reliability</strong> across industries.

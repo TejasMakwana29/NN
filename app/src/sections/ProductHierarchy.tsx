@@ -293,7 +293,7 @@ export function ProductHierarchy() {
               </div>
               <div className="text-white">
                 <h3 className="text-2xl md:text-3xl font-bold">Manish Scale</h3>
-                <p className="text-blue-200">Premium Weighing Solutions Since 1952</p>
+                <p className="text-blue-200">Premium Weighing Solutions Since 1932</p>
               </div>
             </motion.div>
             

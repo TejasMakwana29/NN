@@ -349,7 +349,7 @@ export function Navbar() {
                         <div className="flex items-center gap-2 text-slate-700">
                           <Sparkles className="w-5 h-5 text-amber-500" />
                           <span className="font-bold">Precision Engineered. Trust Delivered.</span>
-                          <span className="text-slate-500 font-medium ml-1">Since 1950</span>
+                          <span className="text-slate-500 font-medium ml-1">Since 1932</span>
                         </div>
                         <Link
                           to="/products"
