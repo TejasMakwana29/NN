@@ -269,7 +269,7 @@ export function Home() {
               Why Choose Manish Scale
             </span>
             <h2 id="features-title" className="text-3xl md:text-4xl font-bold text-slate-900">
-              Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-bold">50,000+ Businesses</span>
+              Trusted by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-bold">100+ Businesses</span>
             </h2>
           </motion.div>
 
@@ -288,6 +288,7 @@ export function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Interactive Product Hierarchy */}
       <ProductHierarchy />
