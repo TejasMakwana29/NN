@@ -28,10 +28,15 @@ export const IMAGES = {
   beam: U('1581093458791-9f3c3900df4b', 600),
 } as const;
 
-/** Fallback image when product image path is /images/... (local file not loaded) */
-export function getProductImageUrl(product: { image: string; categorySlug?: string; type?: string; name: string }, size: 'thumb' | 'medium' | 'large' = 'medium'): string {
-  const w = size === 'thumb' ? 200 : size === 'medium' ? 500 : 800;
-  if (!product.image.startsWith('/images/')) return product.image;
+/** Product image URL — uses local /images/ paths when set in product data */
+export function getProductImageUrl(
+  product: { image: string; categorySlug?: string; type?: string; name: string },
+  _size: 'thumb' | 'medium' | 'large' = 'medium'
+): string {
+  if (product.image.startsWith('/images/') || product.image.startsWith('http')) {
+    return product.image;
+  }
+  const w = _size === 'thumb' ? 200 : _size === 'medium' ? 500 : 800;
   const slug = (product.categorySlug || '').toLowerCase();
   const type = (product.type || '').toLowerCase();
   if (slug.includes('counter')) return U('1581093458791-9f3c3900df4b', w);

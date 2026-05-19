@@ -11,6 +11,7 @@ import { Quote } from '@/pages/Quote';
 import { About } from '@/pages/About';
 import { Contact } from '@/pages/Contact';
 import { Search } from '@/pages/Search';
+import { AdminQuotes } from '@/pages/AdminQuotes';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/products/:categorySlug/:typeSlug/:sizeSlug" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/quote" element={<Quote />} />
+          <Route path="/admin/quotes" element={<AdminQuotes />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<Search />} />

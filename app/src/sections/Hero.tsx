@@ -2,8 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Award, Users, Globe, TrendingUp, Scale } from 'lucide-react';
-import { IMAGES } from '@/lib/productImages';
-
 function AnimatedCounter({ start = 0, end, decimals = 0, suffix = '' }: { start?: number; end: number; decimals?: number; suffix?: string }) {
   const [count, setCount] = useState(start);
   const ref = useRef(null);
@@ -38,11 +36,11 @@ function AnimatedCounter({ start = 0, end, decimals = 0, suffix = '' }: { start?
 }
 
 const heroSlides = [
-  IMAGES.hero,
-  IMAGES.counter,
-  IMAGES.electronic,
-  IMAGES.beam,
-  IMAGES.hanging,
+  { src: '/images/counter-emboss-body.png', alt: 'Emboss Body Counter Scale' },
+  { src: '/images/category-beam.png', alt: 'Beam Scale' },
+  { src: '/images/electronic-tabletop-scale.png', alt: 'Table Top Electronic Scale' },
+  { src: '/images/hanging-circular-100kg.png', alt: 'Circular Hanging Scale 100kg' },
+  { src: '/images/counter-super-body.png', alt: 'Super Body Counter Scale' },
 ];
 
 export function Hero() {
@@ -182,8 +180,8 @@ export function Hero() {
                 <div className="relative h-72 mb-6 rounded-xl overflow-hidden bg-gradient-to-br from-blue-50/50 to-indigo-50 flex items-center justify-center border border-blue-100/50 shadow-inner">
                   <motion.img
                     key={slideIndex}
-                    src={heroSlides[slideIndex]}
-                    alt="Featured weighing scale"
+                    src={heroSlides[slideIndex].src}
+                    alt={heroSlides[slideIndex].alt}
                     className="w-full h-64 object-contain drop-shadow-2xl"
                     loading="eager"
                     initial={{ opacity: 0, scale: 0.98 }}

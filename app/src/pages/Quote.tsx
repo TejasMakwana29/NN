@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { submitQuoteRequest } from '@/lib/api';
 
 export function Quote() {
   const [formData, setFormData] = useState({
@@ -28,19 +29,34 @@ export function Quote() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
   const [quoteId, setQuoteId] = useState('');
+  const [confirmationEmailSent, setConfirmationEmailSent] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError('');
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Generate quote ID
-    const generatedQuoteId = `QUOTE-${Date.now().toString(36).toUpperCase()}`;
-    setQuoteId(generatedQuoteId);
-    setIsSubmitting(false);
-    setIsSuccessDialogOpen(true);
+    try {
+      const result = await submitQuoteRequest(formData);
+      setQuoteId(result.quoteId);
+      setConfirmationEmailSent(Boolean(result.emailSent));
+      setIsSuccessDialogOpen(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        products: '',
+        message: '',
+      });
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : 'Failed to submit. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -190,6 +206,12 @@ export function Quote() {
                   </div>
                 </div>
 
+                {submitError && (
+                  <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
+                    {submitError}
+                  </p>
+                )}
+
                 <Button
                   type="submit"
                   disabled={isSubmitting}
@@ -251,11 +273,11 @@ export function Quote() {
                     <span>+91 92844 05090</span>
                   </a>
                   <a 
-                    href="mailto:sales@precisionweigh.com" 
+                    href="mailto:manishscaleindia@gmail.com" 
                     className="flex items-center gap-3 p-3 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
                   >
                     <Mail className="w-5 h-5" />
-                    <span>sales@precisionweigh.com</span>
+                    <span>manishscaleindia@gmail.com</span>
                   </a>
                 </div>
               </div>
@@ -294,6 +316,9 @@ export function Quote() {
               <p className="text-xl font-bold text-blue-600">{quoteId}</p>
             </div>
             <p className="text-sm text-gray-500 mb-6">
+              {confirmationEmailSent
+                ? 'A confirmation email has been sent to your inbox. '
+                : ''}
               Our team will contact you within 24 hours with a customized quote.
             </p>
             <Button

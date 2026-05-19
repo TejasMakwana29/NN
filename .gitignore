@@ -11,6 +11,9 @@ build/
 .env.local
 .env.*.local
 
+# Quote submissions (stored locally on server)
+backend/data/quotes.json
+
 # Logs and cache
 npm-debug.log*
 yarn-debug.log*

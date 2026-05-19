@@ -10,8 +10,11 @@ import {
   Check,
   Sparkles
 } from 'lucide-react';
-import { IMAGES } from '@/lib/productImages';
 import { categories } from '@/data/products';
+
+function getCategoryImage(slug: string, fallback: string): string {
+  return categories.find((c) => c.slug === slug)?.image ?? fallback;
+}
 
 // Helper to count actual products from the data file dynamically
 const getProductCount = (categorySlug: string) => {
@@ -62,7 +65,7 @@ const categoryCards: CategoryCard[] = [
     features: ['Digital LCD Display', 'Tare Function', 'Auto Power Off', 'Rechargeable Battery'],
     productCount: getProductCount('counter'),
     priceRange: '',
-    image: IMAGES.counter,
+    image: getCategoryImage('counter', '/images/category-counter.png'),
     color: 'blue',
     gradient: 'from-blue-500 to-blue-700'
   },
@@ -75,7 +78,7 @@ const categoryCards: CategoryCard[] = [
     features: ['No Power Required', 'Class B & C Options', 'Heavy Duty Build', 'Lifetime Durability'],
     productCount: getProductCount('beam'),
     priceRange: '',
-    image: IMAGES.beam,
+    image: getCategoryImage('beam', '/images/category-beam.png'),
     color: 'emerald',
     gradient: 'from-emerald-500 to-emerald-700'
   },
@@ -88,7 +91,7 @@ const categoryCards: CategoryCard[] = [
     features: ['High Precision', 'Multiple Units', 'Memory Function', 'Stainless Steel Platform'],
     productCount: getProductCount('electronic'),
     priceRange: '',
-    image: IMAGES.electronic,
+    image: getCategoryImage('electronic', '/images/category-electronic.png'),
     color: 'violet',
     gradient: 'from-violet-500 to-violet-700'
   },
@@ -101,7 +104,7 @@ const categoryCards: CategoryCard[] = [
     features: ['Portable Design', 'Hook Attachment', 'Circular/Tubular Options', 'Weather Resistant'],
     productCount: getProductCount('hanging'),
     priceRange: '',
-    image: IMAGES.hanging,
+    image: getCategoryImage('hanging', '/images/category-hanging.png'),
     color: 'amber',
     gradient: 'from-amber-500 to-amber-700'
   },
@@ -114,7 +117,7 @@ const categoryCards: CategoryCard[] = [
     features: ['Calibration Weights', 'Power Adapters', 'Battery Packs', 'Spare Parts'],
     productCount: getProductCount('accessories'),
     priceRange: '',
-    image: IMAGES.accessories,
+    image: getCategoryImage('accessories', '/images/accessories.jpg'),
     color: 'rose',
     gradient: 'from-rose-500 to-rose-700'
   }
