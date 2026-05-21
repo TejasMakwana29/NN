@@ -1,7 +1,8 @@
 /**
- * Relevant, high-quality images for weighing scales e-commerce.
- * Uses Unsplash (scale, retail, kitchen, industrial, jewelry) and local /images/ where available.
+ * Product and fallback images for weighing scales e-commerce.
  */
+
+import { publicAsset } from '@/lib/publicAsset';
 
 const U = (id: string, w = 800, q = 85) =>
   `https://images.unsplash.com/photo-${id}?w=${w}&q=${q}&auto=format&fit=crop`;
@@ -34,7 +35,7 @@ export function getProductImageUrl(
   _size: 'thumb' | 'medium' | 'large' = 'medium'
 ): string {
   if (product.image.startsWith('/images/') || product.image.startsWith('http')) {
-    return product.image;
+    return publicAsset(product.image);
   }
   const w = _size === 'thumb' ? 200 : _size === 'medium' ? 500 : 800;
   const slug = (product.categorySlug || '').toLowerCase();

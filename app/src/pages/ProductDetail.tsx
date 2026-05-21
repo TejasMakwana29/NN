@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { getProductById, getProductsByCategory, type Product } from '@/data/products';
 import { getProductImageUrl, getPlaceholderImageUrl } from '@/lib/productImages';
+import { publicAsset } from '@/lib/publicAsset';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Helper to convert "**text**" into bold HTML tags AND JUSTIFY TEXT
@@ -44,7 +45,9 @@ export function ProductDetail() {
       if (foundProduct) {
         setProduct(foundProduct);
         
-        setCurrentImage(foundProduct.capacities?.[0]?.image || foundProduct.image);
+        setCurrentImage(
+          publicAsset(foundProduct.capacities?.[0]?.image || foundProduct.image)
+        );
         
         const related = getProductsByCategory(foundProduct.categorySlug || '')
           .filter(p => p.id !== id)
@@ -141,11 +144,15 @@ export function ProductDetail() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 p-6 md:p-10">
               <div className="aspect-square relative flex items-center justify-center">
                 <img
-                  src={currentImage} 
+                  src={currentImage}
                   alt={product.name}
                   className="w-full h-full object-contain drop-shadow-xl"
+                  loading="eager"
+                  decoding="async"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = getPlaceholderImageUrl(product.name, 600);
+                    const img = e.target as HTMLImageElement;
+                    const fallback = getPlaceholderImageUrl(product.name, 600);
+                    if (img.src !== fallback) img.src = fallback;
                   }}
                 />
                 <div className="absolute top-0 right-0 flex gap-2">

@@ -11,9 +11,11 @@ import {
   Sparkles
 } from 'lucide-react';
 import { categories } from '@/data/products';
+import { publicAsset } from '@/lib/publicAsset';
 
 function getCategoryImage(slug: string, fallback: string): string {
-  return categories.find((c) => c.slug === slug)?.image ?? fallback;
+  const image = categories.find((c) => c.slug === slug)?.image ?? fallback;
+  return publicAsset(image);
 }
 
 // Helper to count actual products from the data file dynamically

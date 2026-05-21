@@ -16,6 +16,7 @@ import {
   Quote, 
   CheckCircle2 
 } from 'lucide-react';
+import { publicAsset } from '@/lib/publicAsset';
 import { ProductGrid } from '@/sections/ProductGrid';
 import { ProductHierarchy } from '@/sections/ProductHierarchy';
 import { CategoryShowcase } from '@/sections/CategoryShowcase';
@@ -49,11 +50,11 @@ function AnimatedCounter({ start = 0, end, decimals = 0, suffix = '' }: { start?
 }
 
 const heroSlides = [
-  { src: '/images/counter-emboss-body.png', alt: 'Emboss Body Counter Scale' },
-  { src: '/images/category-beam.png', alt: 'Beam Scale' },
-  { src: '/images/electronic-tabletop-scale.png', alt: 'Table Top Electronic Scale' },
-  { src: '/images/hanging-circular-100kg.png', alt: 'Circular Hanging Scale 100kg' },
-  { src: '/images/counter-super-body.png', alt: 'Super Body Counter Scale' },
+  { src: publicAsset('/images/counter-emboss-body.png'), alt: 'Emboss Body Counter Scale' },
+  { src: publicAsset('/images/category-beam.png'), alt: 'Beam Scale' },
+  { src: publicAsset('/images/electronic-tabletop-scale.png'), alt: 'Table Top Electronic Scale' },
+  { src: publicAsset('/images/hanging-circular-100kg.png'), alt: 'Circular Hanging Scale 100kg' },
+  { src: publicAsset('/images/counter-super-body.png'), alt: 'Super Body Counter Scale' },
 ];
 
 // --- Data ---
