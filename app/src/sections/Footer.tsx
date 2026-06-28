@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { 
-  Scale, 
-  MapPin, 
+   MapPin, 
   Phone, 
   Mail, 
   Clock,
