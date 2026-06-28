@@ -171,15 +171,11 @@ export function Navbar() {
               aria-label="Manish Scale - Home"
             >
               <motion.div 
-                className="relative w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl flex items-center justify-center shadow-md shadow-blue-600/20"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Scale className="w-8 h-8 text-white" aria-hidden="true" />
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-400 border border-white rounded-full flex items-center justify-center">
-                  <span className="text-[8px] font-bold text-gray-900">MS</span>
-                </div>
-              </motion.div>
+  whileHover={{ scale: 1.05 }}
+  transition={{ duration: 0.3 }}
+>
+  <img src="/logo.png" alt="Manish Scale Logo" className="w-16 h-auto object-contain" />
+</motion.div>
               <div>
                 <h1 className="text-2xl font-bold">
                   <span className="text-blue-700">Manish</span>
