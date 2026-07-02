@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
@@ -205,16 +205,19 @@ export function Home() {
               <div className="relative">
                 <div className="relative bg-white/80 backdrop-blur-xl rounded-2xl p-6 md:p-8 border border-white shadow-xl shadow-blue-900/10">
                   <div className="relative h-[300px] md:h-[400px] rounded-xl overflow-hidden bg-gradient-to-br from-blue-50/50 to-indigo-50 flex items-center justify-center border border-blue-100/50 shadow-inner">
-                    <motion.img
-                      key={slideIndex}
-                      src={heroSlides[slideIndex].src}
-                      alt={heroSlides[slideIndex].alt}
-                      className="w-full h-[240px] md:h-[320px] object-contain drop-shadow-2xl"
-                      loading="eager"
-                      initial={{ opacity: 0, scale: 0.98 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                    />
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={slideIndex}
+                        src={heroSlides[slideIndex].src}
+                        alt={heroSlides[slideIndex].alt}
+                        className="w-full h-[240px] md:h-[320px] object-contain drop-shadow-2xl"
+                        loading="eager"
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                      />
+                    </AnimatePresence>
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
                       {heroSlides.map((_, i) => (
                         <button
